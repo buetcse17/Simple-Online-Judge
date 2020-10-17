@@ -18,6 +18,7 @@ oj.users
 oj.Rating_Distribution
 OJ.Institution
 OJ.COUNTRY
+
  */
 
 BEGIN
@@ -209,18 +210,20 @@ create table oj.Rating_Distribution
 
 create table oj.users
 (
-    user_id         integer      not null
+    user_id         integer       not null
         constraint PKUsers PRIMARY KEY,
-    handle          varchar2(32) not null,
-    user_name       varchar2(50) not null,
-    email           varchar2(320),
+    handle          varchar2(32)  not null,
+    user_name       varchar2(50)  not null,
+    email           varchar2(320) not null,
     rating          integer default 0,
-    password_hash   char(64)     not null,--- sha256.hexdigest()
+    password_hash   char(64)      not null,--- sha256.hexdigest()
     country_id      INTEGER,
     Institution_id  INTEGER,
-    rating_catagory varchar2(20) not null,
-    constraint FKCountry_id foreign key (country_id) references oj.country (country_id) on delete set null ,
-    constraint FKInstitution_id foreign key (Institution_id) references oj.Institution (Institution_id) on delete set null ,
+    rating_catagory varchar2(20)  not null,
+    constraint Unique_Handle unique (handle),
+    constraint Unique_Email unique (email),
+    constraint FKCountry_id foreign key (country_id) references oj.country (country_id) on delete set null,
+    constraint FKInstitution_id foreign key (Institution_id) references oj.Institution (Institution_id) on delete set null,
     constraint FKrating_catagory foreign key (rating_catagory) references oj.Rating_Distribution (rating_catagory) on delete set null
 );
 
@@ -230,8 +233,8 @@ create table oj.Follow
 (
     follower_id integer not null,
     followee_id integer not null,
-    constraint FKFollower_id foreign key (follower_id) references oj.users (user_id) on delete cascade ,
-    constraint FKFollowee_id foreign key (followee_id) references oj.users (user_id) on delete  cascade ,
+    constraint FKFollower_id foreign key (follower_id) references oj.users (user_id) on delete cascade,
+    constraint FKFollowee_id foreign key (followee_id) references oj.users (user_id) on delete cascade,
     constraint PKFollow primary key (followee_id, follower_id)
 );
 
@@ -241,12 +244,13 @@ create table oj.message
 (
     message_id    integer not null
         constraint PKMessage primary key,
+    text          clob    not null,
     file_location varchar2(512),
     time          date    not null,
     seen          number(1) default 0,
     receiver_id   integer not null,
     sender_id     integer not null,
-    constraint FKSEnder_id foreign key (sender_id) references oj.users (user_id) on delete cascade ,
+    constraint FKSEnder_id foreign key (sender_id) references oj.users (user_id) on delete cascade,
     constraint FKreceiver_id foreign key (receiver_id) references oj.users (user_id) on delete cascade
 );
 
@@ -287,18 +291,19 @@ create table oj.testcase
     input_file_location  varchar2(2048) not null,
     output_file_location varchar2(2048) not null,
     problem_id           integer        not null,
-    constraint FKProblem_id_in_test_case foreign key (problem_id) references oj.problem (problem_id) on delete cascade
+    constraint FKProblem_id_in_testcase foreign key (problem_id) references oj.problem (problem_id) on delete cascade
 );
 
 --- Sample Test Case Relation table
 
 create table oj.sample_testcase
 (
-    problem_id  integer not null,
-    testcase_id integer not null,
-    constraint PKsample_testcase primary key (problem_id, testcase_id),
-    constraint FKProblemid_sample_testcase foreign key (problem_id) references oj.problem (problem_id) on delete  cascade ,
-    constraint FKtestcaseid_sample_testcase foreign key (testcase_id) references oj.testcase (testcase_id ) on delete cascade
+    testcase_id          integer        not null
+        constraint PKSampleTestcase primary key,
+    input_file_location  varchar2(2048) not null,
+    output_file_location varchar2(2048) not null,
+    problem_id           integer        not null,
+    constraint FKProblemid_in_sampletestcase foreign key (problem_id) references oj.problem (problem_id) on delete cascade
 );
 
 --- submission table
@@ -344,7 +349,7 @@ create table oj.Problem_contest
     contest_id integer not null,
     problem_id integer not null,
     constraint PKProblem_contest primary key (contest_id, problem_id),
-    constraint FKproblem_problemcontest foreign key (problem_id) references oj.problem (problem_id) on delete cascade ,
+    constraint FKproblem_problemcontest foreign key (problem_id) references oj.problem (problem_id) on delete cascade,
     constraint FKcontest_problemcontest foreign key (contest_id) references oj.contest (contest_id) on delete cascade
 );
 
@@ -354,7 +359,7 @@ create table oj.paricipant
     contest_id integer not null,
     user_id    integer not null,
     constraint PKparticipant primary key (contest_id, user_id),
-    constraint FKuser_participant foreign key (user_id) references oj.users (user_id) on delete cascade ,
+    constraint FKuser_participant foreign key (user_id) references oj.users (user_id) on delete cascade,
     constraint FKcontest_participant foreign key (contest_id) references oj.contest (contest_id) on delete cascade
 );
 
@@ -364,7 +369,7 @@ create table oj.manager
     contest_id integer not null,
     user_id    integer not null,
     constraint PKmanager primary key (contest_id, user_id),
-    constraint FKuser_manager foreign key (user_id) references oj.users (user_id) on delete cascade ,
+    constraint FKuser_manager foreign key (user_id) references oj.users (user_id) on delete cascade,
     constraint FKcontest_manager foreign key (contest_id) references oj.contest (contest_id) on delete cascade
 );
 
@@ -377,7 +382,7 @@ create table oj.contest_user_submission
     user_id       integer not null,
     submission_id integer not null,
     constraint PKcontest_user_submission primary key (contest_id, user_id, submission_id),
-    constraint FKuser_contest_submission foreign key (user_id) references oj.users (user_id) on delete cascade ,
-    constraint FKcontest_user_submission foreign key (contest_id) references oj.contest (contest_id) on delete cascade ,
+    constraint FKuser_contest_submission foreign key (user_id) references oj.users (user_id) on delete cascade,
+    constraint FKcontest_user_submission foreign key (contest_id) references oj.contest (contest_id) on delete cascade,
     constraint FKsubmission_contest_user foreign key (submission_id) references oj.submission (submission_id) on delete cascade
 );
