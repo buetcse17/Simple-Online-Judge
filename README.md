@@ -4,7 +4,16 @@ How to build?
 
 step 1 : [install oracle 11g](Oracle-Installation-Guideline.pptx)
 
-step 2 : login to sql plus as SYSTEM using password during installation , run command from below
+step 2 : login to sql plus as SYSTEM using password during installation 
+
+If "OJ" user already exists then run 
+
+```
+DROP USER OJ CASCADE ;
+```
+
+run command from below
+
 ```
 CREATE USER OJ IDENTIFIED BY OJ;
 
