@@ -11,19 +11,19 @@ def on_terminate(program):
 def RunSingleCpp(raw_code  , judge_input_file_name , judge_output_file_name , time_limit_milisec ):
     if not os.path.exists("Temp"):
         os.mkdir("Temp")
-    
-    raw_code_file = open(file = "Temp\\code.cpp" , mode = 'w' ,encoding= 'utf-8')
+
+    raw_code_file = open(file = "Temp\\Solution.java" , mode = 'w' ,encoding= 'utf-8')
     raw_code_file.write(raw_code)
     raw_code_file.close()
 
     compile_log = open("Temp\\compile_log.txt" , 'w')
 
-    program_name = "Temp\\program.exe"
+    program_name = "Temp\\Solution.class"
 
     if os.path.exists(program_name):
         os.remove(program_name)
 
-    compile_command = ["g++","-O2" , "-static" ,  raw_code_file.name , "-o" ,program_name ]
+    compile_command = ["javac", "-encoding", "UTF-8",  raw_code_file.name ]
     print( compile_command )
     subprocess.run(compile_command   , stderr=compile_log , capture_output = False )
     compile_log.close()
@@ -38,7 +38,7 @@ def RunSingleCpp(raw_code  , judge_input_file_name , judge_output_file_name , ti
     if os.path.exists(program_name) == False :
         return "Compilation Error"
 
-    run_command =  [ program_name ]
+    run_command =  ["java" , "-cp" , "Temp" , "Solution" ]
     program_input = open(judge_input_file_name , 'r')
     program_output = open("Temp\\program_output.txt" , 'w')
     program_error = open("Temp\\Program_error.txt",'w')
@@ -70,6 +70,5 @@ def RunSingleCpp(raw_code  , judge_input_file_name , judge_output_file_name , ti
 
 
 if __name__ == '__main__':
-    raw_code = open("OJ\\Judge\\code.cpp" , 'r' , encoding='utf-8').read()
-    #print(raw_code)
+    raw_code = open("OJ\\Judge\\Solution.java" , 'r' , encoding= 'utf-8').read()
     print ( RunSingleCpp(raw_code  , 'OJ\\Judge\\input.txt' , 'OJ\\Judge\\output.txt' , 3000) )
