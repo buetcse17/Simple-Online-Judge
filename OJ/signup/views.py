@@ -11,7 +11,7 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
 class SignUpForm(UserCreationForm):
-    username = forms.CharField(max_length=30)
+    username = forms.CharField(max_length=30 )
     email = forms.EmailField(max_length=200)
 
     class Meta:
@@ -29,4 +29,4 @@ def signup(request):
         return redirect('index')
     else:
         form = SignUpForm()
-    return render(request , 'signup.html' , {'title' : 'Sign Up' , 'form' : form })
+    return render(request , 'signup.html' , {'form' : form })
