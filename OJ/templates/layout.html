@@ -54,8 +54,13 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!--<li><a href="#"> <span class="glyphicon glyphicon-bell"> </span> Notifications </a></li> -->
+                    {% if request.session.handle %}
+                    <li><a href="#"> {{ request.session.handle }} </a></li>
+                    <li><a href="{% url 'signout' %}"> Sign Out </a></li>
+                    {% else %}
                     <li><a href="{% url 'signin' %}"> Sign In</a></li>
                     <li><a href="{% url 'signup' %}"> Sign Up </a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

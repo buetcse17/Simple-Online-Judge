@@ -9,7 +9,7 @@ def login(request, handle):
     """
     request.session['handle'] = handle
     return 
-def logout(request, handle):
+def logout(request):
     """
     docstring
     """

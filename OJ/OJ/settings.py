@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'OJ',
+    'user',
+    'signin',
+    'signup',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +74,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'OJ.wsgi.application'
 
+# making file based session 
+# https://docs.djangoproject.com/en/dev/topics/http/sessions/ 
+SESSION_ENGINE  = 'django.contrib.sessions.backends.file'
+SESSION_FILE_PATH  = os.path.join(BASE_DIR.parent, 'temp_sessions')
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
