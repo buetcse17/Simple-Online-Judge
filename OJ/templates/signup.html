@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Sign Up
+Sign Up
 {% endblock %}
 
 {% block content %}
@@ -9,18 +9,60 @@
 <h2>Sign up</h2>
 <form method="post">
     {% csrf_token %}
-    {% for field in form %}
+
     <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-        <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-    <p style="color: red">{{ error }}</p>
-    {% endfor %}
+        <label for="id_handle">Username:</label><br>
+        <input type="text" name="handle" maxlength="32" autofocus required id="id_handle">
+
+
     </p>
-    {% endfor %}
+
+    <p>
+        <label for="id_name">Full name:</label><br>
+        <input type="text" name="name" maxlength="50" id="id_name">
+
+
+    </p>
+
+    <p>
+        <label for="id_email">Email:</label><br>
+        <input type="email" name="email" maxlength="320" required id="id_email">
+
+
+    </p>
+
+    <p>
+        <label for="id_password1">Password:</label><br>
+        <input type="password" name="password1" autocomplete="new-password" required id="id_password1">
+
+        <small style="color: grey">
+            <ul>
+                <li>Your password can’t be too similar to your other personal information.</li>
+                <li>Your password must contain at least 8 characters.</li>
+                <li>Your password can’t be a commonly used password.</li>
+                <li>Your password can’t be entirely numeric.</li>
+            </ul>
+        </small>
+
+
+    </p>
+
+    <p>
+        <label for="id_password2">Password confirmation:</label><br>
+        <input type="password" name="password2" autocomplete="new-password" required id="id_password2">
+
+        <small style="color: grey">Enter the same password as before, for verification.</small>
+
+    </p>
+    <p>
+        <label style="color:red">
+            {% for message in messages %}
+            {{ message }}
+            {% empty %}
+
+            {% endfor %}
+        </label>
+    </p>
     <button type="submit">Sign up</button>
 </form>
 
