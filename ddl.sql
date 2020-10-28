@@ -174,6 +174,15 @@ EXCEPTION
         END IF;
 END;
 
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.country_id_seq';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN
+            RAISE;
+        END IF;
+END;
+create sequence oj.country_id_seq ;
 
 --- country table
 
@@ -184,8 +193,17 @@ CREATE TABLE OJ.COUNTRY
     constraint PKCountry primary key (country_id)
 );
 
---- institution table
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.Institution_id_seq';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN
+            RAISE;
+        END IF;
+END;
+create sequence oj.Institution_id_seq ;
 
+--- institution table
 
 CREATE TABLE OJ.Institution
 (
@@ -196,17 +214,26 @@ CREATE TABLE OJ.Institution
 
 --- rating distribution table
 
-
 create table oj.Rating_Distribution
 (
     rating_catagory varchar2(20)
         constraint PKRating_Distribution primary key,
+    color varchar2(20) not null ,
     minimum_rating  integer not null,
     maximum_rating  integer not null
 );
 
---- users table
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.user_id_seq';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN
+            RAISE;
+        END IF;
+END;
+create sequence oj.user_id_seq ;
 
+--- users table
 
 create table oj.users
 (
@@ -219,12 +246,14 @@ create table oj.users
     password_hash   char(64)      not null,--- sha256.hexdigest()
     country_id      INTEGER,
     Institution_id  INTEGER,
-    rating_catagory varchar2(20)  not null,
+    rating_catagory varchar2(20) ,
     constraint Unique_Handle unique (handle),
     constraint Unique_Email unique (email),
     constraint FKCountry_id foreign key (country_id) references oj.country (country_id) on delete set null,
     constraint FKInstitution_id foreign key (Institution_id) references oj.Institution (Institution_id) on delete set null,
-    constraint FKrating_catagory foreign key (rating_catagory) references oj.Rating_Distribution (rating_catagory) on delete set null
+    constraint FKrating_catagory foreign key (rating_catagory) references oj.Rating_Distribution (rating_catagory) on delete set null ,
+    constraint CheckHandle CHECK (handle not LIKE '% %') ,
+    constraint CheckEmail CHECK (email LIKE '%_@_%._%')
 );
 
 --- Follow table
@@ -237,6 +266,17 @@ create table oj.Follow
     constraint FKFollowee_id foreign key (followee_id) references oj.users (user_id) on delete cascade,
     constraint PKFollow primary key (followee_id, follower_id)
 );
+
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.message_id_seq';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN
+            RAISE;
+        END IF;
+END;
+create sequence oj.message_id_seq ;
 
 --- message table
 
@@ -253,6 +293,16 @@ create table oj.message
     constraint FKSEnder_id foreign key (sender_id) references oj.users (user_id) on delete cascade,
     constraint FKreceiver_id foreign key (receiver_id) references oj.users (user_id) on delete cascade
 );
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.problem_id_seq';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN
+            RAISE;
+        END IF;
+END;
+create sequence oj.problem_id_seq ;
 
 create table oj.problem
 (
@@ -282,6 +332,15 @@ create table oj.Problem_Catagory
     constraint FKProblem_id foreign key (problem_id) references oj.problem (problem_id) on delete cascade
 );
 
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.testcase_id_seq';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN
+            RAISE;
+        END IF;
+END;
+create sequence oj.testcase_id_seq ;
 
 --- TestCase table
 create table oj.testcase
@@ -294,6 +353,7 @@ create table oj.testcase
     constraint FKProblem_id_in_testcase foreign key (problem_id) references oj.problem (problem_id) on delete cascade
 );
 
+
 --- Sample Test Case Relation table
 
 create table oj.sample_testcase
@@ -305,6 +365,16 @@ create table oj.sample_testcase
     problem_id           integer        not null,
     constraint FKProblemid_in_sampletestcase foreign key (problem_id) references oj.problem (problem_id) on delete cascade
 );
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.submission_id_seq';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN
+            RAISE;
+        END IF;
+END;
+create sequence oj.submission_id_seq ;
 
 --- submission table
 create table oj.submission
@@ -322,6 +392,17 @@ create table oj.submission
     constraint FKproblem_id_submission foreign key (problem_id) references oj.problem (problem_id) on delete cascade
 );
 
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.contest_id_seq';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN
+            RAISE;
+        END IF;
+END;
+create sequence oj.contest_id_seq ;
+
 --- contest table
 create table oj.contest
 (
@@ -331,6 +412,16 @@ create table oj.contest
     start_time date,
     duration   integer
 );
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.clarification_id_seq';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -2289 THEN
+            RAISE;
+        END IF;
+END;
+create sequence oj.clarification_id_seq ;
 
 --- clarification table
 create table oj.clarification
