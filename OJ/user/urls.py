@@ -1,7 +1,18 @@
-from django.urls import path
+from django.urls import path, register_converter
 
 from . import views
 
+class HandleURL:
+    regex = '[\S]*'
+
+    def to_python(self , value):
+        return str(value)
+    
+    def to_url(self , value):
+        return str(value)
+
+register_converter(HandleURL, 'hndl')
+
 urlpatterns = [
-    path('<slug:handle>/', views.profile, name='profile'),
+    path('<hndl:handle>/', views.profile, name='profile'),
 ]

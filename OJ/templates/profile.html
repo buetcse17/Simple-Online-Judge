@@ -2,10 +2,80 @@
 
 
 {% block title %}
-   {{ handle }}
+{{ handle }}
 {% endblock %}
 
 
 {% block content %}
-    
-{% endblock %}
+
+<!---- <div >
+   <p style = "color:red" > <b> International Grandmaster </b></p>
+   <h2 style = "color:red ; padding : -1px auto  auto auto"  ><b> {{ handle }} </b></h2>
+   </div>
+
+   --->
+
+<div>
+
+   <style>
+      .title-photo input.upload-photo {
+         color: black;
+         height: 2em;
+         line-height: 1.5em;
+         font-size: 0.75em;
+         margin: 0.5em 0.5em 0.5em 0;
+      }
+
+      .title-photo .badge {
+         position: absolute;
+         bottom: -30px;
+         transform: scale(0.75);
+      }
+   </style>
+
+   <div class="title-photo">
+      <div
+         style="float:right;border:1px solid #B9B9B9;width:330px;min-height:150px;padding:12.5px;position: relative;margin-bottom: 1em;">
+         <div>
+            <div style="min-height:200px;line-height:200px;text-align:center;">
+               <img style="margin:auto;vertical-align:middle;display:inline;"
+                  src='//userpic.codeforces.com/1515/title/ff195bd5a007b119.jpg' /> </div>
+
+         </div>
+      </div>
+
+
+      <div style="position: relative;">
+         <div>
+            <div>
+               <span> International Grandmaster </span>
+            </div>
+            <h1>
+               <a href="#">pashka</a>
+            </h1>
+
+            <div style="margin-top: 0.5em;">
+               <div style="font-size: 0.8em; color: #777;">Pavel Mavrin, <a href="/ratings/country/Russia">Russia</a>
+               </div>
+               <div style="font-size: 0.8em; color: #777;">From <a href="/ratings/organization/13">ITMO University</a>
+               </div>
+            </div>
+         </div>
+         <ul>
+            <li>
+               Contest rating: 100
+            </li>
+            <li>
+               Friend of: 1,731 users
+            </li>
+            <li>
+               <a href="#">Talks</a> |
+               <a href="#">Send message</a>
+            </li>
+         </ul>
+      </div>
+   </div>
+
+
+
+   {% endblock %}

@@ -90,3 +90,7 @@ def get_hash(password ):
         hashlib.sha256(password).hexdigest()
     """
     return hashlib.sha256(password.encode('utf-8')).hexdigest()
+def get_follower_number( user_id ):
+    pass
+def get_user_context( handle ):
+    pass

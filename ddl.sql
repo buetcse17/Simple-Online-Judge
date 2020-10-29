@@ -445,7 +445,7 @@ create table oj.Problem_contest
 );
 
 -- participant table
-create table oj.paricipant
+create table oj.participant
 (
     contest_id integer not null,
     user_id    integer not null,

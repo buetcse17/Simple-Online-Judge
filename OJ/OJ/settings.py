@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'user',
     'signin',
     'signup',
+    'ratings'
 ]
 
 MIDDLEWARE = [
@@ -159,7 +160,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+PROFILEPIC_DIR = os.path.join(BASE_DIR.parent, 'Files/profilepic/') 
+
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static/') , 
-        os.path.join(BASE_DIR.parent, 'Files/profilepic/') ,  
+        PROFILEPIC_DIR,  
         ]

@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+
+{% block title %}
+Ratings
+{% endblock %}
+
+{% block content %}
+
+
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+        <tr>
+            <th scope="col" style="width: 2em;"> </th>
+            <th scope="col">Who</th>
+            <th scope="col" style="width: 2em;">#</th> <!-- total contest participation-->
+            <th scope="col" style="width: 2em;">=</th> <!-- rating -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <th scope="row"> {{ forloop.counter }}</th>
+            <td> <a href="{% url 'profile' user.handle %}"> {{ user.handle }} </a> </td>
+            <td>{{ user.total_contest_participation }}</td>
+            <td>{{ user.rating }}</td>
+        </tr>
+        {% empty %}
+
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

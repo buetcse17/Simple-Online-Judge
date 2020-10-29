@@ -1,5 +1,5 @@
-
-insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )                 values ( user_id_seq.nextval , asdaadasd , Mahdi Hasnat Siyam , mahdibuet3@gsfsmail.com , a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 );
-insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )                 values ( user_id_seq.nextval , abcdef , Mahdi Hasnat Siyam , mahdibuet3@gmdadaddaail.com , a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3 )
+insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , 'rocky' , 'rocky' , 'rakibulhassanriaj@gmail.com' , '65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5');
 insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , 'abchgjg' , 'Mahdi Hasnat Siyam' , 'mahdibuethhjhj3@gmail.com' , 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3' )
 insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , 'klfsjaifojp' , 'Mahdi Hasnat Siyam' , 'mahdibueadasdat3@gmail.com' , 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
+insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , 'abc' , 'Mahdi Hasnat Siyam' , 'mahdibuet3@gmail.com' , 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
+insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , 'mahdi.hasnat' , 'Mahdi Hasnat Siyam' , 'mahdibuet3@gmail.comdasa' , 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
