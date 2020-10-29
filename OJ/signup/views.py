@@ -5,8 +5,8 @@ from user.models import authenticate , login , handle_exists , email_exists , ad
 
 def signup(request):
     if request.method == 'POST':
-        handle = request.POST['handle']
-        email = request.POST['email']
+        handle = request.POST['handle'].lower()
+        email = request.POST['email'].lower()
         name = request.POST['name']
         password1 = request.POST['password1']
         password2 = request.POST['password2']

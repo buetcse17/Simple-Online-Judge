@@ -8,7 +8,7 @@ from user.models import authenticate , login  ,get_hash , logout
 
 def signin(request):
     if request.method == 'POST':
-        handle = request.POST['handle']
+        handle = request.POST['handle'].lower()
         password = request.POST['password']
         
         if authenticate(handle = handle , password_hash = get_hash(password)):

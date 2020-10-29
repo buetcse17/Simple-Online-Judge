@@ -26,7 +26,7 @@ SECRET_KEY = 'i3-7q5g8)szlju35t)uh^^(dmsdy-ypwd(nqcfs$8_uhlg!^hz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS =  ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -79,6 +79,9 @@ WSGI_APPLICATION = 'OJ.wsgi.application'
 SESSION_ENGINE  = 'django.contrib.sessions.backends.file'
 SESSION_FILE_PATH  = os.path.join(BASE_DIR.parent, 'temp_sessions')
 
+if not os.path.exists(SESSION_FILE_PATH):
+    os.mkdir(SESSION_FILE_PATH)
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -93,6 +96,30 @@ DATABASES = {
     }
 }
 
+# SQL Logging
+# https://www.neilwithdata.com/django-sql-logging
+
+LOGGING = {
+    'version': 1,
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -133,5 +160,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
+        os.path.join(BASE_DIR, 'static/') , 
+        os.path.join(BASE_DIR.parent, 'Files/profilepic/') ,  
         ]

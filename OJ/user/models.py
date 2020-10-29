@@ -1,6 +1,9 @@
 from django.db import models
 from django.db import connection
 import hashlib
+
+
+from OJ.utils import log_sql
 # Create your models here.
 
 def login(request, handle):
@@ -27,6 +30,10 @@ def authenticate(handle , password_hash):
     cursor  = connection.cursor()
     sql = "select count(*) from oj.users where handle = %s and password_hash = %s"
     cursor.execute(sql , [handle  , password_hash])
+    
+    #print(sql.format(handle  , password_hash)) 
+    print(connection.queries)
+    
     result = cursor.fetchone()[0]
     print(handle  , password_hash , result)
     return result == 1
@@ -63,13 +70,11 @@ def add_user(handle ,  name, email , password_hash):
     cursor = connection.cursor()
     result  = False 
     try :
-        sql = "insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH ) \
-                values ( user_id_seq.nextval , %s , %s , %s , %s )"
-        cursor.execute(sql  , [ handle ,
-                                 name  ,
-                                 email  ,
-                                password_hash  
-                                ])
+        sql = f"insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH ) \
+            values ( user_id_seq.nextval , '{handle}' , '{name}' , '{email}' , '{password_hash}');"
+        cursor.execute(sql )
+        print(sql)
+        log_sql(sql)
         connection.commit()
         result = True 
 

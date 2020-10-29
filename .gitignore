@@ -1,3 +1,6 @@
+# temporary session files
+temp_sessions/
+
 # intellij idea
 .idea/
 

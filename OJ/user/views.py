@@ -1,7 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import HttpResponse
+from django.contrib import messages
+from django.http import Http404
+
+from .models import *
 
 # Create your views here.
 def profile(request , handle):
-    print(handle)
-    return HttpResponse(handle)
+    if handle_exists(handle= handle):
+        context = { 'handle': handle}
+        return render(request , 'profile.html' , context=context )
+    else :
+        raise Http404('No such User')
+        
