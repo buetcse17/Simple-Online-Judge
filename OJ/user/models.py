@@ -91,6 +91,49 @@ def get_hash(password ):
     """
     return hashlib.sha256(password.encode('utf-8')).hexdigest()
 def get_follower_number( user_id ):
-    pass
+    """
+        total follower 
+    """
+    cursor = connection.cursor()
+    sql = f"select count(*) from oj.follow where followee_id = '{ user_id } ' ; "
+    cursor.execute(sql)
+    result = cursor.fetchone()[0]
+    cursor.close()
+    return result
+
+def get_user_id(handle ):
+    """
+        get id from handle
+    """
+    cursor = connection.cursor()
+    sql = f"select user_id from oj.users where handle = '{ handle }' ;"
+    cursor.execute(sql)
+    result = cursor.fetchone()[0]
+    cursor.close()
+    return result
+
 def get_user_context( handle ):
+    user_id = get_user_id(handle=handle)
+    print(handle , user_id)
     pass
+
+def get_country():
+    """
+        sql result of country_id , country_name
+    """
+    cursor = connection.cursor()
+    sql = "select * from oj.country order by oj.country.country_name asc;"
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    cursor.close()
+    return result
+def get_institution():
+    """
+        sql result of institution_id , institution_name
+    """
+    cursor = connection.cursor()
+    sql = "select * from oj.institution order by oj.institution.institution_name asc;"
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    cursor.close()
+    return result

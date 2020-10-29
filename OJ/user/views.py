@@ -8,6 +8,7 @@ from .models import *
 # Create your views here.
 def profile(request , handle):
     if handle_exists(handle= handle):
+        get_user_context(handle=handle)
         context = { 'handle': handle}
         return render(request , 'profile.html' , context=context )
     else :

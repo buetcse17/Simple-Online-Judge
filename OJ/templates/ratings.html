@@ -6,7 +6,33 @@ Ratings
 {% endblock %}
 
 {% block content %}
+<form method="get">
+    {% csrf_token %}
+    <label>
+        Country:
+        <select name="country">
+            <option value selected> any country </option>
 
+            {% for country_id ,country_name  in countries %}
+            <option value="{{ country_id }}"> {{ country_name }}</option>
+            {% endfor %}
+        </select>
+    </label>
+</form>
+
+<form method="get">
+    {% csrf_token %}
+    <label>
+        Institution:
+        <select name="institution">
+            <option value selected> any institution </option>
+
+            {% for institution_id ,institution_name  in institutions %}
+            <option value="{{ institution_id }}"> {{ institution_name }}</option>
+            {% endfor %}
+        </select>
+    </label>
+</form>
 
 <table class="table table-hover table-striped table-bordered">
     <thead>
@@ -18,12 +44,12 @@ Ratings
         </tr>
     </thead>
     <tbody>
-        {% for user in users %}
+        {% for handle , total_contest_participation , rating in users %}
         <tr>
             <th scope="row"> {{ forloop.counter }}</th>
-            <td> <a href="{% url 'profile' user.handle %}"> {{ user.handle }} </a> </td>
-            <td>{{ user.total_contest_participation }}</td>
-            <td>{{ user.rating }}</td>
+            <td> <a href="{% url 'profile' handle %}"> {{ handle }} </a> </td>
+            <td>{{ total_contest_participation }}</td>
+            <td>{{ rating }}</td>
         </tr>
         {% empty %}
 
