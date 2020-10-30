@@ -1,4 +1,14 @@
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , '!, 2');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , '! '' IHax, 2');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , '! '' Nowhere, 7');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , '!!!, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , '!!!!!, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , '!!Zhenghai Jiaochuan Academy, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , '!NoWhere, 1');
@@ -11,7 +21,7 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , '#RoRo, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
-	   values ( oj.institution_id_seq.nextval , ''Boris Cazacu' High School, 1');
+	   values ( oj.institution_id_seq.nextval , '''Boris Cazacu'' High School, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , '(*ΦωΦ*), 1');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -207,6 +217,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , '9QQCRTTJAC, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , ':- Don''t Know, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , ':D, 12');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , ':Economics lyceum for Gifted studentds, 3');
@@ -333,6 +345,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'AIIE, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'AISSMS''s IOIT, Pune, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'AIT, Pune, 4');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'AITSDS, 1');
@@ -367,7 +381,7 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'ANITS,VISAKHAPATNAM, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
-	   values ( oj.institution_id_seq.nextval , 'ANOO 'Phystech-Lyceum' of P. L. Kapitsa, 1');
+	   values ( oj.institution_id_seq.nextval , 'ANOO ''Phystech-Lyceum'' of P. L. Kapitsa, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'ANU, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -489,6 +503,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'ActiveVideo, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Ad1let''s fan-club, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Adama Science and Technology University, 4');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Adani institute of infrastructure engineering, 3');
@@ -510,6 +526,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Advanced, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Adyghe SU, 3');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Aeren''s Fan Club, 6');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'AerenOrzFoundation, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -612,6 +630,10 @@ INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Al Basel, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Al-Baath University, 13');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Al-Balqa'' Applied University, 24');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Al-Balqa''a Applied University, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Al-Hashemeih Secondary Boys school, 4');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -1547,6 +1569,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Baikal State University, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Bailing Girls'' School, 2');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Bajrang Dal, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Bakhtiyarpur College of Engineering, 1');
@@ -1639,6 +1663,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Barisal Zilla School, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Barish''s Heart, 2');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Barishal Cadet College, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Barnaul, Gymnasium 42, 1');
@@ -1672,6 +1698,10 @@ INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Bauman MSTU, 25');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Bauman Moscow State Technical University, 9');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Bauman''s MSTU, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Bauman''s Moscow State Technical University, 11');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Baylor University, 3');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -1755,7 +1785,7 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Belarussian SUIR, 3');
 INSERT INTO oj.institution(institution_id , institution_name)
-	   values ( oj.institution_id_seq.nextval , 'Belgorod, MBOU CO №15 'Luch', 1');
+	   values ( oj.institution_id_seq.nextval , 'Belgorod, MBOU CO №15 ''Luch'', 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Belgrade, School of Electrical Engineering, 5');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -1807,6 +1837,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Bharati Vidyapeeth University, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Bharati Vidyapeeth''s College of Engineering, 25');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Bharatiya Janta Party, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Bhartiya Janta Party, 1');
@@ -1838,6 +1870,10 @@ INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Bina Nusantara University, 3');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Binary_Search_Tree fans-club, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Bindubashini Govt. Boys''High School, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Bindubashini Govt. Girls'' High School, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Binus University, 68');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -2479,6 +2515,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Central University of Rajasthan, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Central Women''s University, 2');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'CentraleSupélec, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'CenturyLink Inc., 1');
@@ -2572,6 +2610,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Chattogram Collegiate School, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Chattogram Government High School, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Cheboksary''s Gimnazia 1, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Cheboksary, Lyceum №4, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -2901,6 +2941,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Club of Anonymous Lovers of Citrus-Hitrus, 12');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Club of Igor Markelov''s odiatores, 3');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Club of dynamic lovers, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Club of programmers Matrix, Krasnodar, 20');
@@ -3213,6 +3255,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'DK, 3');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'DKTE SOCIETY''s TEXTILE and ENGINEERING INSTITUTE, 2');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'DLConf., 4');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'DLSU - Manila, 1');
@@ -3286,6 +3330,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Daffodil institute of it, 3');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Daiwat Vyas Fan Club, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Daler Pirov''s Fan-Club, 4');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Dalhousie Uni, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -3599,6 +3645,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Don State Technical University, 3');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Don''t Starve, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'DonNTU, 4');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Donbass State Technical University, 1');
@@ -3799,6 +3847,10 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'ENES Unidad Morelia, UNAM, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'ENET''Com, 2');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'ENET''Com Sfax, 7');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'ENIS, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'ENISo, 9');
@@ -3936,6 +3988,10 @@ INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Ecole Centrale de Lyon, 3');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Ecole Centrale de Nantes, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Ecole Nationale Supérieur d''Arts et Métiers, 2');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Ecole Nationale Supérieure d''Informatique Alger, 9');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Ecole Polytechnique, 26');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -4549,6 +4605,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Fan-Club Alesraka Khoroshih, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Fan-club 74TrAkToR''s tactics, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Fan-club Kurisu Makise, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Fan-club Maksim Filkin, 6');
@@ -4671,6 +4729,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Feni Computer Institute, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Feni Girls'' Cadet College, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Fenis Chaldea, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Ferdon Inc, 1');
@@ -4690,6 +4750,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Final Fantasy, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Financial University, 2');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Fipona''s dream, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'FirodA, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -4792,6 +4854,8 @@ INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Fromis_9, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Fu Jen U; Tam Kang U, 1');
+INSERT INTO oj.institution(institution_id , institution_name)
+	   values ( oj.institution_id_seq.nextval , 'Fu''an No.1 middle high school, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'FuZhou university, 48');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -8355,7 +8419,7 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Kiev, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
-	   values ( oj.institution_id_seq.nextval , 'Kiev, Liceum 'Naukova Zmina', 3');
+	   values ( oj.institution_id_seq.nextval , 'Kiev, Liceum ''Naukova Zmina'', 3');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Kiev, UPML, 14');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -9073,7 +9137,7 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Lyceum #5, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
-	   values ( oj.institution_id_seq.nextval , 'Lyceum 'The Second School', 2');
+	   values ( oj.institution_id_seq.nextval , 'Lyceum ''The Second School'', 2');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Lyceum 1, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -9213,7 +9277,7 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'MAEI SS №146, 3');
 INSERT INTO oj.institution(institution_id , institution_name)
-	   values ( oj.institution_id_seq.nextval , 'MAEO 'Lyceum 19', Korolev, 1');
+	   values ( oj.institution_id_seq.nextval , 'MAEO ''Lyceum 19'', Korolev, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'MAI, 71');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -9781,7 +9845,7 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'MetaDesign Solutions, 3');
 INSERT INTO oj.institution(institution_id , institution_name)
-	   values ( oj.institution_id_seq.nextval , 'Metal group 'Black traktor', 1');
+	   values ( oj.institution_id_seq.nextval , 'Metal group ''Black traktor'', 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Methodist-2 High School Medan, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -14223,7 +14287,7 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Spit ,mumbai, 3');
 INSERT INTO oj.institution(institution_id , institution_name)
-	   values ( oj.institution_id_seq.nextval , 'Sport complex 'Modun', 8');
+	   values ( oj.institution_id_seq.nextval , 'Sport complex ''Modun'', 8');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'Spotify, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -18235,7 +18299,7 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'fan club kirilla blednogo, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
-	   values ( oj.institution_id_seq.nextval , 'fan club of 'Three cats (two cats and one kitty)', 3');
+	   values ( oj.institution_id_seq.nextval , 'fan club of ''Three cats (two cats and one kitty)'', 3');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'fan of js, 5');
 INSERT INTO oj.institution(institution_id , institution_name)
@@ -18741,7 +18805,7 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'nhs.edu.mn, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
-	   values ( oj.institution_id_seq.nextval , 'nighthacker2005''s hack'n'spy corporation, 1');
+	   values ( oj.institution_id_seq.nextval , 'nighthacker2005''s hack''n''spy corporation, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , 'nihao, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
