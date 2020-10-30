@@ -3,7 +3,7 @@ table list in descending order of creation time
 
 oj.contest_user_submission
 oj.manager
-oj.paricipant
+oj.participant
 oj.Problem_contest
 oj.clarification
 oj.contest
@@ -40,7 +40,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.paricipant' ;
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.participant' ;
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
