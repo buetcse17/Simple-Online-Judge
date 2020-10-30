@@ -6,15 +6,41 @@ Ratings
 {% endblock %}
 
 {% block content %}
+
+<script type="text/javascript">
+    function onChangeCountry(country_id) {
+        if (country_id === null || country_id === "") {
+            document.location = "/ratings";
+        }
+        else {
+            document.location = "/ratings/country/%country_id%".replace("%country_id%", encodeURI(country_id));
+        }
+    }
+
+
+    function onChangeInstitution(institution_id) {
+        if (institution_id === null || institution_id === "") {
+            document.location = "/ratings";
+        }
+        else {
+            document.location = "/ratings/institution/%institution_id%".replace("%institution_id%", encodeURI(institution_id));
+        }
+    }
+
+
+</script>
+
+
 <form method="get">
     {% csrf_token %}
     <label>
         Country:
-        <select name="country">
-            <option value selected> any country </option>
+        <select name="country" onchange="onChangeCountry(this.value)">
+            <option value="" {% if selected_country   %} {% else %} selected {% endif %}> any country </option>
 
             {% for country_id ,country_name  in countries %}
-            <option value="{{ country_id }}"> {{ country_name }}</option>
+            <option value="{{ country_id }}" {% if selected_country  == country_id %} selected {% endif %}>
+                {{ country_name }}</option>
             {% endfor %}
         </select>
     </label>
@@ -24,11 +50,12 @@ Ratings
     {% csrf_token %}
     <label>
         Institution:
-        <select name="institution">
-            <option value selected> any institution </option>
+        <select name="institution" onchange="onChangeInstitution(this.value)">
+            <option value="" {% if selected_institution   %} {% else %} selected {% endif %}> any institution </option>
 
             {% for institution_id ,institution_name  in institutions %}
-            <option value="{{ institution_id }}"> {{ institution_name }}</option>
+            <option value="{{ institution_id }}" {% if selected_institution  == institution_id %} selected {% endif %}>
+                {{ institution_name }}</option>
             {% endfor %}
         </select>
     </label>
