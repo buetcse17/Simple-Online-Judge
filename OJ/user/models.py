@@ -90,12 +90,12 @@ def get_hash(password ):
         hashlib.sha256(password).hexdigest()
     """
     return hashlib.sha256(password.encode('utf-8')).hexdigest()
-def get_follower_number( user_id ):
+def get_follower_count( user_id ):
     """
         total follower 
     """
     cursor = connection.cursor()
-    sql = f"select count(*) from oj.follow where followee_id = '{ user_id } ' ; "
+    sql = f"select count(*) from oj.follow where followee_id = { user_id };"
     cursor.execute(sql)
     result = cursor.fetchone()[0]
     cursor.close()
@@ -112,10 +112,23 @@ def get_user_id(handle ):
     cursor.close()
     return result
 
-def get_user_context( handle ):
-    user_id = get_user_id(handle=handle)
-    print(handle , user_id)
-    pass
+def get_user_information( handle ):
+    """
+          user_id ,user_name ,   rating , rating_catagory ,color , country_id , country_name ,institution_id , institution_name , profile_picture_location
+    """
+    cursor = connection.cursor()
+    sql = f"select oj.users.user_id ,  oj.users.user_name , oj.users.rating ,oj.rating_distribution.rating_catagory , oj.rating_distribution.color, oj.users.country_id , oj.country.country_name , \
+        oj.users.Institution_id , oj.Institution.Institution_name  , oj.users.profile_picture_location \
+     from oj.users left join oj.rating_distribution on (oj.rating_distribution.minimum_rating <= oj.users.rating and oj.users.rating <= oj.rating_distribution.maximum_rating ) \
+     left join oj.country on (oj.users.country_id = oj.country.country_id ) \
+         left join oj.institution on(oj.users.Institution_id =  oj.institution.Institution_id) \
+             where oj.users.handle = '{handle}' ;"
+    cursor.execute(sql)
+    result = cursor.fetchone()
+
+    print (result)
+    
+    return result
 
 def get_country():
     """

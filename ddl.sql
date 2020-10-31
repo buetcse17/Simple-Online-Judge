@@ -244,16 +244,17 @@ create table oj.users
     handle          varchar2(32)  not null,
     user_name       varchar2(50)  not null,
     email           varchar2(320) not null,
-    rating          integer default 0,
+    rating          integer default 1500,
     password_hash   char(64)      not null,--- sha256.hexdigest()
     country_id      INTEGER,
     Institution_id  INTEGER,
-    rating_catagory varchar2(20) ,
+    profile_picture_location varchar2(512),
+    ---rating_catagory varchar2(20) , --- can be obtained by query
     constraint Unique_Handle unique (handle),
     constraint Unique_Email unique (email),
     constraint FKCountry_id foreign key (country_id) references oj.country (country_id) on delete set null,
     constraint FKInstitution_id foreign key (Institution_id) references oj.Institution (Institution_id) on delete set null,
-    constraint FKrating_catagory foreign key (rating_catagory) references oj.Rating_Distribution (rating_catagory) on delete set null ,
+    ---constraint FKrating_catagory foreign key (rating_catagory) references oj.Rating_Distribution (rating_catagory) on delete set null ,
     constraint CheckHandle CHECK (handle not LIKE '% %') ,
     constraint CheckEmail CHECK (email LIKE '%_@_%._%')
 );
