@@ -47,7 +47,7 @@ def handle_exists(handle):
     sql = "select count(*) from oj.users where handle = %s "
     cursor.execute(sql , [handle ])
     result = cursor.fetchone()[0]
-    print(handle , result)
+    #print(handle , result)
     return result == 1
 
 def email_exists(email):
