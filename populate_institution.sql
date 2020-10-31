@@ -77,8 +77,6 @@ INSERT INTO oj.institution(institution_id , institution_name)
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , '179, 2');
 INSERT INTO oj.institution(institution_id , institution_name)
-	   values ( oj.institution_id_seq.nextval , '179, 2');
-INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , '181 school, Almaty, 1');
 INSERT INTO oj.institution(institution_id , institution_name)
 	   values ( oj.institution_id_seq.nextval , '1937, 8');

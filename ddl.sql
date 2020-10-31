@@ -190,7 +190,8 @@ CREATE TABLE OJ.COUNTRY
 (
     country_id   INTEGER       not null,
     country_name VARCHAR2(100) NOT NULL,
-    constraint PKCountry primary key (country_id)
+    constraint PKCountry primary key (country_id) , 
+    constraint UniqueCountry_name UNIQUE (country_name)
 );
 
 BEGIN
@@ -209,7 +210,8 @@ CREATE TABLE OJ.Institution
 (
     Institution_id   INTEGER       not null,
     Institution_name VARCHAR2(100) NOT NULL,
-    constraint PKInstitution primary key (Institution_id)
+    constraint PKInstitution primary key (Institution_id) , 
+    constraint UniqueInstitution_name UNIQUE (Institution_name )
 );
 
 --- rating distribution table
@@ -308,7 +310,7 @@ create table oj.problem
 (
     problem_id           integer       not null
         constraint PKProblem primary key,
-    name                 varchar2(100) not null,
+    problem_name                 varchar2(100) not null,
     description          clob          not null,
     input_specification  clob          not null,
     output_specification clob          not null,
