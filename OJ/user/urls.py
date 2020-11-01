@@ -14,6 +14,6 @@ class HandleURL:
 register_converter(HandleURL, 'hndl')
 
 urlpatterns = [
+    path('profile_settings/',views.profile_settings, name = 'profile_settings'), # needs to change from here 
     path('<hndl:handle>/', views.profile, name='profile'),
-    path('<hndl:handle>/profile_settings/',views.profile_settings, name = 'profile'),
 ]

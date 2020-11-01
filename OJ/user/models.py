@@ -25,6 +25,12 @@ def logout(request):
         pass
     return
 
+def is_loggedin(request):
+    """
+        return true if user is logged in
+    """
+    return 'handle' in request.session
+
 
 def authenticate(handle, password_hash):
     """ 
@@ -138,7 +144,7 @@ def get_user_information(handle):
     cursor.execute(sql)
     result = cursor.fetchone()
 
-    print(result)
+    #print(result)
 
     return result
 

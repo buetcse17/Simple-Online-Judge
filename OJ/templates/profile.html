@@ -8,12 +8,6 @@
 
 {% block content %}
 
-<!-- <div >
-   <p style = "color:red" > <b> International Grandmaster </b></p>
-   <h2 style = "color:red ; padding : -1px auto  auto auto"  ><b> {{ handle }} </b></h2>
-   </div>
-
-   -->
 
 <div>
 
@@ -82,9 +76,14 @@
                <a href="#">Talks</a> |
                <a href="#">Send message</a>
             </li>
+
+            {% if request.session.handle and request.session.handle == handle %}
+
             <li>
-               <a href="profile_settings.html">Profile Settings</a>
+               <a href="{% url 'profile_settings' %}">Edit Profile Settings</a>
             </li>
+
+            {% endif %}
          </ul>
       </div>
    </div>

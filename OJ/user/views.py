@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.http import Http404
 
-from .models import get_user_information , handle_exists , get_follower_count
+from .models import get_user_information , handle_exists , get_follower_count , is_loggedin
 
 # Create your views here.
 def profile(request , handle):
@@ -27,12 +27,12 @@ def profile(request , handle):
     else :
         raise Http404('No such User')
 
-def profile_settings(request, handle):
-    if handle_exists(handle= handle):
-        get_user_context(handle=handle)
-        context = { 'handle': handle}
+def profile_settings(request):
+    print('here runs')
+    print(request.session['handle'])
+    if is_loggedin(request):
+
+        context = { 'handle': request.session['handle']}
         return render(request , 'profile_settings.html' , context=context )
-    else :
+    else:
         raise Http404('No such User')
-    
-        
