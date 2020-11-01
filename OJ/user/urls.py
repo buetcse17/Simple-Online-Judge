@@ -15,4 +15,5 @@ register_converter(HandleURL, 'hndl')
 
 urlpatterns = [
     path('<hndl:handle>/', views.profile, name='profile'),
+    path('<hndl:handle>/profile_settings/',views.profile_settings, name = 'profile'),
 ]
