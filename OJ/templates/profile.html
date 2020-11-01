@@ -8,12 +8,12 @@
 
 {% block content %}
 
-<!---- <div >
+<!-- <div >
    <p style = "color:red" > <b> International Grandmaster </b></p>
    <h2 style = "color:red ; padding : -1px auto  auto auto"  ><b> {{ handle }} </b></h2>
    </div>
 
-   --->
+   -->
 
 <div>
 
@@ -48,25 +48,35 @@
       <div style="position: relative;">
          <div>
             <div>
-               <span> International Grandmaster </span>
+               <span> {{ rating_catagory }} </span>
             </div>
             <h1>
-               <a href="#">pashka</a>
+               <a href="{% url 'profile' handle %}">{{ handle }}</a>
             </h1>
 
             <div style="margin-top: 0.5em;">
-               <div style="font-size: 0.8em; color: #777;">Pavel Mavrin, <a href="/ratings/country/Russia">Russia</a>
+
+               <div style="font-size: 0.8em; color: #777;"> {{ user_name }}
+                  {% if country_id %}
+                  , <a href="{% url 'country_rating' country_id %}"> {{ country_rating }} </a>
+                  {% endif %}
                </div>
-               <div style="font-size: 0.8em; color: #777;">From <a href="/ratings/organization/13">ITMO University</a>
+               {% if institution_id %}
+               <div style="font-size: 0.8em; color: #777;">From <a
+                     href="{% url 'institution_rating' institution_id %}">{{ institution_rating }}</a>
+                  {% else %}
+                  <br>
+                  {% endif %}
                </div>
             </div>
          </div>
          <ul>
             <li>
-               Contest rating: 100
+               Contest rating: {{ rating }}
             </li>
             <li>
-               Friend of: 1,731 users
+               {% load humanize %}
+               Friend of: {{ total_follower|intcomma  }} {% if total_follower > 0 %} users {% else %} user {% endif %}
             </li>
             <li>
                <a href="#">Talks</a> |
