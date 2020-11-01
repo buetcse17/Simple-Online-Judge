@@ -2,6 +2,7 @@
 
 
 {% block title %}
+{% handle = handle.split('/',1) %}
 {{ handle }}
 {% endblock %}
 
@@ -72,9 +73,7 @@
                <a href="#">Talks</a> |
                <a href="#">Send message</a>
             </li>
-            <li>
-               <a href="profile_settings.html">Profile Settings</a>
-            </li>
+            
          </ul>
       </div>
    </div>
