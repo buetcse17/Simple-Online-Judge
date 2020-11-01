@@ -13,4 +13,13 @@ def profile(request , handle):
         return render(request , 'profile.html' , context=context )
     else :
         raise Http404('No such User')
+
+def profile_settings(request, handle):
+    if handle_exists(handle= handle):
+        get_user_context(handle=handle)
+        context = { 'handle': handle}
+        return render(request , 'profile_settings.html' , context=context )
+    else :
+        raise Http404('No such User')
+    
         
