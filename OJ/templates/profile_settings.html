@@ -37,6 +37,7 @@ Settings
         <small style="color: grey">Enter the same password as before, for verification.</small>
 
     </p>
+    
 
     <p>
         <label for="id_password1">New Password:</label><br>
@@ -61,6 +62,21 @@ Settings
         <small style="color: grey">Enter the same password as before, for verification.</small>
 
     </p>
+    <p>
+        <label for="id_country">Country:</label><br>
+        <input type="text" name="country" autocomplete="Bangladesh" required id="id_country">
+
+        <small style="color: grey">Select your country.</small>
+
+    </p>
+    <p>
+        <label for="id_institution">Institution:</label><br>
+        <input type="text" name="institution" autocomplete="BUET" required id="id_institution">
+
+        <small style="color: grey">Select your institution.</small>
+
+    </p>
+
     <p>
         <label style="color:red">
             {% for message in messages %}
