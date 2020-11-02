@@ -171,3 +171,16 @@ def get_institution():
     result = cursor.fetchall()
     cursor.close()
     return result
+
+def does_follow(followee_id , follower_id):
+    """
+        true if followee_id is followed by follower_id
+    """
+
+    cursor = connection.cursor()
+    sql = f'select count(*) from oj.follow where followee_id = {followee_id} and follower_id = {follower_id} ;'
+    cursor.execute(sql)
+    result = cursor.fetchone()[0]
+    cursor.close()
+
+    return result == 1

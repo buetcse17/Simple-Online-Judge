@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.http import Http404
 
-from .models import get_user_information , handle_exists , get_follower_count , is_loggedin
+from .models import get_user_information , handle_exists , get_follower_count , is_loggedin , does_follow , get_user_id
 
 # Create your views here.
 def profile(request , handle):
@@ -12,6 +12,7 @@ def profile(request , handle):
 
         context = { 'handle': handle}
 
+        context['user_id'] = user_id
         context['user_name'] = user_name
         context['rating'] = rating
         context['rating_catagory'] = rating_catagory
@@ -22,6 +23,9 @@ def profile(request , handle):
         context['institution_name'] = institution_name
         context['profile_picture_location'] = profile_picture_location
         context['total_follower'] = get_follower_count(user_id = user_id)
+
+        if is_loggedin(request):
+            context['does_follow'] = does_follow(user_id , get_user_id(request.session['handle']))
 
         return render(request , 'profile.html' , context=context )
     else :

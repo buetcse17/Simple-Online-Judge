@@ -8,6 +8,7 @@
 
 {% block content %}
 
+{% load static %}
 
 <div>
 
@@ -46,11 +47,29 @@
             </div>
             <h1>
                <a href="{% url 'profile' handle %}">{{ handle }}</a>
+               {% if request.session.handle %}
+               {% if not request.session.handle == handle %}
+
+               {% if does_follow %}
+               <a href="{% url 'RemoveFriend' user_id %}"><img class="removeFriend" friendUserId="{{ user_id }}"
+                     title="Click to remove from friends" src="{% static 'star_yellow_24.png' %}" />
+               </a>
+               {% else %}
+               <a href="{% url 'AddFriend' user_id %}"> <img class="addFriend" friendUserId="{{ user_id }}"
+                     title="Click to add to friends" src="{% static 'star_gray_24.png' %}" />
+               </a>
+               {% endif %}
+
+               {% endif %}
+               {% endif %}
+
+
             </h1>
 
             <div style="margin-top: 0.5em;">
 
                <div style="font-size: 0.8em; color: #777;"> {{ user_name }}
+
                   {% if country_id %}
                   , <a href="{% url 'country_rating' country_id %}"> {{ country_rating }} </a>
                   {% endif %}

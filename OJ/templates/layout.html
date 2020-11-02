@@ -55,11 +55,13 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!--<li><a href="#"> <span class="glyphicon glyphicon-bell"> </span> Notifications </a></li> -->
                     {% if request.session.handle %}
-                    <li><a href="{% url 'profile' request.session.handle %}"> {{ request.session.handle }} </a></li>
-                    <li><a href="{% url 'signout' %}"> Sign Out </a></li>
+                    <li><a href="{% url 'profile' request.session.handle %}"> <span
+                                class="glyphicon glyphicon-user"></span> {{ request.session.handle }} </a></li>
+                    <li><a href="{% url 'signout' %}"> <span class="glyphicon glyphicon-log-out"></span> Sign Out </a>
+                    </li>
                     {% else %}
-                    <li><a href="{% url 'signin' %}"> Sign In</a></li>
-                    <li><a href="{% url 'signup' %}"> Sign Up </a></li>
+                    <li><a href="{% url 'signin' %}"> <span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+                    <li><a href="{% url 'signup' %}"> <span class=""></span> Sign Up </a></li>
                     {% endif %}
                 </ul>
             </div>
