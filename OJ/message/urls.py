@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     path('',views.messages, name = 'messages'),
+    path('with/<hndl:handle>',views.conversation, name = 'conversation'),
 ]

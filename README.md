@@ -29,4 +29,5 @@ pip install django
 
 pip install cx_oracle
 
+pip install django-tinymce
 ```
