@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.http import Http404
 
 from .models import get_user_information , handle_exists , get_follower_count , is_loggedin , does_follow , get_user_id
+from OJ.utils import add_user_information
 
 # Create your views here.
 def profile(request , handle):
@@ -26,6 +27,7 @@ def profile(request , handle):
 
         if is_loggedin(request):
             context['does_follow'] = does_follow(user_id , request.session['user_id'])
+            context = add_user_information(request= request , context= context)
 
         return render(request , 'profile.html' , context=context )
     else :

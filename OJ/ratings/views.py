@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import Http404
 from user.models import get_country, get_institution
 from .models import get_ratings, get_country_ratings, get_institution_ratings, country_exists, institution_exists
+from OJ.utils import add_user_information
+from user.models import is_loggedin
 # Create your views here.
 
 
@@ -11,6 +13,9 @@ def ratings(request):
     context['users'] = get_ratings()
     context['countries'] = get_country()
     context['institutions'] = get_institution()
+
+    if is_loggedin(request):
+        context = add_user_information(request= request , context = context)
 
     return render(request, 'ratings.html', context=context)
 
@@ -29,6 +34,10 @@ def country_ratings(request, country_id):
             del context['selected_institution']
         except:
             pass
+        
+        if is_loggedin(request):
+            context = add_user_information(request= request , context = context)
+
 
         return render(request, 'ratings.html', context=context)
 
@@ -47,5 +56,8 @@ def institution_ratings(request, institution_id):
             del context['selected_country']
         except:
             pass
+        
+        if is_loggedin(request):
+            context = add_user_information(request= request , context = context)
 
         return render(request, 'ratings.html', context=context)

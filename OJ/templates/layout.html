@@ -55,6 +55,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!--<li><a href="#"> <span class="glyphicon glyphicon-bell"> </span> Notifications </a></li> -->
                     {% if request.session.handle %}
+                    <li><a href="{% url 'messages' %}"> <span class="glyphicon glyphicon-envelope"> </span>
+                        {% if total_new_messages and total_new_messages > 0 %} 
+                         <span class="badge"> {{ total_new_messages }} </span> 
+                        {% endif %}
+                        </a></li>
                     <li><a href="{% url 'profile' request.session.handle %}"> <span
                                 class="glyphicon glyphicon-user"></span> {{ request.session.handle }} </a></li>
                     <li><a href="{% url 'signout' %}"> <span class="glyphicon glyphicon-log-out"></span> Sign Out </a>
