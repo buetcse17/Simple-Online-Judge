@@ -74,7 +74,8 @@ Ratings
         {% for handle , total_contest_participation , rating in users %}
         <tr>
             <th scope="row"> {{ forloop.counter }}</th>
-            <td> <a href="{% url 'profile' handle %}"> {{ handle }} </a> </td>
+            {# <td> <a href="{% url 'profile' handle %}"> {{ handle }} </a> </td> #}
+            <td> {% include 'colored_handle.html' %} </td>
             <td>{{ total_contest_participation }}</td>
             <td>{{ rating }}</td>
         </tr>
