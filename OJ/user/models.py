@@ -12,6 +12,7 @@ def login(request, handle):
     docstring
     """
     request.session['handle'] = handle
+    request.session['user_id'] = get_user_id(handle= handle)
     return
 
 
@@ -21,6 +22,10 @@ def logout(request):
     """
     try:
         del request.session['handle']
+    except:
+        pass
+    try:
+        del request.session['user_id']
     except:
         pass
     return

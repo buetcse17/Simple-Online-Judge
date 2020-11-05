@@ -25,7 +25,7 @@ def profile(request , handle):
         context['total_follower'] = get_follower_count(user_id = user_id)
 
         if is_loggedin(request):
-            context['does_follow'] = does_follow(user_id , get_user_id(request.session['handle']))
+            context['does_follow'] = does_follow(user_id , request.session['user_id'])
 
         return render(request , 'profile.html' , context=context )
     else :
