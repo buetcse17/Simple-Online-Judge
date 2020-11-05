@@ -1,1 +1,2 @@
-<a href="{% url 'profile' handle %}" style="color: {{ color }};" > {{ handle }} </a>
+{# sample -> include 'colored_handle/html' with handle="mahdi" color="red" only <- #}
+<a href="{% url 'profile' handle %}" style="color: {{ color }};" ><b> {{ handle }} </b> </a>

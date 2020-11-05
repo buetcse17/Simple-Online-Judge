@@ -71,7 +71,7 @@ Ratings
         </tr>
     </thead>
     <tbody>
-        {% for handle , total_contest_participation , rating in users %}
+        {% for handle ,color, total_contest_participation , rating in users %}
         <tr>
             <th scope="row"> {{ forloop.counter }}</th>
             {# <td> <a href="{% url 'profile' handle %}"> {{ handle }} </a> </td> #}

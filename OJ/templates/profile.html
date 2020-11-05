@@ -43,10 +43,11 @@
       <div style="position: relative;">
          <div>
             <div>
-               <span> {{ rating_catagory }} </span>
+               <span style="color:{{ color }};"> {{ rating_catagory }} </span>
             </div>
             <h1>
-               <a href="{% url 'profile' handle %}">{{ handle }}</a>
+               {# <a href="{% url 'profile' handle %}">{{ handle }}</a> #}
+               {% include 'colored_handle.html' %}
                {% if request.session.handle %}
                {% if not request.session.handle == handle %}
 

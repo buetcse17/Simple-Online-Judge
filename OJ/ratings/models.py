@@ -4,12 +4,13 @@ from django.db import models , connection
 
 def get_ratings():
    """
-      list of tuple of ( handle , total_contest_participation , rating )
+      list of tuple of ( handle ,color , total_contest_participation , rating )
    """
    cursor = connection.cursor()
-   sql = "SELECT oj.USERs.HANDLE , COUNT(oj.participant.contest_id) , oj.USERS.RATING \
+   sql = "SELECT oj.USERs.HANDLE ,oj.rating_distribution.color , COUNT(oj.participant.contest_id) , oj.USERS.RATING \
 FROM oj.users left join oj.participant ON (oj.USERS.USER_ID = oj.participant.USER_ID ) \
-GROUP BY oj.users.USER_ID , oj.USERs.HANDLE , oj.USERS.RATING \
+   left join oj.rating_distribution on (oj.rating_distribution.minimum_rating <= oj.users.rating and oj.users.rating <= oj.rating_distribution.maximum_rating ) \
+GROUP BY oj.users.USER_ID , oj.USERs.HANDLE , oj.USERS.RATING  ,oj.rating_distribution.color \
 ORDER BY oj.USERS.RATING desc  , count(*) desc , oj.users.handle asc;"
    cursor.execute(sql)
    result = cursor.fetchall()
@@ -19,13 +20,14 @@ ORDER BY oj.USERS.RATING desc  , count(*) desc , oj.users.handle asc;"
 
 def get_country_ratings(country_id):
    """
-      list of tuple of ( handle , total_contest_participation , rating )
+      list of tuple of ( handle ,color , total_contest_participation , rating )
    """
    cursor = connection.cursor()
-   sql = f"SELECT oj.USERs.HANDLE , COUNT(oj.participant.contest_id) , oj.USERS.RATING \
+   sql = f"SELECT oj.USERs.HANDLE ,oj.rating_distribution.color, COUNT(oj.participant.contest_id) , oj.USERS.RATING \
 FROM oj.users left join oj.participant ON (oj.USERS.USER_ID = oj.participant.USER_ID ) \
+   left join oj.rating_distribution on (oj.rating_distribution.minimum_rating <= oj.users.rating and oj.users.rating <= oj.rating_distribution.maximum_rating ) \
 WHERE oj.USERS.country_id = {country_id}  \
-GROUP BY oj.users.USER_ID , oj.USERs.HANDLE , oj.USERS.RATING \
+GROUP BY oj.users.USER_ID , oj.USERs.HANDLE , oj.USERS.RATING ,oj.rating_distribution.color \
 ORDER BY oj.USERS.RATING desc  , count(*) desc , oj.users.handle asc;"
    cursor.execute(sql)
    result = cursor.fetchall()
@@ -35,13 +37,14 @@ ORDER BY oj.USERS.RATING desc  , count(*) desc , oj.users.handle asc;"
 
 def get_institution_ratings(institution_id):
    """
-      list of tuple of ( handle , total_contest_participation , rating )
+      list of tuple of ( handle ,color, total_contest_participation , rating )
    """
    cursor = connection.cursor()
-   sql = f"SELECT oj.USERs.HANDLE , COUNT(oj.participant.contest_id) , oj.USERS.RATING \
+   sql = f"SELECT oj.USERs.HANDLE ,oj.rating_distribution.color, COUNT(oj.participant.contest_id) , oj.USERS.RATING \
 FROM oj.users left join oj.participant ON (oj.USERS.USER_ID = oj.participant.USER_ID ) \
+   left join oj.rating_distribution on (oj.rating_distribution.minimum_rating <= oj.users.rating and oj.users.rating <= oj.rating_distribution.maximum_rating ) \
 WHERE oj.USERS.institution_id = {institution_id}  \
-GROUP BY oj.users.USER_ID , oj.USERs.HANDLE , oj.USERS.RATING \
+GROUP BY oj.users.USER_ID , oj.USERs.HANDLE , oj.USERS.RATING  ,oj.rating_distribution.color \
 ORDER BY oj.USERS.RATING desc  , count(*) desc , oj.users.handle asc;"
    cursor.execute(sql)
    result = cursor.fetchall()
