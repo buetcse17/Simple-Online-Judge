@@ -248,7 +248,7 @@ create table oj.users
     password_hash   char(64)      not null,--- sha256.hexdigest()
     country_id      INTEGER,
     Institution_id  INTEGER,
-    profile_picture_location varchar2(512),
+    profile_picture_location varchar2(512) DEFAULT 'no-title.jpg',
     ---rating_catagory varchar2(20) , --- can be obtained by query
     constraint Unique_Handle unique (handle),
     constraint Unique_Email unique (email),

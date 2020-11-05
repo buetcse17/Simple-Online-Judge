@@ -20,3 +20,5 @@ delete from oj.follow where followee_id = 3 and follower_id =  5 ;
 insert into oj.follow(followee_id , follower_id) values(6 , 5) ;
 insert into oj.follow(followee_id , follower_id) values(2 , 5) ;
 insert into oj.follow(followee_id , follower_id) values(3 , 5) ;
+Update oj.users            SET profile_picture_location = 'pro pic.png'                 where handle = 'abc' ;
+Update oj.users            SET profile_picture_location = 'pro pic_lLA5K1E.png'                 where handle = 'abc' ;

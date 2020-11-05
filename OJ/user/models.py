@@ -12,7 +12,7 @@ def login(request, handle):
     docstring
     """
     request.session['handle'] = handle
-    request.session['user_id'] = get_user_id(handle= handle)
+    request.session['user_id'] = get_user_id(handle=handle)
     return
 
 
@@ -29,6 +29,7 @@ def logout(request):
     except:
         pass
     return
+
 
 def is_loggedin(request):
     """
@@ -149,7 +150,7 @@ def get_user_information(handle):
     cursor.execute(sql)
     result = cursor.fetchone()
 
-    #print(result)
+    # print(result)
 
     return result
 
@@ -177,7 +178,8 @@ def get_institution():
     cursor.close()
     return result
 
-def does_follow(followee_id , follower_id):
+
+def does_follow(followee_id, follower_id):
     """
         true if followee_id is followed by follower_id
     """
@@ -189,3 +191,18 @@ def does_follow(followee_id , follower_id):
     cursor.close()
 
     return result == 1
+
+
+def update_profile_picture_location(handle, profile_picture_location):
+    """
+        update profile_picture_location in database
+    """
+    cursor = connection.cursor()
+    sql = f"Update oj.users \
+           SET profile_picture_location = '{profile_picture_location}'  \
+               where handle = '{handle}' ;"
+    cursor.execute(sql)
+    log_sql(sql)
+    cursor.close()
+
+    return

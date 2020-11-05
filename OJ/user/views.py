@@ -3,11 +3,21 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.http import Http404
 
-from .models import get_user_information , handle_exists , get_follower_count , is_loggedin , does_follow , get_user_id
+from .models import get_user_information , handle_exists , get_follower_count , is_loggedin , does_follow , get_user_id , update_profile_picture_location
 from OJ.utils import add_user_information
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 def profile(request , handle):
+    if request.method == 'POST' and request.FILES['profilepic']:
+        new_profilepic  = request.FILES['profilepic']
+
+        fs = FileSystemStorage()
+        filename = fs.save(name=new_profilepic.name , content= new_profilepic)
+        
+        update_profile_picture_location(request.session['handle'] , filename)
+        
+
     if handle_exists(handle= handle):
         user_id , user_name ,   rating , rating_catagory ,color , country_id , country_name ,institution_id , institution_name , profile_picture_location  = get_user_information(handle=handle)
 

@@ -33,8 +33,23 @@
          style="float:right;border:1px solid #B9B9B9;width:330px;min-height:150px;padding:12.5px;position: relative;margin-bottom: 1em;">
          <div>
             <div style="min-height:200px;line-height:200px;text-align:center;">
-               <img style="margin:auto;vertical-align:middle;display:inline;"
-                  src='//userpic.codeforces.com/1515/title/ff195bd5a007b119.jpg' /> </div>
+               <img style="margin:auto;vertical-align:middle;display:inline;height:200px;width:200px;"
+                  src="{% get_media_prefix %}{{ profile_picture_location }}" />
+            </div>
+            {% if request.session.handle == handle %}
+            <div>
+               <form enctype="multipart/form-data" method="POST">
+                  {% csrf_token %}
+                  <input type="file" name="profilepic" accept="image/*" value="Choose File" style="padding-top: 2%;">
+                  <div style="font-size: 0.8em;">
+                     <span class="notice for__titlePhoto">Do not be shy. Your face should be clearly visible in the
+                        photo.</span>
+                  </div>
+                  <button type="submit"> Upload</button>
+
+               </form>
+            </div>
+            {% endif %}
 
          </div>
       </div>
