@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block title %}
+Talks
+{% endblock %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        <tbody>
+            <tr>
+                <td class="form-group" style="width:5%;">
+                    <input type="file" name="attachment" value="Attach File">
+                </td>
+                <td class="form-group">
+                    <textarea id="mytextarea" name="text" style="width:99%;"></textarea>
+                </td>
+                <td class="form-group" style="width:5%;">
+                    <button type="submit"> Send</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+{% endblock %}

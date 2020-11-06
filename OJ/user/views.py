@@ -9,7 +9,7 @@ from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 def profile(request , handle):
-    if request.method == 'POST' and request.FILES['profilepic']:
+    if request.method == 'POST' and 'profilepic' in request.FILES:
         new_profilepic  = request.FILES['profilepic']
 
         fs = FileSystemStorage()

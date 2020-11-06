@@ -22,3 +22,5 @@ insert into oj.follow(followee_id , follower_id) values(2 , 5) ;
 insert into oj.follow(followee_id , follower_id) values(3 , 5) ;
 Update oj.users            SET profile_picture_location = 'pro pic.png'                 where handle = 'abc' ;
 Update oj.users            SET profile_picture_location = 'pro pic_lLA5K1E.png'                 where handle = 'abc' ;
+insert into oj.message(message_id , sender_id , receiver_id , text , time )             values( oj.message_id_seq.nextval , 5 , 6 , 'help' , (select systimestamp at time zone 'UTC' from dual)  ) ;
+insert into oj.message(message_id , sender_id , receiver_id , text , time )             values( oj.message_id_seq.nextval , 5 , 4 , 'mahdi' ,                  to_date( '2020-11-6-7-1-35'   , 'YYYY-MM-DD-HH24-MI-SS' )  ) ;

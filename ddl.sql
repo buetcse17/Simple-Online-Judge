@@ -288,7 +288,7 @@ create table oj.message
     message_id    integer not null
         constraint PKMessage primary key,
     text          clob    not null,
-    file_location varchar2(512),
+    attachment_location varchar2(512),
     time          date    not null,
     seen          number(1) default 0,
     receiver_id   integer not null,
