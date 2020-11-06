@@ -1,0 +1,31 @@
+{#  arguments[ sender_handle ,sender_color , receiver_handle , receiver_color ,, text , attachment  , time[sent] , seen ] #}
+{# sender , receiver , text , attachment  , time[sent] , seen #}
+<tr>
+    <td> {% include 'colored_handle.html' with handle=sender_handle color=sender_color only %} </td>
+    <td> {% include 'colored_handle.html' with handle=receiver_handle color=receiver_color only %} </td>
+    <td> {{text}} </td>
+    <td>
+        {% if attachment %}
+        <a href="/media/{{attachment}}" download>{{attachment}}</a>
+        {% endif %}
+    </td>
+    <td> 
+        {% load tz %}
+        {{ time|localtime }}
+    </td>
+    <td>
+        {% if seen %}
+        <span class="glyphicon glyphicon-eye-open">Seen</span>
+        {% else %}
+        <span class="glyphicon glyphicon-eye-close"> Delivered </span>
+        {% endif %}
+        <div>
+            {% if  request.session.handle == sender_handle %}
+            <a href="{% url 'conversation' receiver_handle %}">reply </a>
+            {% else %}
+            <a href="{% url 'conversation' sender_handle %}"> reply </a>
+            {% endif %}
+        </div>
+    </td>
+
+</tr>

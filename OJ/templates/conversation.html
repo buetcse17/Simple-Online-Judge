@@ -4,15 +4,45 @@ Talks
 {% endblock %}
 
 {% block content %}
+
+<table class="table  table-bordered">
+    <thead>
+        <tr>
+            <th style="width: auto;"> Author </th>
+            <th style="width: auto;"> Recipient </th>
+            <th style="width: auto;"> Message </th>
+            <th style="width: auto;"> Attachment </th>
+            <th style="width: auto;"> Time </th>
+            <th style="width: auto;"> Details </th>
+        </tr>
+    </thead>
+    <tbody>
+        {%  for sender_handle ,sender_color , receiver_handle , receiver_color , text , attachment  , time , seen in messages %}
+        {% include 'message.html' %}
+        {% endfor %}
+    </tbody>
+</table>
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>tinymce.init({ selector: 'mytextarea' });</script>
+
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    
-        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-        <script>tinymce.init({selector:'textarea'});</script>
-      
-      
-        <textarea>Welcome!</textarea>
-      
+    <table>
+        <tbody>
+            <tr>
+                <td class="form-group" style="width:5%;">
+                    <input type="file" name="attachment" value="Attach File">
+                </td>
+                <td class="form-group">
+                    <textarea id="mytextarea" name="text" style="width:99%;"></textarea>
+                </td>
+                <td class="form-group" style="width:5%;">
+                    <button type="submit"> Send</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </form>
 <button type="submit"> Send</button>
 {% endblock %}

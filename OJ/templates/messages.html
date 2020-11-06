@@ -5,18 +5,21 @@ Messages
 {% endblock %}
 
 {% block content %}
-    <table class="table  table-bordered">
-        <thead>
-            <tr>
-                <th style="width: auto;"> Author </th>
-                <th style="width: auto;"> Recipient </th>
-                <th style="width: auto;"> Message </th>
-                <th style="width: auto;"> Attachment </th>
-                <th style="width: auto;"> Details </th>
-            </tr>
-        </thead>
-        <tbody>
-            
-        </tbody>
-    </table>
+<table class="table  table-bordered">
+    <thead>
+        <tr>
+            <th style="width: auto;"> Author </th>
+            <th style="width: auto;"> Recipient </th>
+            <th style="width: auto;"> Message </th>
+            <th style="width: auto;"> Attachment </th>
+            <th style="width: auto;"> Time </th>
+            <th style="width: auto;"> Details </th>
+        </tr>
+    </thead>
+    <tbody>
+        {%  for sender_handle ,sender_color , receiver_handle , receiver_color , text , attachment  , time , seen in messages %}
+        {% include 'message.html' %}
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
