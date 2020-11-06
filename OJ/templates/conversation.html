@@ -23,8 +23,6 @@ Talks
     </tbody>
 </table>
 
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>tinymce.init({ selector: 'mytextarea' });</script>
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -35,6 +33,8 @@ Talks
                     <input type="file" name="attachment" value="Attach File">
                 </td>
                 <td class="form-group">
+                    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+                    <script>tinymce.init({ selector: 'textarea' });</script>
                     <textarea id="mytextarea" name="text" style="width:99%;"></textarea>
                 </td>
                 <td class="form-group" style="width:5%;">
