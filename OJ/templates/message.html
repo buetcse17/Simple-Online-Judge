@@ -3,13 +3,17 @@
 <tr>
     <td> {% include 'colored_handle.html' with handle=sender_handle color=sender_color only %} </td>
     <td> {% include 'colored_handle.html' with handle=receiver_handle color=receiver_color only %} </td>
-    <td> {{text}} </td>
+    <td>
+        {% autoescape off %}
+        {{text}}
+        {% endautoescape %}
+    </td>
     <td>
         {% if attachment %}
         <a href="/media/{{attachment}}" download>{{attachment}}</a>
         {% endif %}
     </td>
-    <td> 
+    <td>
         {% load tz %}
         {{ time|localtime }}
     </td>

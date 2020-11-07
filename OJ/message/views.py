@@ -36,6 +36,8 @@ def conversation(request, handle):
                 
                 text = request.POST['text']
 
+                print(text)
+                
                 add_message(sender_id=sender_id , receiver_id=receiver_id , text= text , attachment_location=attachment_location)
 
             set_seen_true(sender_id= get_user_id(handle=handle) , receiver_id= request.session['user_id'])
