@@ -93,8 +93,8 @@ def add_user(handle,  name, email, password_hash):
         sql = "insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH ) \
             values ( user_id_seq.nextval , %s , %s , %s , %s);"
         cursor.execute(sql, [handle, name, email, password_hash])
-        print(sql)
-        log_sql(sql)
+        
+        log_sql(connection.queries[-1]['sql'])
         connection.commit()
         result = True
 
@@ -202,7 +202,7 @@ def update_profile_picture_location(handle, profile_picture_location):
            SET profile_picture_location = %s  \
                where handle = %s ;"
     cursor.execute(sql, [profile_picture_location, handle])
-    log_sql(sql)
+    log_sql(connection.queries[-1]['sql'])
     cursor.close()
 
     return

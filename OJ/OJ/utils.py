@@ -2,7 +2,7 @@ from message.models import get_total_new_messages
 
 
 def log_sql(sql):
-    f = open('log.sql','a')
+    f = open('log.sql','a' , encoding='utf-8')
     f.write( '\n' +sql )
     f.close()
 

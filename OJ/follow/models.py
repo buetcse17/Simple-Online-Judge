@@ -13,7 +13,7 @@ def AddFollower(followee_id, follower_id):
     sql = 'insert into oj.follow(followee_id , follower_id) values( %s , %s ) ;'
 
     cursor.execute(sql, [followee_id, follower_id])
-    log_sql(sql=sql)
+    log_sql(sql=connection.queries[-1]['sql'])
     cursor.close()
 
     return
@@ -27,7 +27,7 @@ def RemoveFollower(followee_id, follower_id):
     sql = 'delete from oj.follow where followee_id = %s and follower_id =  %s ;'
 
     cursor.execute(sql, [followee_id, follower_id])
-    log_sql(sql=sql)
+    log_sql(sql=connection.queries[-1]['sql'])
     cursor.close()
 
     return

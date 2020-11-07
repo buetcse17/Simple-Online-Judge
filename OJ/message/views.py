@@ -40,9 +40,20 @@ def conversation(request, handle):
                 
                 add_message(sender_id=sender_id , receiver_id=receiver_id , text= text , attachment_location=attachment_location)
 
-            set_seen_true(sender_id= get_user_id(handle=handle) , receiver_id= request.session['user_id'])
+            
 
             context['messages'] = get_messages_with(sender_id= request.session['user_id']  , receiver_id= get_user_id(handle))
+            
+            notun_message = 0
+
+            for x in context['messages']:
+                if x[-1] == 0:
+                    notun_message = 1
+            
+            if notun_message:
+                set_seen_true(sender_id= get_user_id(handle=handle) , receiver_id= request.session['user_id'])
+                context['messages'] = get_messages_with(sender_id= request.session['user_id']  , receiver_id= get_user_id(handle))
+            
             context = add_user_information(request=request, context=context)
             return render(request, 'conversation.html', context=context)
         else:
