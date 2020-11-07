@@ -90,9 +90,9 @@ def add_user(handle,  name, email, password_hash):
     cursor = connection.cursor()
     result = False
     try:
-        sql = f"insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH ) \
-            values ( user_id_seq.nextval , '{handle}' , '{name}' , '{email}' , '{password_hash}');"
-        cursor.execute(sql)
+        sql = "insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH ) \
+            values ( user_id_seq.nextval , %s , %s , %s , %s);"
+        cursor.execute(sql, [handle, name, email, password_hash])
         print(sql)
         log_sql(sql)
         connection.commit()
@@ -117,8 +117,8 @@ def get_follower_count(user_id):
         total follower 
     """
     cursor = connection.cursor()
-    sql = f"select count(*) from oj.follow where followee_id = { user_id };"
-    cursor.execute(sql)
+    sql = "select count(*) from oj.follow where followee_id = %s ;"
+    cursor.execute(sql, [user_id])
     result = cursor.fetchone()[0]
     cursor.close()
     return result
@@ -129,8 +129,8 @@ def get_user_id(handle):
         get id from handle
     """
     cursor = connection.cursor()
-    sql = f"select user_id from oj.users where handle = '{ handle }' ;"
-    cursor.execute(sql)
+    sql = "select user_id from oj.users where handle = %s ;"
+    cursor.execute(sql, [handle])
     result = cursor.fetchone()[0]
     cursor.close()
     return result
@@ -141,13 +141,13 @@ def get_user_information(handle):
           user_id ,user_name ,   rating , rating_catagory ,color , country_id , country_name ,institution_id , institution_name , profile_picture_location
     """
     cursor = connection.cursor()
-    sql = f"select oj.users.user_id ,  oj.users.user_name , oj.users.rating ,oj.rating_distribution.rating_catagory , oj.rating_distribution.color, oj.users.country_id , oj.country.country_name , \
+    sql = "select oj.users.user_id ,  oj.users.user_name , oj.users.rating ,oj.rating_distribution.rating_catagory , oj.rating_distribution.color, oj.users.country_id , oj.country.country_name , \
         oj.users.Institution_id , oj.Institution.Institution_name  , oj.users.profile_picture_location \
      from oj.users left join oj.rating_distribution on (oj.rating_distribution.minimum_rating <= oj.users.rating and oj.users.rating <= oj.rating_distribution.maximum_rating ) \
      left join oj.country on (oj.users.country_id = oj.country.country_id ) \
          left join oj.institution on(oj.users.Institution_id =  oj.institution.Institution_id) \
-             where oj.users.handle = '{handle}' ;"
-    cursor.execute(sql)
+             where oj.users.handle = %s ;"
+    cursor.execute(sql, [handle])
     result = cursor.fetchone()
 
     # print(result)
@@ -185,8 +185,8 @@ def does_follow(followee_id, follower_id):
     """
 
     cursor = connection.cursor()
-    sql = f'select count(*) from oj.follow where followee_id = {followee_id} and follower_id = {follower_id} ;'
-    cursor.execute(sql)
+    sql = 'select count(*) from oj.follow where followee_id = %s and follower_id = %s ;'
+    cursor.execute(sql, [followee_id, follower_id])
     result = cursor.fetchone()[0]
     cursor.close()
 
@@ -198,10 +198,10 @@ def update_profile_picture_location(handle, profile_picture_location):
         update profile_picture_location in database
     """
     cursor = connection.cursor()
-    sql = f"Update oj.users \
-           SET profile_picture_location = '{profile_picture_location}'  \
-               where handle = '{handle}' ;"
-    cursor.execute(sql)
+    sql = "Update oj.users \
+           SET profile_picture_location = %s  \
+               where handle = %s ;"
+    cursor.execute(sql, [profile_picture_location, handle])
     log_sql(sql)
     cursor.close()
 
