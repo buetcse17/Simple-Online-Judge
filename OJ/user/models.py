@@ -93,7 +93,7 @@ def add_user(handle,  name, email, password_hash):
         sql = "insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH ) \
             values ( user_id_seq.nextval , %s , %s , %s , %s);"
         cursor.execute(sql, [handle, name, email, password_hash])
-        
+
         log_sql(connection.queries[-1]['sql'])
         connection.commit()
         result = True
@@ -206,3 +206,99 @@ def update_profile_picture_location(handle, profile_picture_location):
     cursor.close()
 
     return
+
+
+def get_country_name(handle):
+    """
+        returns country name  of handle user
+    """
+    sql = """select oj.country.country_name
+        from oj.users left join oj.country on ( oj.users.country_id = oj.country.country_id )
+        where oj.users.handle = %s ;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [handle])
+        result = cursor.fetchone()[0]
+    return result
+
+
+def get_institution_name(handle):
+    """
+        returns institution name  of handle user
+    """
+    sql = """select oj.institution.institution_name
+        from oj.users left join oj.institution on ( oj.users.institution_id = oj.institution.institution_id )
+        where oj.users.handle = %s ;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [handle])
+        result = cursor.fetchone()[0]
+
+    return result
+
+
+def get_country_id(country_name):
+    """
+        returns country_id from country_name
+    """
+    sql = """select country_id
+            from oj.country
+            where country_name = %s """
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [country_name])
+        result = cursor.fetchone()
+        if result:
+            result = result[0]
+
+    return result
+
+
+def get_institution_id(institution_name):
+    """
+        returns institution_id from institution_name
+    """
+    sql = """select institution_id
+            from oj.institution
+            where institution_name = %s """
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [institution_name])
+        result = cursor.fetchone()
+        if result:
+            result = result[0]
+
+    return result
+
+
+def add_country(country_name):
+
+    sql = "insert into oj.country(country_id , country_name ) values(oj.country_id_seq.nextval , %s );"
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [country_name])
+        log_sql(connection.queries[-1]['sql'])
+
+    return 
+
+def add_institution(institution_name):
+
+    sql = "insert into oj.institution(institution_id , institution_name ) values(oj.institution_id_seq.nextval , %s );"
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [institution_name])
+        log_sql(connection.queries[-1]['sql'])
+
+    return 
+
+def update_user_country(handle , country_id):
+
+    sql = """ update oj.users set country_id = %s where handle = %s ;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [country_id , handle])
+        log_sql(connection.queries[-1]['sql'])
+
+    return 
+
+def update_user_institution(handle , institution_id):
+
+    sql = """ update oj.users set institution_id = %s where handle = %s ;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [institution_id , handle])
+        log_sql(connection.queries[-1]['sql'])
+
+    return 

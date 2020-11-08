@@ -61,7 +61,6 @@ insert into oj.message(message_id , sender_id , receiver_id , text , time )     
 update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 ;
 insert into oj.message(message_id , sender_id , receiver_id , text , time , attachment_location)             values( oj.message_id_seq.nextval , %(sender_id)s , %(receiver_id)s , %(text)s ,                 to_date( '2020-11-7-5-38-5'   , 'YYYY-MM-DD-HH24-MI-SS' ) ,                      %(attachment_location)s ) ;
 update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 ;
-<<<<<<< HEAD
 update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 ;
 update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 ;
 update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 ;
@@ -95,7 +94,6 @@ update oj.message set seen = 1 where sender_id = 5 and receiver_id = 7 ;
 insert into oj.message(message_id , sender_id , receiver_id , text , time )             values( oj.message_id_seq.nextval , 7 , 5 , '<p>Hello!!!</p>' ,                  to_date( '2020-11-7-3-48-23'   , 'YYYY-MM-DD-HH24-MI-SS' )  ) ;
 update oj.message set seen = 1 where sender_id = 5 and receiver_id = 7 ;
 update oj.message set seen = 1 where sender_id = 5 and receiver_id = 7 ;
-=======
 insert into oj.message(message_id , sender_id , receiver_id , text , time , attachment_location)             values( oj.message_id_seq.nextval , %(sender_id)s , %(receiver_id)s , %(text)s ,                 to_date( '2020-11-7-5-39-36'   , 'YYYY-MM-DD-HH24-MI-SS' ) ,                      %(attachment_location)s ) ;
 insert into oj.follow(followee_id , follower_id) values( 3 , 5 ) 
 update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 
@@ -109,4 +107,12 @@ update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6
 insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 5 , <p>dsadasdf&nbsp;</p> ,                  to_date( '2020-11-7-8-56-37'  , 'YYYY-MM-DD-HH24-MI-SS' )  ) 
 update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
 update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 
->>>>>>> 5de7ca36d9448fdf7716fee9016d48656fb8f8a3
+insert into oj.country(country_id , country_name ) values(oj.country_id_seq.nextval , cntry )
+ update oj.users set country_id = 201 where handle = abc 
+ update oj.users set country_id = None where handle = abc 
+ update oj.users set country_id = 201 where handle = abc 
+ update oj.users set country_id = 201 where handle = abc 
+ update oj.users set country_id = 201 where handle = abc 
+ update oj.users set institution_id = 745 where handle = abc 
+ update oj.users set country_id = 106 where handle = abc 
+ update oj.users set institution_id = 745 where handle = abc 

@@ -87,12 +87,12 @@
                <div style="font-size: 0.8em; color: #777;"> {{ user_name }}
 
                   {% if country_id %}
-                  , <a href="{% url 'country_rating' country_id %}"> {{ country_rating }} </a>
+                  , <a href="{% url 'country_rating' country_id %}"> {{ country_name }} </a>
                   {% endif %}
                </div>
                {% if institution_id %}
                <div style="font-size: 0.8em; color: #777;">From <a
-                     href="{% url 'institution_rating' institution_id %}">{{ institution_rating }}</a>
+                     href="{% url 'institution_rating' institution_id %}">{{ institution_name }}</a>
                   {% else %}
                   <br>
                   {% endif %}

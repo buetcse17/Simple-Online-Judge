@@ -14,8 +14,8 @@
         {% endif %}
     </td>
     <td>
-        {% load tz %}
-        {{ time|localtime }}
+        {% load humanize %}
+        {{ time|naturaltime }}
     </td>
     <td>
         {% if seen %}
