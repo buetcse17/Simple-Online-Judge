@@ -27,6 +27,7 @@ urlpatterns = [
     path('ratings/' , include('ratings.urls')),
     path('follow/', include('follow.urls')),
     path('usertalk/', include('message.urls')),
+    path('problem/', include('problem.urls')),
     path('admin/', admin.site.urls),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
