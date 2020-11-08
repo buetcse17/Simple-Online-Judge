@@ -120,3 +120,7 @@ insert into oj.message(message_id , sender_id , receiver_id , text , time )     
 update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 
 insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 5 , 6 , <p>haha</p> ,                  to_date( '2020-11-8-10-42-1'  , 'YYYY-MM-DD-HH24-MI-SS' )  ) 
 update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 
+insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , saomi , Solaiman Ahmed , 1705022@ugrad.buet.cse.ac.bd , b3282a2f2a28757b3a18ab833de16a9c54518c0b0cf493e3f0a7cf09386f326a)
+ update oj.users set country_id = 15 where handle = saomi 
+ update oj.users set institution_id = 624 where handle = saomi 
+Update oj.users            SET profile_picture_location = codeforces.jpg                 where handle = saomi 
