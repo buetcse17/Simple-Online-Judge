@@ -116,3 +116,7 @@ insert into oj.country(country_id , country_name ) values(oj.country_id_seq.next
  update oj.users set institution_id = 745 where handle = abc 
  update oj.users set country_id = 106 where handle = abc 
  update oj.users set institution_id = 745 where handle = abc 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 5 , 6 , <p>asda</p> ,                  to_date( '2020-11-8-10-41-55'  , 'YYYY-MM-DD-HH24-MI-SS' )  ) 
+update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 5 , 6 , <p>haha</p> ,                  to_date( '2020-11-8-10-42-1'  , 'YYYY-MM-DD-HH24-MI-SS' )  ) 
+update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 

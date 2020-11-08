@@ -3,10 +3,10 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.http import Http404
 
-from .models import get_user_information, handle_exists, get_follower_count, is_loggedin, does_follow , get_institution_id , add_country
-from .models import get_user_id, update_profile_picture_location, get_country_name, get_institution, get_institution_name , get_country_id
-from .models import update_user_country , add_institution
-from .models import update_user_institution 
+from .models import get_user_information, handle_exists, get_follower_count, is_loggedin, does_follow, get_institution_id, add_country
+from .models import get_user_id, update_profile_picture_location, get_country_name, get_institution, get_institution_name, get_country_id
+from .models import update_user_country, add_institution
+from .models import update_user_institution
 
 from OJ.utils import add_user_information
 from django.core.files.storage import FileSystemStorage
@@ -61,25 +61,23 @@ def profile_settings(request):
                 new_country = None
             if new_institution == '':
                 new_institution = None
-            
+
             country_id = get_country_id(new_country)
             institution_id = get_institution_id(new_institution)
-            
+
             if country_id is None and new_country is not None:
                 add_country(new_country)
                 country_id = get_country_id(country_name=new_country)
             if country_id is not None:
-                update_user_country(request.session['handle'] , country_id)
-            
-            
+                update_user_country(request.session['handle'], country_id)
+
             if institution_id is None and new_institution is not None:
                 add_institution(new_institution)
-                institution_id = get_institution_id(institution_name=new_institution)
+                institution_id = get_institution_id(
+                    institution_name=new_institution)
             if institution_id is not None:
-                update_user_institution(request.session['handle'] , institution_id)
-            
-
-
+                update_user_institution(
+                    request.session['handle'], institution_id)
 
         context = {'handle': request.session['handle']}
 

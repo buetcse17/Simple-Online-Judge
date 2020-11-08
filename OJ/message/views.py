@@ -36,7 +36,7 @@ def conversation(request, handle):
 
                 text = request.POST['text']
 
-                print(text)
+                #print(text)
 
                 add_message(sender_id=sender_id, receiver_id=receiver_id,
                             text=text, attachment_location=attachment_location)
