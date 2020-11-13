@@ -126,3 +126,4 @@ insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )         
 Update oj.users            SET profile_picture_location = codeforces.jpg                 where handle = saomi 
 insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 5 , 6 , <p>fsafadfa</p> ,                  to_date( '2020-11-13-11-50-0'  , 'YYYY-MM-DD-HH24-MI-SS' )  ) 
 update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 

@@ -274,7 +274,8 @@ def add_country(country_name):
         cursor.execute(sql, [country_name])
         log_sql(connection.queries[-1]['sql'])
 
-    return 
+    return
+
 
 def add_institution(institution_name):
 
@@ -283,22 +284,30 @@ def add_institution(institution_name):
         cursor.execute(sql, [institution_name])
         log_sql(connection.queries[-1]['sql'])
 
-    return 
+    return
 
-def update_user_country(handle , country_id):
+
+def update_user_country(handle, country_id):
 
     sql = """ update oj.users set country_id = %s where handle = %s ;"""
     with connection.cursor() as cursor:
-        cursor.execute(sql, [country_id , handle])
+        cursor.execute(sql, [country_id, handle])
         log_sql(connection.queries[-1]['sql'])
 
-    return 
+    return
 
-def update_user_institution(handle , institution_id):
+
+def update_user_institution(handle, institution_id):
 
     sql = """ update oj.users set institution_id = %s where handle = %s ;"""
     with connection.cursor() as cursor:
-        cursor.execute(sql, [institution_id , handle])
+        cursor.execute(sql, [institution_id, handle])
         log_sql(connection.queries[-1]['sql'])
 
-    return 
+    return
+
+def get_friends(user_id):
+    """
+    handle , color 
+    """
+    pass

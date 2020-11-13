@@ -114,7 +114,10 @@
             {% if request.session.handle and request.session.handle == handle %}
 
             <li>
-               <a href="{% url 'problems' %}">Edit problems</a>  
+               <a href="{% url 'friends' %}">My Friends</a>
+            </li>
+            <li>
+               <a href="{% url 'problems' %}">Edit problems</a>
             </li>
             <li>
                <a href="{% url 'profile_settings' %}">Edit Profile Settings</a>

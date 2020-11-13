@@ -316,8 +316,8 @@ create table oj.problem
     input_specification  clob          not null,
     output_specification clob          not null,
     note                 clob          not null,
-    timelimit            integer       not null,
-    memorylimit          integer       not null,
+    timelimit            integer       not null, --- milisec 
+    memorylimit          integer       not null, --- kilobyte
     tutorial_link        varchar2(2048),
     difficulty           integer,
     owner_user_id        integer       not null,
