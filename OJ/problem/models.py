@@ -1,5 +1,8 @@
 from django.db import models
 from django.db import connection
+
+
+from OJ.utils import dictfetchall
 # Create your models here.
 
 
@@ -31,3 +34,39 @@ def add_problem(user_id):
         cursor.execute(sql, [user_id])
 
     return
+
+
+def get_owner_user_id(problem_id):
+    sql = """select owner_user_id 
+    from oj.problem 
+    where problem_id = %s ;"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [problem_id])
+        result = cursor.fetchone()[0]
+
+    return result
+
+
+def exist_problem(problem_id):
+    sql = """select count(*)
+    from oj.problem 
+    where problem_id = %s ;"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [problem_id])
+        result = cursor.fetchone()[0]
+
+    return result == 1
+
+
+def get_problem_dict(problem_id):
+    sql = """ select * 
+    from oj.problem
+    where problem_id = %s ;"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [problem_id])
+        result = dictfetchall(cursor)[0]
+
+    return result

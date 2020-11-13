@@ -17,15 +17,19 @@ Problems
         <tr>
             <th scope="col" style="width: 10%;"> $ </th>
             <th scope="col">ID</th>
-            <th scope="col" style="width: auto;">Name</th> <!-- total contest participation-->
+            <th scope="col" style="width: auto;">Name</th> 
+            <th scope="col" style="width: 2%;"> # </th>
+            <th scope="col" style="width: 2%;" > # </th>
         </tr>
     </thead>
     <tbody>
         {% for problem_id , problem_name in problems %}
             <tr>
-                <td> {{loop.counter}}  </td>
+                <th scope="row"> {{ forloop.counter }}</th>
                 <td> <a href="{% url 'problem_edit' problem_id %}"> {{problem_id}} </a> </td>
                 <td> {{problem_name}} </td>
+                <td> <a href="{% url 'problem_edit' problem_id %}"> Edit </a> </td>
+                <td> <a href="{% url 'problem_view' problem_id %}"> View </a> </td>
             </tr>
         {% endfor %}
     </tbody>

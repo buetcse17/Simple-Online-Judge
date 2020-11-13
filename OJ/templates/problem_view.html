@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% block title %}
+Problem - {{ PROBLEM_ID }} - OJ
+{% endblock %}
+{% block content %}
+<button> <a href="{% url 'problem_edit' PROBLEM_ID %}"> Edit </a> </button>
+<div class="header" style="text-align: center;">
+    <h3> <b> {{ PROBLEM_ID }} . {{PROBLEM_NAME}} </b> </h3> <br>
+    time limit per test : {{ TIMELIMIT }} seconds <br>
+    memory limit per test : {{ MEMORYLIMIT }} kilobytes <br>
+</div>
+
+<div class="body">
+    <div>
+        {{ DESCRIPTION }}
+    </div>
+    <div>
+        <h5><b>Input</b></h5>
+        {{ INPUT_SPECIFICATION }}
+    </div>
+    <div>
+        <h5><b>Output</b></h5>
+        {{ OUTPUT_SPECIFICATION }}
+    </div>
+    <div>
+        <h5><b>Examples</b></h5>
+    </div>
+    <div>
+        <h5><b>Note</b></h5>
+        {{ NOTE }}
+    </div>
+</div>
+
+
+{% endblock %}

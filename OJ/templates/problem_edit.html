@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block title %}
+Edit - {{ PROBLEM_ID }} - OJ
+{% endblock %}
+{% block content %}
+<button> <a href="{% url 'problem_view' PROBLEM_ID %}"> View </a> </button>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit"> Save </button>
+    <div class="header" style="text-align: center;">
+        <h3> <b> {{ PROBLEM_ID }} .<input type="text" name="PROBLEM_NAME" value="{{ PROBLEM_NAME }}"> </b> </h3> <br>
+        time limit per test : .<input type="number" name="PROBLEM_NAME" value="{{TIMELIMIT }}"> seconds <br>
+        memory limit per test : <input type="number" name="PROBLEM_NAME" value="{{ MEMORYLIMIT }}"> kilobytes <br>
+    </div>
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+
+    <div class="body">
+        <div>
+            <textarea name="DESCRIPTION">{{ DESCRIPTION }} </textarea>
+        </div>
+        <div>
+            <h5><b>Input</b></h5>
+            <textarea name="INPUT_SPECIFICATION">{{ INPUT_SPECIFICATION }} </textarea>
+        </div>
+        <div>
+            <h5><b>Output</b></h5>
+            <textarea name="OUTPUT_SPECIFICATION">{{ OUTPUT_SPECIFICATION }} </textarea>
+        </div>
+        <div>
+            <h5><b>Examples</b></h5>
+        </div>
+        <div>
+            <h5><b>Note</b></h5>
+            <textarea name="NOTE">{{ NOTE }} </textarea>
+        </div>
+    </div>
+
+</form>
+
+{% endblock %}
