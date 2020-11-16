@@ -26,7 +26,18 @@ def get_contests_dict():
         cursor.execute(sql)
         result = dictfetchall(cursor)
         for contest in result:
-            print(contest)
-            print(get_writers(contest['CONTEST_ID']))
             contest['WRITERS'] = get_writers(contest['CONTEST_ID'])
+
+    return result
+
+
+def get_contest_dict(contest_id):
+    sql = """ select * 
+    from oj.contest
+    where contest_id = %s ;"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql , [contest_id])
+        result = dictfetchall(cursor)[0]
+
     return result

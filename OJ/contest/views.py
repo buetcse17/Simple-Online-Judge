@@ -17,5 +17,12 @@ def contests(request):
     return render(request, 'contest/contests.html', context)
 
 
-def contest(request , contest_id):
-    pass
+def contest(request, contest_id):
+    context = {}
+
+
+    context =  get_contest_dict(contest_id)
+
+    if is_loggedin(request):
+        context = add_user_information(request, context)
+    return render(request, 'contest/dashboard.html', context)
