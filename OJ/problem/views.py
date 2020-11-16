@@ -18,7 +18,7 @@ def problems(request):
         context['problems'] = get_problems(request.session['user_id'])
 
         context = add_user_information(request, context)
-        return render(request, 'problems.html', context)
+        return render(request, 'problem/problems.html', context)
     else:
         return redirect('signin')
 
@@ -30,7 +30,7 @@ def problem_edit(request, problem_id):
             context = get_problem_dict(problem_id)
 
             context = add_user_information(request, context)
-            return render(request, 'problem_edit.html', context)
+            return render(request, 'problem/edit.html', context)
         else:
             return redirect('problems')
     else:
@@ -44,7 +44,7 @@ def problem_view(request, problem_id):
             context = get_problem_dict(problem_id)
 
             context = add_user_information(request, context)
-            return render(request, 'problem_view.html', context)
+            return render(request, 'problem/view.html', context)
         else:
             return redirect('problems')
     else:

@@ -15,7 +15,7 @@ def messages(request):
         context['messages'] = get_messages_all(request.session['user_id'])
 
         context = add_user_information(request=request, context=context)
-        return render(request, 'messages.html', context=context)
+        return render(request, 'message/messages.html', context=context)
     else:
         return redirect('signin')
 
@@ -57,7 +57,7 @@ def conversation(request, handle):
                     sender_id=request.session['user_id'], receiver_id=get_user_id(handle))
 
             context = add_user_information(request=request, context=context)
-            return render(request, 'conversation.html', context=context)
+            return render(request, 'message/conversation.html', context=context)
         else:
             raise Http404('No such user')
     else:

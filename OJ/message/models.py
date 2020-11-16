@@ -122,7 +122,8 @@ select (select handle from oj.users where user_id  = sender_id ) as sender_handl
                     and maximum_rating >= (select rating from oj.users where user_id = receiver_id ) )  as receiver_color  ,
         text  , attachment_location , time , seen 
 from oj.message 
-where sender_id in ( %(sender_id)s , %(receiver_id)s ) and receiver_id in ( %(receiver_id)s , %(sender_id)s ) 
+where (sender_id  = %(sender_id)s  and receiver_id =  %(receiver_id)s ) or
+    (sender_id  = %(receiver_id)s  and receiver_id =  %(sender_id)s )
 order by time asc;"""
 
     cursor.execute(sql, {

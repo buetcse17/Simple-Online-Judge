@@ -127,3 +127,20 @@ Update oj.users            SET profile_picture_location = codeforces.jpg        
 insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 5 , 6 , <p>fsafadfa</p> ,                  to_date( '2020-11-13-11-50-0'  , 'YYYY-MM-DD-HH24-MI-SS' )  ) 
 update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 
 update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , qwe , abdbn asdjak , mahdi@gmail.com , a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3)
+Update oj.users            SET profile_picture_location = pro pic_je0xpLX.png                 where handle = qwe 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 21 , 5 , <p>aksnbdfadsfa</p> ,                  to_date( '2020-11-14-6-7-5'  , 'YYYY-MM-DD-HH24-MI-SS' )  ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 21 
+update oj.message set seen = 1 where sender_id = 21 and receiver_id = 5 
+ update oj.users set country_id = 15 where handle = abc 
+ update oj.users set institution_id = 600 where handle = abc 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 5 , 5 , <p>fasdfasdfa</p> ,                  to_date( '2020-11-16-4-49-49'  , 'YYYY-MM-DD-HH24-MI-SS' )  ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 5 
+insert into oj.country(country_id , country_name ) values(oj.country_id_seq.nextval , bd )
+ update oj.users set country_id = 201 where handle = qwe 
+insert into oj.institution(institution_id , institution_name ) values(oj.institution_id_seq.nextval , buet )
+ update oj.users set institution_id = 8581 where handle = qwe 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 5 , 5 , <p>sadfa</p> ,                  to_date( '2020-11-16-5-2-30'  , 'YYYY-MM-DD-HH24-MI-SS' )  ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 5 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 5 , 6 , <p>sdfasdfa</p> ,                  to_date( '2020-11-16-5-2-40'  , 'YYYY-MM-DD-HH24-MI-SS' )  ) 
+update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 

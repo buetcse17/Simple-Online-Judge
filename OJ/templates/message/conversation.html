@@ -18,7 +18,7 @@ Talks
     </thead>
     <tbody>
         {%  for sender_handle ,sender_color , receiver_handle , receiver_color , text , attachment  , time , seen in messages %}
-        {% include 'message.html' %}
+        {% include 'message/message.html' %}
         {% endfor %}
     </tbody>
 </table>

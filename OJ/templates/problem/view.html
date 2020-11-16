@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block title %}
-Problem - {{ PROBLEM_ID }} - OJ
+Problem - {{ PROBLEM_ID }} . {{PROBLEM_NAME}}  - OJ
 {% endblock %}
 {% block content %}
 <button> <a href="{% url 'problem_edit' PROBLEM_ID %}"> Edit </a> </button>
