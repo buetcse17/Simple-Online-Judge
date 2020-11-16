@@ -68,5 +68,30 @@ def get_problem_dict(problem_id):
     with connection.cursor() as cursor:
         cursor.execute(sql, [problem_id])
         result = dictfetchall(cursor)[0]
+    
 
+    to_remove_key = [key for key , value in result.items() if value is None ]
+    for key in to_remove_key:
+        del result[key]
+    
     return result
+
+
+def update_problem( post_data ):
+    sql = """ UPDATE OJ.PROBLEM 
+    SET PROBLEM_NAME  = %(PROBLEM_NAME)s ,
+        DESCRIPTION   = %(DESCRIPTION)s ,
+        INPUT_SPECIFICATION  = %(INPUT_SPECIFICATION)s ,
+        OUTPUT_SPECIFICATION = %(OUTPUT_SPECIFICATION)s ,
+        NOTE                 = %(NOTE)s ,
+        TIMELIMIT           = %(TIMELIMIT)s ,
+        MEMORYLIMIT         = %(MEMORYLIMIT)s ,
+        TUTORIAL_LINK     = %(TUTORIAL_LINK)s ,
+        DIFFICULTY =  %(DIFFICULTY)s 
+    WHERE PROBLEM_ID = %(PROBLEM_ID)s ;"""
+
+    print(type(post_data))
+    print(post_data)
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, post_data)

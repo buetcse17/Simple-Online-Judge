@@ -1,28 +1,28 @@
 /*
-table list in descending order of creation time
+TABLE LIST IN DESCENDING ORDER OF CREATION TIME
 
-oj.contest_user_submission
-oj.manager
-oj.participant
-oj.Problem_contest
-oj.clarification
-oj.contest
-oj.submission
-oj.sample_testcase
-oj.testcase
-oj.Problem_Catagory
-oj.problem
-oj.message
-oj.Follow
-oj.users
-oj.Rating_Distribution
-OJ.Institution
+OJ.CONTEST_USER_SUBMISSION
+OJ.MANAGER
+OJ.PARTICIPANT
+OJ.PROBLEM_CONTEST
+OJ.CLARIFICATION
+OJ.CONTEST
+OJ.SUBMISSION
+OJ.SAMPLE_TESTCASE
+OJ.TESTCASE
+OJ.PROBLEM_CATAGORY
+OJ.PROBLEM
+OJ.MESSAGE
+OJ.FOLLOW
+OJ.USERS
+OJ.RATING_DISTRIBUTION
+OJ.INSTITUTION
 OJ.COUNTRY
 
  */
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.contest_user_submission' ;
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.CONTEST_USER_SUBMISSION' ;
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -31,7 +31,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.manager' ;
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.MANAGER' ;
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -40,7 +40,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.participant' ;
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.PARTICIPANT' ;
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -49,7 +49,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.Problem_contest';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.PROBLEM_CONTEST';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -58,7 +58,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.clarification';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.CLARIFICATION';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -67,7 +67,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.contest';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.CONTEST';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -76,7 +76,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.submission';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.SUBMISSION';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -85,7 +85,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.sample_testcase';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.SAMPLE_TESTCASE';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -94,7 +94,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.testcase';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.TESTCASE';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -103,7 +103,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.Problem_Catagory';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.PROBLEM_CATAGORY';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -112,7 +112,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.problem';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.PROBLEM';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -121,7 +121,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.message';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.MESSAGE';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -130,7 +130,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.Follow';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.FOLLOW';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -139,7 +139,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.users';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.USERS';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -148,7 +148,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'oj.Rating_Distribution';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.RATING_DISTRIBUTION';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -157,7 +157,7 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.Institution';
+    EXECUTE IMMEDIATE 'DROP TABLE ' || 'OJ.INSTITUTION';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -942 THEN
@@ -175,308 +175,308 @@ EXCEPTION
 END;
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.country_id_seq';
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'OJ.COUNTRY_ID_SEQ';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -2289 THEN
             RAISE;
         END IF;
 END;
-create sequence oj.country_id_seq ;
+CREATE SEQUENCE OJ.COUNTRY_ID_SEQ ;
 
---- country table
+--- COUNTRY TABLE
 
 CREATE TABLE OJ.COUNTRY
 (
-    country_id   INTEGER       not null,
-    country_name VARCHAR2(100) NOT NULL,
-    constraint PKCountry primary key (country_id) , 
-    constraint UniqueCountry_name UNIQUE (country_name)
+    COUNTRY_ID   INTEGER       NOT NULL,
+    COUNTRY_NAME VARCHAR2(100) NOT NULL,
+    CONSTRAINT PKCOUNTRY PRIMARY KEY (COUNTRY_ID) , 
+    CONSTRAINT UNIQUECOUNTRY_NAME UNIQUE (COUNTRY_NAME)
 );
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.Institution_id_seq';
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'OJ.INSTITUTION_ID_SEQ';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -2289 THEN
             RAISE;
         END IF;
 END;
-create sequence oj.Institution_id_seq ;
+CREATE SEQUENCE OJ.INSTITUTION_ID_SEQ ;
 
---- institution table
+--- INSTITUTION TABLE
 
-CREATE TABLE OJ.Institution
+CREATE TABLE OJ.INSTITUTION
 (
-    Institution_id   INTEGER       not null,
-    Institution_name VARCHAR2(100) NOT NULL,
-    constraint PKInstitution primary key (Institution_id) , 
-    constraint UniqueInstitution_name UNIQUE (Institution_name )
+    INSTITUTION_ID   INTEGER       NOT NULL,
+    INSTITUTION_NAME VARCHAR2(100) NOT NULL,
+    CONSTRAINT PKINSTITUTION PRIMARY KEY (INSTITUTION_ID) , 
+    CONSTRAINT UNIQUEINSTITUTION_NAME UNIQUE (INSTITUTION_NAME )
 );
 
---- rating distribution table
+--- RATING DISTRIBUTION TABLE
 
-create table oj.Rating_Distribution
+CREATE TABLE OJ.RATING_DISTRIBUTION
 (
-    rating_catagory varchar2(20)
-        constraint PKRating_Distribution primary key,
-    color varchar2(20) not null ,
-    minimum_rating  integer not null,
-    maximum_rating  integer not null
+    RATING_CATAGORY VARCHAR2(20)
+        CONSTRAINT PKRATING_DISTRIBUTION PRIMARY KEY,
+    COLOR VARCHAR2(20) NOT NULL ,
+    MINIMUM_RATING  INTEGER NOT NULL,
+    MAXIMUM_RATING  INTEGER NOT NULL
 );
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.user_id_seq';
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'OJ.USER_ID_SEQ';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -2289 THEN
             RAISE;
         END IF;
 END;
-create sequence oj.user_id_seq ;
+CREATE SEQUENCE OJ.USER_ID_SEQ ;
 
---- users table
+--- USERS TABLE
 
-create table oj.users
+CREATE TABLE OJ.USERS
 (
-    user_id         integer       not null
-        constraint PKUsers PRIMARY KEY,
-    handle          varchar2(32)  not null,
-    user_name       varchar2(50)  not null,
-    email           varchar2(320) not null,
-    rating          integer default 1500,
-    password_hash   char(64)      not null,--- sha256.hexdigest()
-    country_id      INTEGER,
-    Institution_id  INTEGER,
-    profile_picture_location varchar2(512) DEFAULT 'no-title.jpg',
-    ---rating_catagory varchar2(20) , --- can be obtained by query
-    constraint Unique_Handle unique (handle),
-    constraint Unique_Email unique (email),
-    constraint FKCountry_id foreign key (country_id) references oj.country (country_id) on delete set null,
-    constraint FKInstitution_id foreign key (Institution_id) references oj.Institution (Institution_id) on delete set null,
-    ---constraint FKrating_catagory foreign key (rating_catagory) references oj.Rating_Distribution (rating_catagory) on delete set null ,
-    constraint CheckHandle CHECK (handle not LIKE '% %') ,
-    constraint CheckEmail CHECK (email LIKE '%_@_%._%')
+    USER_ID         INTEGER       NOT NULL
+        CONSTRAINT PKUSERS PRIMARY KEY,
+    HANDLE          VARCHAR2(32)  NOT NULL,
+    USER_NAME       VARCHAR2(50)  NOT NULL,
+    EMAIL           VARCHAR2(320) NOT NULL,
+    RATING          INTEGER DEFAULT 1500,
+    PASSWORD_HASH   CHAR(64)      NOT NULL,--- SHA256.HEXDIGEST()
+    COUNTRY_ID      INTEGER,
+    INSTITUTION_ID  INTEGER,
+    PROFILE_PICTURE_LOCATION VARCHAR2(512) DEFAULT 'NO-TITLE.JPG',
+    ---RATING_CATAGORY VARCHAR2(20) , --- CAN BE OBTAINED BY QUERY
+    CONSTRAINT UNIQUE_HANDLE UNIQUE (HANDLE),
+    CONSTRAINT UNIQUE_EMAIL UNIQUE (EMAIL),
+    CONSTRAINT FKCOUNTRY_ID FOREIGN KEY (COUNTRY_ID) REFERENCES OJ.COUNTRY (COUNTRY_ID) ON DELETE SET NULL,
+    CONSTRAINT FKINSTITUTION_ID FOREIGN KEY (INSTITUTION_ID) REFERENCES OJ.INSTITUTION (INSTITUTION_ID) ON DELETE SET NULL,
+    ---CONSTRAINT FKRATING_CATAGORY FOREIGN KEY (RATING_CATAGORY) REFERENCES OJ.RATING_DISTRIBUTION (RATING_CATAGORY) ON DELETE SET NULL ,
+    CONSTRAINT CHECKHANDLE CHECK (HANDLE NOT LIKE '% %') ,
+    CONSTRAINT CHECKEMAIL CHECK (EMAIL LIKE '%_@_%._%')
 );
 
---- Follow table
+--- FOLLOW TABLE
 
-create table oj.Follow
+CREATE TABLE OJ.FOLLOW
 (
-    follower_id integer not null,
-    followee_id integer not null,
-    constraint FKFollower_id foreign key (follower_id) references oj.users (user_id) on delete cascade,
-    constraint FKFollowee_id foreign key (followee_id) references oj.users (user_id) on delete cascade,
-    constraint PKFollow primary key (followee_id, follower_id)
+    FOLLOWER_ID INTEGER NOT NULL,
+    FOLLOWEE_ID INTEGER NOT NULL,
+    CONSTRAINT FKFOLLOWER_ID FOREIGN KEY (FOLLOWER_ID) REFERENCES OJ.USERS (USER_ID) ON DELETE CASCADE,
+    CONSTRAINT FKFOLLOWEE_ID FOREIGN KEY (FOLLOWEE_ID) REFERENCES OJ.USERS (USER_ID) ON DELETE CASCADE,
+    CONSTRAINT PKFOLLOW PRIMARY KEY (FOLLOWEE_ID, FOLLOWER_ID)
 );
 
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.message_id_seq';
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'OJ.MESSAGE_ID_SEQ';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -2289 THEN
             RAISE;
         END IF;
 END;
-create sequence oj.message_id_seq ;
+CREATE SEQUENCE OJ.MESSAGE_ID_SEQ ;
 
---- message table
+--- MESSAGE TABLE
 
-create table oj.message
+CREATE TABLE OJ.MESSAGE
 (
-    message_id    integer not null
-        constraint PKMessage primary key,
-    text          clob    not null,
-    attachment_location varchar2(512),
-    time          date    not null,
-    seen          number(1) default 0,
-    receiver_id   integer not null,
-    sender_id     integer not null,
-    constraint FKSEnder_id foreign key (sender_id) references oj.users (user_id) on delete cascade,
-    constraint FKreceiver_id foreign key (receiver_id) references oj.users (user_id) on delete cascade
+    MESSAGE_ID    INTEGER NOT NULL
+        CONSTRAINT PKMESSAGE PRIMARY KEY,
+    TEXT          CLOB    NOT NULL,
+    ATTACHMENT_LOCATION VARCHAR2(512),
+    TIME          DATE    NOT NULL,
+    SEEN          NUMBER(1) DEFAULT 0,
+    RECEIVER_ID   INTEGER NOT NULL,
+    SENDER_ID     INTEGER NOT NULL,
+    CONSTRAINT FKSENDER_ID FOREIGN KEY (SENDER_ID) REFERENCES OJ.USERS (USER_ID) ON DELETE CASCADE,
+    CONSTRAINT FKRECEIVER_ID FOREIGN KEY (RECEIVER_ID) REFERENCES OJ.USERS (USER_ID) ON DELETE CASCADE
 );
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.problem_id_seq';
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'OJ.PROBLEM_ID_SEQ';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -2289 THEN
             RAISE;
         END IF;
 END;
-create sequence oj.problem_id_seq ;
+CREATE SEQUENCE OJ.PROBLEM_ID_SEQ ;
 
-create table oj.problem
+CREATE TABLE OJ.PROBLEM
 (
-    problem_id           integer       not null
-        constraint PKProblem primary key,
-    problem_name                 varchar2(100) not null,
-    description          clob          not null,
-    input_specification  clob          not null,
-    output_specification clob          not null,
-    note                 clob          not null,
-    timelimit            integer       not null, --- milisec 
-    memorylimit          integer       not null, --- kilobyte
-    tutorial_link        varchar2(2048),
-    difficulty           integer,
-    owner_user_id        integer       not null,
-    constraint FKUser_ID foreign key (owner_user_id) references oj.users (user_id) on delete cascade
+    PROBLEM_ID           INTEGER       NOT NULL
+        CONSTRAINT PKPROBLEM PRIMARY KEY,
+    PROBLEM_NAME                 VARCHAR2(100) NOT NULL,
+    DESCRIPTION          CLOB          NOT NULL,
+    INPUT_SPECIFICATION  CLOB          NOT NULL,
+    OUTPUT_SPECIFICATION CLOB          NOT NULL,
+    NOTE                 CLOB          NOT NULL,
+    TIMELIMIT            INTEGER       NOT NULL, --- MILISEC 
+    MEMORYLIMIT          INTEGER       NOT NULL, --- KILOBYTE
+    TUTORIAL_LINK        VARCHAR2(2048),
+    DIFFICULTY           INTEGER,
+    OWNER_USER_ID        INTEGER       NOT NULL,
+    CONSTRAINT FKUSER_ID FOREIGN KEY (OWNER_USER_ID) REFERENCES OJ.USERS (USER_ID) ON DELETE CASCADE
 );
 
 
---- Problem-Catagory table
+--- PROBLEM-CATAGORY TABLE
 
-create table oj.Problem_Catagory
+CREATE TABLE OJ.PROBLEM_CATAGORY
 (
-    problem_id    integer       not null,
-    catagory_name varchar2(256) not null,
-    constraint PKProblem_Catagory primary key (problem_id, catagory_name),
-    constraint FKProblem_id foreign key (problem_id) references oj.problem (problem_id) on delete cascade
+    PROBLEM_ID    INTEGER       NOT NULL,
+    CATAGORY_NAME VARCHAR2(256) NOT NULL,
+    CONSTRAINT PKPROBLEM_CATAGORY PRIMARY KEY (PROBLEM_ID, CATAGORY_NAME),
+    CONSTRAINT FKPROBLEM_ID FOREIGN KEY (PROBLEM_ID) REFERENCES OJ.PROBLEM (PROBLEM_ID) ON DELETE CASCADE
 );
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.testcase_id_seq';
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'OJ.TESTCASE_ID_SEQ';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -2289 THEN
             RAISE;
         END IF;
 END;
-create sequence oj.testcase_id_seq ;
+CREATE SEQUENCE OJ.TESTCASE_ID_SEQ ;
 
---- TestCase table
-create table oj.testcase
+--- TESTCASE TABLE
+CREATE TABLE OJ.TESTCASE
 (
-    testcase_id          integer        not null
-        constraint PKTestcase primary key,
-    input_file_location  varchar2(2048) not null,
-    output_file_location varchar2(2048) not null,
-    problem_id           integer        not null,
-    constraint FKProblem_id_in_testcase foreign key (problem_id) references oj.problem (problem_id) on delete cascade
+    TESTCASE_ID          INTEGER        NOT NULL
+        CONSTRAINT PKTESTCASE PRIMARY KEY,
+    INPUT_FILE_LOCATION  VARCHAR2(2048) NOT NULL,
+    OUTPUT_FILE_LOCATION VARCHAR2(2048) NOT NULL,
+    PROBLEM_ID           INTEGER        NOT NULL,
+    CONSTRAINT FKPROBLEM_ID_IN_TESTCASE FOREIGN KEY (PROBLEM_ID) REFERENCES OJ.PROBLEM (PROBLEM_ID) ON DELETE CASCADE
 );
 
 
---- Sample Test Case Relation table
+--- SAMPLE TEST CASE RELATION TABLE
 
-create table oj.sample_testcase
+CREATE TABLE OJ.SAMPLE_TESTCASE
 (
-    testcase_id          integer        not null
-        constraint PKSampleTestcase primary key,
-    input_file_location  varchar2(2048) not null,
-    output_file_location varchar2(2048) not null,
-    problem_id           integer        not null,
-    constraint FKProblemid_in_sampletestcase foreign key (problem_id) references oj.problem (problem_id) on delete cascade
+    TESTCASE_ID          INTEGER        NOT NULL
+        CONSTRAINT PKSAMPLETESTCASE PRIMARY KEY,
+    INPUT_FILE_LOCATION  VARCHAR2(2048) NOT NULL,
+    OUTPUT_FILE_LOCATION VARCHAR2(2048) NOT NULL,
+    PROBLEM_ID           INTEGER        NOT NULL,
+    CONSTRAINT FKPROBLEMID_IN_SAMPLETESTCASE FOREIGN KEY (PROBLEM_ID) REFERENCES OJ.PROBLEM (PROBLEM_ID) ON DELETE CASCADE
 );
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.submission_id_seq';
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'OJ.SUBMISSION_ID_SEQ';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -2289 THEN
             RAISE;
         END IF;
 END;
-create sequence oj.submission_id_seq ;
+CREATE SEQUENCE OJ.SUBMISSION_ID_SEQ ;
 
---- submission table
-create table oj.submission
+--- SUBMISSION TABLE
+CREATE TABLE OJ.SUBMISSION
 (
-    submission_id   integer not null
-        constraint PKSubmission primary key,
-    submission_time date    not null,
-    judge_time      date,
-    language        varchar2(128),
-    execution_time  integer,
-    memory_usages   integer,
-    verdict         varchar2(32),
-    raw_code        nclob   not null,
-    problem_id      integer not null,
-    constraint FKproblem_id_submission foreign key (problem_id) references oj.problem (problem_id) on delete cascade
+    SUBMISSION_ID   INTEGER NOT NULL
+        CONSTRAINT PKSUBMISSION PRIMARY KEY,
+    SUBMISSION_TIME DATE    NOT NULL,
+    JUDGE_TIME      DATE,
+    LANGUAGE        VARCHAR2(128),
+    EXECUTION_TIME  INTEGER,
+    MEMORY_USAGES   INTEGER,
+    VERDICT         VARCHAR2(32),
+    RAW_CODE        NCLOB   NOT NULL,
+    PROBLEM_ID      INTEGER NOT NULL,
+    CONSTRAINT FKPROBLEM_ID_SUBMISSION FOREIGN KEY (PROBLEM_ID) REFERENCES OJ.PROBLEM (PROBLEM_ID) ON DELETE CASCADE
 );
 
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.contest_id_seq';
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'OJ.CONTEST_ID_SEQ';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -2289 THEN
             RAISE;
         END IF;
 END;
-create sequence oj.contest_id_seq ;
+CREATE SEQUENCE OJ.CONTEST_ID_SEQ ;
 
---- contest table
-create table oj.contest
+--- CONTEST TABLE
+CREATE TABLE OJ.CONTEST
 (
-    contest_id integer        not null
-        constraint PKcontest primary key,
-    title      nvarchar2(512) not null,
-    start_time date,
-    duration   integer
+    CONTEST_ID INTEGER        NOT NULL
+        CONSTRAINT PKCONTEST PRIMARY KEY,
+    TITLE      NVARCHAR2(512) NOT NULL,
+    START_TIME DATE,
+    DURATION   INTEGER
 );
 
 BEGIN
-    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'oj.clarification_id_seq';
+    EXECUTE IMMEDIATE 'DROP SEQUENCE ' || 'OJ.CLARIFICATION_ID_SEQ';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE != -2289 THEN
             RAISE;
         END IF;
 END;
-create sequence oj.clarification_id_seq ;
+CREATE SEQUENCE OJ.CLARIFICATION_ID_SEQ ;
 
---- clarification table
-create table oj.clarification
+--- CLARIFICATION TABLE
+CREATE TABLE OJ.CLARIFICATION
 (
-    clarification_id integer not null
-        constraint PKclarification primary key,
-    question         nclob   not null,
-    answer           nclob   not null,
-    publish_time     date,
-    contest_id       integer not null,
-    constraint FKcontest_clarification foreign key (contest_id) references oj.contest (contest_id) on delete cascade
+    CLARIFICATION_ID INTEGER NOT NULL
+        CONSTRAINT PKCLARIFICATION PRIMARY KEY,
+    QUESTION         NCLOB   NOT NULL,
+    ANSWER           NCLOB   NOT NULL,
+    PUBLISH_TIME     DATE,
+    CONTEST_ID       INTEGER NOT NULL,
+    CONSTRAINT FKCONTEST_CLARIFICATION FOREIGN KEY (CONTEST_ID) REFERENCES OJ.CONTEST (CONTEST_ID) ON DELETE CASCADE
 );
 
-create table oj.Problem_contest
+CREATE TABLE OJ.PROBLEM_CONTEST
 (
-    contest_id integer not null,
-    problem_id integer not null,
-    constraint PKProblem_contest primary key (contest_id, problem_id),
-    constraint FKproblem_problemcontest foreign key (problem_id) references oj.problem (problem_id) on delete cascade,
-    constraint FKcontest_problemcontest foreign key (contest_id) references oj.contest (contest_id) on delete cascade
+    CONTEST_ID INTEGER NOT NULL,
+    PROBLEM_ID INTEGER NOT NULL,
+    CONSTRAINT PKPROBLEM_CONTEST PRIMARY KEY (CONTEST_ID, PROBLEM_ID),
+    CONSTRAINT FKPROBLEM_PROBLEMCONTEST FOREIGN KEY (PROBLEM_ID) REFERENCES OJ.PROBLEM (PROBLEM_ID) ON DELETE CASCADE,
+    CONSTRAINT FKCONTEST_PROBLEMCONTEST FOREIGN KEY (CONTEST_ID) REFERENCES OJ.CONTEST (CONTEST_ID) ON DELETE CASCADE
 );
 
--- participant table
-create table oj.participant
+-- PARTICIPANT TABLE
+CREATE TABLE OJ.PARTICIPANT
 (
-    contest_id integer not null,
-    user_id    integer not null,
-    constraint PKparticipant primary key (contest_id, user_id),
-    constraint FKuser_participant foreign key (user_id) references oj.users (user_id) on delete cascade,
-    constraint FKcontest_participant foreign key (contest_id) references oj.contest (contest_id) on delete cascade
+    CONTEST_ID INTEGER NOT NULL,
+    USER_ID    INTEGER NOT NULL,
+    CONSTRAINT PKPARTICIPANT PRIMARY KEY (CONTEST_ID, USER_ID),
+    CONSTRAINT FKUSER_PARTICIPANT FOREIGN KEY (USER_ID) REFERENCES OJ.USERS (USER_ID) ON DELETE CASCADE,
+    CONSTRAINT FKCONTEST_PARTICIPANT FOREIGN KEY (CONTEST_ID) REFERENCES OJ.CONTEST (CONTEST_ID) ON DELETE CASCADE
 );
 
--- manager table
-create table oj.manager
+-- MANAGER TABLE
+CREATE TABLE OJ.MANAGER
 (
-    contest_id integer not null,
-    user_id    integer not null,
-    constraint PKmanager primary key (contest_id, user_id),
-    constraint FKuser_manager foreign key (user_id) references oj.users (user_id) on delete cascade,
-    constraint FKcontest_manager foreign key (contest_id) references oj.contest (contest_id) on delete cascade
+    CONTEST_ID INTEGER NOT NULL,
+    USER_ID    INTEGER NOT NULL,
+    CONSTRAINT PKMANAGER PRIMARY KEY (CONTEST_ID, USER_ID),
+    CONSTRAINT FKUSER_MANAGER FOREIGN KEY (USER_ID) REFERENCES OJ.USERS (USER_ID) ON DELETE CASCADE,
+    CONSTRAINT FKCONTEST_MANAGER FOREIGN KEY (CONTEST_ID) REFERENCES OJ.CONTEST (CONTEST_ID) ON DELETE CASCADE
 );
 
 
--- contest_user_submission relation table
+-- CONTEST_USER_SUBMISSION RELATION TABLE
 
-create table oj.contest_user_submission
+CREATE TABLE OJ.CONTEST_USER_SUBMISSION
 (
-    contest_id    integer not null,
-    user_id       integer not null,
-    submission_id integer not null,
-    constraint PKcontest_user_submission primary key (contest_id, user_id, submission_id),
-    constraint FKuser_contest_submission foreign key (user_id) references oj.users (user_id) on delete cascade,
-    constraint FKcontest_user_submission foreign key (contest_id) references oj.contest (contest_id) on delete cascade,
-    constraint FKsubmission_contest_user foreign key (submission_id) references oj.submission (submission_id) on delete cascade
+    CONTEST_ID    INTEGER NOT NULL,
+    USER_ID       INTEGER NOT NULL,
+    SUBMISSION_ID INTEGER NOT NULL,
+    CONSTRAINT PKCONTEST_USER_SUBMISSION PRIMARY KEY (CONTEST_ID, USER_ID, SUBMISSION_ID),
+    CONSTRAINT FKUSER_CONTEST_SUBMISSION FOREIGN KEY (USER_ID) REFERENCES OJ.USERS (USER_ID) ON DELETE CASCADE,
+    CONSTRAINT FKCONTEST_USER_SUBMISSION FOREIGN KEY (CONTEST_ID) REFERENCES OJ.CONTEST (CONTEST_ID) ON DELETE CASCADE,
+    CONSTRAINT FKSUBMISSION_CONTEST_USER FOREIGN KEY (SUBMISSION_ID) REFERENCES OJ.SUBMISSION (SUBMISSION_ID) ON DELETE CASCADE
 );
