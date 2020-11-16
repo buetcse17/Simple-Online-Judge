@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block  title %}
+Contests
+{% endblock %}
+{% block content %}
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th> Name </th>
+            <th> Writers </th>
+            <th> Start </th>
+            <th> Length </th>
+            <th> # </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contest in CONTESTS %}
+        <tr>
+            <td> {{contest.TITLE}}  <br>
+                <a href="{% url 'contest' contest.CONTEST_ID %}">Enter>></a>
+            </td>
+            <td>
+                {% for writer in contest.WRITERS %}
+                {% include 'colored_handle.html' with handle=writer.HANDLE color=writer.COLOR only %} <br>
+                {% endfor %}
+            </td>
+            <td> {{contest.START_TIME}} </td>
+            <td> {{contest.DURATION}} </td>
+            <td> {{contest.TOTAL_PARTICIPANT}} </td>
+        </tr>
+        {% empty %}
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

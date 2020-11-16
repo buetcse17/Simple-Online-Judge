@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'follow' ,
     'message' ,
     'problem' ,
+    'contest' ,
 ]
 
 MIDDLEWARE = [
