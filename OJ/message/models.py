@@ -43,7 +43,7 @@ def add_message(sender_id, receiver_id, text,  attachment_location):
     if attachment_location is None:
         sql = f"insert into oj.message(message_id , sender_id , receiver_id , text , time )  \
             values( oj.message_id_seq.nextval , %(sender_id)s , %(receiver_id)s , %(text)s , \
-                 to_date( '{time.year}-{time.month}-{time.day}-{time.hour}-{time.minute}-{time.second}'  , 'YYYY-MM-DD-HH24-MI-SS' )  ) ;"
+                {OJ.utils.get_current_time_sql()} ) ;"
 
         data = {
             'sender_id': sender_id,
@@ -53,8 +53,8 @@ def add_message(sender_id, receiver_id, text,  attachment_location):
 
     else:
         sql = f"insert into oj.message(message_id , sender_id , receiver_id , text , time , attachment_location) \
-            values( oj.message_id_seq.nextval , %(sender_id)s , %(receiver_id)s , %(text)s , \
-                to_date( '{time.year}-{time.month}-{time.day}-{time.hour}-{time.minute}-{time.second}'   , 'YYYY-MM-DD-HH24-MI-SS' ) ,  \
+            values( oj.message_id_seq.nextval , %(sender_id)s , %(receiver_id)s , %(text)s ,  \
+                {OJ.utils.get_current_time_sql()}  ,  \
                     %(attachment_location)s ) ;"
         data = {
             'sender_id': sender_id,

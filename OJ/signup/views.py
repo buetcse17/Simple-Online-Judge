@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import redirect
-from user.models import authenticate , login , handle_exists , email_exists , add_user  , get_hash
+from user.models import authenticate , login , handle_exists , email_exists , add_user  , get_hash , login
 
 def signup(request):
     if request.method == 'POST':
@@ -24,6 +24,7 @@ def signup(request):
             return redirect('signup')
         else :
             if add_user(handle = handle , email = email , name = name , password_hash = get_hash(password1) ):
+                login(request , handle )
                 return redirect("/")
             else:
                 messages.info(request , 'Server Error')

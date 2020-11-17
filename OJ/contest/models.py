@@ -1,7 +1,7 @@
 from django.db import models
 from django.db import connection
 
-from OJ.utils import dictfetchall
+from OJ.utils import dictfetchall, get_random_number, get_current_time_sql
 # Create your models here.
 
 
@@ -59,3 +59,71 @@ def get_contest_dict(contest_id):
     return result
 
 
+def exist_submission(submission_id):
+    sql = """ SELECT COUNT(*) 
+    FROM OJ.SUBMISSION
+    WHERE SUBMISSION_ID = %s ;"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [submission_id])
+        result = cursor.fetchone()[0]
+
+    return result == 1
+
+
+def get_new_submission_id():
+
+    submission_id = get_random_number(10)
+
+    while exist_submission(submission_id):
+        submission_id = get_random_number(10)
+
+    return submission_id
+
+
+def add_submission(post_data):
+
+    # SUBMISSION_ID   INTEGER NOT NULL
+    #     CONSTRAINT PKSUBMISSION PRIMARY KEY,
+    # SUBMISSION_TIME DATE    NOT NULL,
+    # JUDGE_TIME      DATE,
+    # LANGUAGE        VARCHAR2(128),
+    # EXECUTION_TIME  INTEGER,
+    # MEMORY_USAGES   INTEGER,
+    # VERDICT         VARCHAR2(32),
+    # RAW_CODE        NCLOB   NOT NULL,
+    # PROBLEM_ID      INTEGER NOT NULL,
+
+    sql = f"""insert into oj.submission(
+        SUBMISSION_ID , 
+        SUBMISSION_TIME , 
+        LANGUAGE ,
+        VERDICT , 
+        RAW_CODE ,
+        PROBLEM_ID 
+    )
+    values(
+        %(SUBMISSION_ID)s ,
+        {get_current_time_sql()} , 
+        %(LANGUAGE)s , 
+        'In Queue' ,
+        %(RAW_CODE)s ,
+        %(PROBLEM_ID)s 
+     );"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, post_data)
+
+    return
+
+
+def add_submission_to_contest(contest_id, user_id, submission_id):
+    sql = """ insert into oj.contest_user_submission(
+        contest_id , user_id , submission_id
+    )
+    values (
+        %s , %s , %s
+    );"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [contest_id, user_id, submission_id])

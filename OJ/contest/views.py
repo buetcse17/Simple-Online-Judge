@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from user.models import is_loggedin
 from OJ.utils import add_user_information
-from .models import get_contests_dict, get_contest_dict
+from .models import get_contests_dict, get_contest_dict , get_new_submission_id ,add_submission , add_submission_to_contest
 # Create your views here.
 
 
@@ -27,11 +27,30 @@ def contest(request, contest_id):
     return render(request, 'contest/dashboard.html', context)
 
 
-def submit(request, contest_id):
+def submit(request, contest_id , alias = None):
     if is_loggedin(request):
         if request.method == 'POST':
-            problem_id = request.POST.get('PROBLEM_ID')
             
+            post_data = request.POST.copy()
+            del post_data['csrfmiddlewaretoken']
+
+            if 'RAW_CODE_FILE' in request.FILES:
+
+                data = request.FILES['RAW_CODE_FILE']
+                post_data['RAW_CODE'] = data.read().decode('utf-8')
+            
+            if 'RAW_CODE_FILE' in post_data:
+                del post_data['RAW_CODE_FILE']
+
+            submission_id = get_new_submission_id()
+
+            post_data['SUBMISSION_ID'] = submission_id
+            
+            add_submission(post_data)
+            add_submission_to_contest(contest_id , request.session['user_id'] , submission_id)
+
+            return redirect('mysubmissions', contest_id)
+
         else:
             context = {}
             context = get_contest_dict(contest_id)

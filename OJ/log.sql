@@ -155,3 +155,8 @@ update oj.message set seen = 1 where sender_id = 6 and receiver_id = 6
 insert into oj.follow(followee_id , follower_id) values( 5 , 6 ) 
 delete from oj.follow where followee_id = 5 and follower_id =  6 
 insert into oj.follow(followee_id , follower_id) values( 5 , 6 ) 
+insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , mahdi , Mahdi Hasnat Siyam , mahdibuet3@gmail.comasd , a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3)
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 1 , 1 , <p>fasdfa</p> ,                 to_date( '2020-11-17-12-10-23'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 1 and receiver_id = 1 
+insert into oj.message(message_id , sender_id , receiver_id , text , time , attachment_location)             values( oj.message_id_seq.nextval , 1 , 1 , <p>asdfa</p> ,                  to_date( '2020-11-17-12-10-32'  , 'YYYY-MM-DD-HH24-MI-SS')  ,                      Class-lecture-Oct21-2020.mp4 ) 
+update oj.message set seen = 1 where sender_id = 1 and receiver_id = 1 

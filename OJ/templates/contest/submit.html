@@ -13,7 +13,7 @@ Submit Code - OJ
                 <td> <select name="PROBLEM_ID" required>
                         <option value=""> Choose Problem </option>
                         {% for problem in PROBLEMS %}
-                            <option value="{{ problem.PROBLEM_ID }}" >{{problem.ALIAS}} - {{problem.PROBLEM_NAME}} </option>
+                            <option value="{{ problem.PROBLEM_ID }}" {% if  request.resolver_match.kwargs.alias == problem.ALIAS %} selected {% endif %} >{{problem.ALIAS}} - {{problem.PROBLEM_NAME}} </option>
                         {% endfor %}
                     </select>
                 </td>
@@ -24,7 +24,7 @@ Submit Code - OJ
                     <select name="LANGUAGE" required>
                         <option value=""> Choose Language </option>
                         <option value="c"> C </option>
-                        <option value="cpp"> C++ </option>
+                        <option value="cpp" selected > C++ </option>
                         <option value="java"> Java </option>
                         <option value="python"> Python </option>
                     </select>
@@ -33,13 +33,13 @@ Submit Code - OJ
             <tr>
                 <td>Source Code:</td>
                 <td style="padding-bottom: 0.7em;" class="aceEditorTd">
-                    <textarea name="source" style="box-sizing: border-box;width: 100%; height: 100%;"></textarea>
+                    <textarea name="RAW_CODE" style="box-sizing: border-box;width: 100%; height: 100%;"></textarea>
                 </td>
             </tr>
             <tr>
                 <td>Or choose file: </td>
                 <td>
-                    <input type="file">
+                    <input type="file" name="RAW_CODE_FILE" accept="text/*,.cpp,.c,.h,.java,.py,.python,.py3,.py2">
                 </td>
             </tr>
             <tr>
@@ -52,5 +52,4 @@ Submit Code - OJ
         </tbody>
     </table>
 </form>
-
 {% endblock %}
