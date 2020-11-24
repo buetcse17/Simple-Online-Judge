@@ -16,14 +16,14 @@ Dashboard - {{ TITLE }} -OJ
         {% for problem in PROBLEMS %}
         <tr>
             <td>
-                <a href="">
+                <a href="{% url 'problem' CONTEST_ID problem.ALIAS %}">
                     {{problem.ALIAS}}
                 </a>
             </td>
             <td>
                 <div style="position: relative;">
                     <div style="float: left;">
-                        <a href="#">{{problem.PROBLEM_NAME}}
+                        <a href="{% url 'problem' CONTEST_ID problem.ALIAS %}">{{problem.PROBLEM_NAME}}
                         </a>
                     </div>
                     <div style="position:absolute;right:0;top:-0.5em;font-size:1rem;padding-top:1px;text-align:right;"

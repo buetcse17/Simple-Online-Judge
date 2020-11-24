@@ -1,0 +1,40 @@
+<div class="header" style="text-align: center;">
+    <h3> <b> {{ PROBLEM_ID }} . {{PROBLEM_NAME}} </b> </h3> <br>
+    time limit per test : {{ TIMELIMIT }} miliseconds <br>
+    memory limit per test : {{ MEMORYLIMIT }} kilobytes <br>
+    {% if DIFFICULTY %}
+    difficulty : {{ DIFFICULTY }} <br>
+    {% endif %}
+    {% if TUTORIAL_LINK %}
+        <a href= "{{TUTORIAL_LINK}}"> tutorial </a>
+    {% endif %}
+</div>
+
+<div class="body">
+    <div>
+        {% autoescape off %}
+        {{ DESCRIPTION }}
+        {% endautoescape %}
+    </div>
+    <div>
+        <h5><b>Input</b></h5>
+        {% autoescape off %}
+        {{ INPUT_SPECIFICATION }}
+        {% endautoescape %}
+    </div>
+    <div>
+        <h5><b>Output</b></h5>
+        {% autoescape off %}
+        {{ OUTPUT_SPECIFICATION }}
+        {% endautoescape %}
+    </div>
+    <div>
+        <h5><b>Examples</b></h5>
+    </div>
+    <div>
+        <h5><b>Note</b></h5>
+        {% autoescape off %}
+        {{ NOTE }}
+        {% endautoescape %}
+    </div>
+</div>

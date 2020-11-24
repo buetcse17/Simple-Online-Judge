@@ -1,0 +1,27 @@
+{% extends 'contest/layout.html' %}
+{% block title %}
+{{ PAGE_HEADER }} - {{ TITLE }} - OJ
+{% endblock %}
+{% block content %}
+{{ block.super }}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col" style="width: auto;"> # </th>
+            <th scope="col" style="width: auto;"> When </th>
+            <th scope="col" style="width: auto;"> Who </th>
+            <th scope="col" style="width: auto;"> Problem </th>
+            <th scope="col" style="width: auto;"> Lang </th>
+            <th scope="col" style="width: auto;"> Verdict </th>
+            <th scope="col" style="width: auto;"> Time </th>
+            <th scope="col" style="width: auto;"> Memory </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for submission in SUBMISSIONS %}
+        {% include 'contest/submission_preview.html' with SUBMISSION_ID=submission.SUBMISSION_ID SUBMISSION_TIME=submission.SUBMISSION_TIME CONTEST_ID=submission.CONTEST_ID LANGUAGE=submission.LANGUAGE VERDICT=submission.VERDICT EXECUTION_TIME=submission.EXECUTION_TIME MEMORY_USAGES=submission.MEMORY_USAGES  HANDLE=submission.HANDLE PROBLEM_NAME=submission.PROBLEM_NAME ALIAS=submission.ALIAS  only %}
+        {%  endfor %}
+    </tbody>
+</table>
+{% endblock %}

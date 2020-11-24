@@ -1,0 +1,41 @@
+{% extends 'contest/layout.html' %}
+{% block title %}
+Submission #{{SUBMISSION_ID}} - OJ
+{% endblock %}
+{% block content %}
+{{ block.super }}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col" style="width: auto;"> # </th>
+            <th scope="col" style="width: auto;"> Author </th>
+            <th scope="col" style="width: auto;"> Problem </th>
+            <th scope="col" style="width: auto;"> Lang </th>
+            <th scope="col" style="width: auto;"> Verdict </th>
+            <th scope="col" style="width: auto;"> Time </th>
+            <th scope="col" style="width: auto;"> Memory </th>
+            <th scope="col" style="width: auto;"> Sent </th>
+            <th scope="col" style="width: auto;"> Judged </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> <a href="{% url 'submission' CONTEST_ID SUBMISSION_ID %}"> {{ SUBMISSION_ID }} </a> </td>
+            <td> <a href="{% url 'profile' HANDLE %}"> {{ HANDLE }} </a> </td>
+            <td> <a href="{% url 'problem' CONTEST_ID ALIAS %}"> {{ ALIAS }} - {{ PROBLEM_NAME }} </a> </td>
+            <td> {{ LANGUAGE }} </td>
+            <td> {{ VERDICT }} </td>
+            <td> {{ EXECUTION_TIME }} </td>
+            <td> {{ MEMORY_USAGES }} </td>
+            <td> {{ SUBMISSION_TIME }} </td>
+            <td> {{ JUDGE_TIME }} </td>
+        </tr>
+        <tr>
+            <td colspan="9">
+                {{ RAW_CODE }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}
