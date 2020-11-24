@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # temporary session files
 temp_sessions/
 
@@ -8,6 +9,10 @@ temp_sessions/
 # judge temporary files
 Temp/
 >>>>>>> 8f52359 (add Temp folder to gitignore)
+=======
+# judge temporary files
+Temp/
+>>>>>>> 1ed53ebfc49dc1549571af9253f38ea79cd8a093
 
 # https://gist.github.com/santoshpurbey/6f982faf1eacdac153ffd86a3a694239
 
