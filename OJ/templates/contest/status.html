@@ -1,1 +1,8 @@
-{% include 'contest/status_generic.html' with PAGE_HEADER='Status' %}
+{% extends 'contest/layout.html' %}
+{% block title %}
+Status - {{ TITLE }} - OJ
+{% endblock %}
+{% block content %}
+{{ block.super }}
+{% include 'submission/submission_table.html' with SUBMISSIONS=SUBMISSIONS only %}
+{% endblock %}

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'message' ,
     'problem' ,
     'contest' ,
+    'submission' ,
 ]
 
 MIDDLEWARE = [

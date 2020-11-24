@@ -1,0 +1,7 @@
+{% extends 'layout.html' %}
+{% block title %}
+Personal Submissions - OJ
+{% endblock %}
+{% block content %}
+{% include 'submission/submission_table.html' with SUBMISSIONS=SUBMISSIONS only%}
+{% endblock %}

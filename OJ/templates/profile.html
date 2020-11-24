@@ -110,6 +110,9 @@
             <li>
                <a href="{% url 'conversation' handle %}">Talks</a>
             </li>
+            <li>
+               <a href="{% url 'submissions_user' handle %}"> Submissions </a>
+            </li>
 
             {% if request.session.handle and request.session.handle == handle %}
 

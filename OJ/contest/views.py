@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 
 from user.models import is_loggedin
 from OJ.utils import add_user_information
-from .models import get_contests_dict, get_contest_dict, get_new_submission_id, add_submission, \
-    add_submission_to_contest, get_submissions_dict, get_mysubmissions_dict, get_problem_id , get_submission_dict
+from .models import get_contests_dict, get_contest_dict, get_problem_id 
+from submission.models import get_new_submission_id , add_submission ,get_submissions_dict , get_mysubmissions_dict , get_submission_dict
 from problem.models import get_problem_dict
 # Create your views here.
 
@@ -95,7 +95,7 @@ def submission(request, contest_id, submission_id):
 
     if is_loggedin(request):
         context = add_user_information(request, context)
-    return render(request, 'contest/submission.html', context)
+    return render(request, 'contest/submission_view.html', context)
 
 
 def problem(request, contest_id, alias):

@@ -29,6 +29,7 @@ urlpatterns = [
     path('usertalk/', include('message.urls')),
     path('problem/', include('problem.urls')),
     path('contest/', include('contest.urls')),
+    path('submission/', include('submission.urls')),
     path('admin/', admin.site.urls),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

@@ -1,10 +1,3 @@
-{% extends 'contest/layout.html' %}
-{% block title %}
-{{ PAGE_HEADER }} - {{ TITLE }} - OJ
-{% endblock %}
-{% block content %}
-{{ block.super }}
-
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -19,9 +12,8 @@
         </tr>
     </thead>
     <tbody>
-        {% for submission in SUBMISSIONS %}
-        {% include 'contest/submission_preview.html' with SUBMISSION_ID=submission.SUBMISSION_ID SUBMISSION_TIME=submission.SUBMISSION_TIME CONTEST_ID=submission.CONTEST_ID LANGUAGE=submission.LANGUAGE VERDICT=submission.VERDICT EXECUTION_TIME=submission.EXECUTION_TIME MEMORY_USAGES=submission.MEMORY_USAGES  HANDLE=submission.HANDLE PROBLEM_NAME=submission.PROBLEM_NAME ALIAS=submission.ALIAS  only %}
+        {% for s in SUBMISSIONS %}
+        {% include 'submission/submission_preview.html' with SUBMISSION_ID=s.SUBMISSION_ID SUBMISSION_TIME=s.SUBMISSION_TIME CONTEST_ID=s.CONTEST_ID LANGUAGE=s.LANGUAGE VERDICT=s.VERDICT EXECUTION_TIME=s.EXECUTION_TIME MEMORY_USAGES=s.MEMORY_USAGES  HANDLE=s.HANDLE PROBLEM_NAME=s.PROBLEM_NAME ALIAS=s.ALIAS  only %}
         {%  endfor %}
     </tbody>
 </table>
-{% endblock %}
