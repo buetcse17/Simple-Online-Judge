@@ -164,3 +164,7 @@ insert into oj.message(message_id , sender_id , receiver_id , text , time )     
 update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 
 update oj.message set seen = 1 where sender_id = 6 and receiver_id = 5 
 update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+delete from oj.follow where followee_id = 6 and follower_id =  5 
+insert into oj.follow(followee_id , follower_id) values( 6 , 5 ) 
+ update oj.users set country_id = 77 where handle = abc 
+ update oj.users set institution_id = 3142 where handle = abc 

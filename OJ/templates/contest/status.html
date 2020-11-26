@@ -4,5 +4,5 @@ Status - {{ TITLE }} - OJ
 {% endblock %}
 {% block content %}
 {{ block.super }}
-{% include 'submission/submission_table.html' with SUBMISSIONS=SUBMISSIONS only %}
+{% include 'submission/table.html' with SUBMISSIONS=SUBMISSIONS only %}
 {% endblock %}

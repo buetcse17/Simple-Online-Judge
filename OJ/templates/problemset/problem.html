@@ -1,0 +1,10 @@
+{% extends 'problemset/layout.html' %}
+{% block title %}
+    Problem - OJ
+{% endblock %}
+{% block content %}
+{{ block.super }}
+
+{% include 'problem/view_generic.html' %}
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbarContest">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbarContest">
+            <ul class="nav navbar-nav">
+                
+                <li><a href="{% url 'problemset' %}">PROBLEMS</a></li>
+                <li><a href="{% url 'problemset_submit' %}">SUBMIT CODE</a></li>
+                <li><a href="{% url 'problemset_mysubmissions' %}">MY SUBMISSIONS</a></li>
+                <li><a href="{% url 'problemset_status' %}">STATUS</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% endblock %}

@@ -30,6 +30,7 @@ urlpatterns = [
     path('problem/', include('problem.urls')),
     path('contest/', include('contest.urls')),
     path('submission/', include('submission.urls')),
+    path('problemset/', include('problemset.urls')),
     path('admin/', admin.site.urls),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

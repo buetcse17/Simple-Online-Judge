@@ -47,7 +47,7 @@ def profile(request, handle):
                 user_id, request.session['user_id'])
             context = add_user_information(request=request, context=context)
 
-        return render(request, 'profile.html', context=context)
+        return render(request, 'user/profile.html', context=context)
     else:
         raise Http404('No such User')
 
@@ -94,6 +94,6 @@ def profile_settings(request):
             del context['current_institution']
 
         context = add_user_information(request=request, context=context)
-        return render(request, 'profile_settings.html', context=context)
+        return render(request, 'user/profile_settings.html', context=context)
     else:
         raise Http404('No such User')

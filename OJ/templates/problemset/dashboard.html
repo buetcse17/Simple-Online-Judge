@@ -1,0 +1,46 @@
+{% extends 'problemset/layout.html' %}
+{% block title %}
+Problemset - OJ
+{% endblock %}
+{% block content %}
+{{ block.super }}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th> # </th>
+            <th> Name </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for problem in PROBLEMS %}
+        <tr>
+            <td>
+                <a href="{% url 'problemset_problem' problem.ALIAS %}">
+                    {{problem.ALIAS}}
+                </a>
+            </td>
+            <td>
+                <div style="position: relative;">
+                    <div style="float: left;">
+                        <a href="{% url 'problemset_problem' problem.ALIAS %}">{{problem.PROBLEM_NAME}}
+                        </a>
+                    </div>
+                    <div style="position:absolute;right:0;top:-0.5em;font-size:1rem;padding-top:1px;text-align:right;"
+                        class="notice">
+
+                        <div>
+                            standard input/output
+                        </div>
+                        {{problem.TIMELIMIT}} ms, {{problem.MEMORYLIMIT}} KB
+                    </div>
+                </div>
+            </td>
+            <td>
+                <a href="{% url 'problemset_submit_problem' problem.ALIAS %}"> <button> Submit </button> </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

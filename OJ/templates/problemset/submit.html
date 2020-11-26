@@ -1,0 +1,55 @@
+{% extends 'problemset/layout.html' %}
+{% block title %}
+Submit Code - OJ
+{% endblock %}
+{% block content %}
+{{ block.super }}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <td> Problem : </td>
+                <td> <select name="PROBLEM_ID" required>
+                        <option value=""> Choose Problem </option>
+                        {% for problem in PROBLEMS %}
+                            <option value="{{ problem.PROBLEM_ID }}" {% if request.resolver_match.kwargs.alias == problem.ALIAS %} selected {% endif %} >{{problem.ALIAS}} - {{problem.PROBLEM_NAME}} </option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td> Language : </td>
+                <td>
+                    <select name="LANGUAGE" required>
+                        <option value=""> Choose Language </option>
+                        <option value="c"> C </option>
+                        <option value="cpp" selected > C++ </option>
+                        <option value="java"> Java </option>
+                        <option value="python"> Python </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Source Code:</td>
+                <td style="padding-bottom: 0.7em;" class="aceEditorTd">
+                    <textarea name="RAW_CODE" style="box-sizing: border-box;width: 100%; height: 100%;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Or choose file: </td>
+                <td>
+                    <input type="file" name="RAW_CODE_FILE" accept="text/*,.cpp,.c,.h,.java,.py,.python,.py3,.py2">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="text-align: center;">
+                    <button type="submit" class="button" > Submit Solution </button>
+                </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+{% endblock %}
