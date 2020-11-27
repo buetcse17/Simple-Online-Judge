@@ -1,18 +1,18 @@
 <tr>
     <td>
         {% if CONTEST_ID %}
-        <a href="{% url 'submission' CONTEST_ID SUBMISSION_ID %}"> {{ SUBMISSION_ID }} </a> 
+        <a href="{% url 'submission' CONTEST_ID SUBMISSION_ID %}"> {{ SUBMISSION_ID }} </a>
         {% else %}
-        {{ SUBMISSION_ID }}
+        <a href="{% url 'problemset_submission' SUBMISSION_ID %}"> {{ SUBMISSION_ID }} </a>
         {% endif %}
     </td>
     <td> {{ SUBMISSION_TIME }} </td>
     <td> <a href="{% url 'profile' HANDLE %}"> {{ HANDLE }} </a> </td>
-    <td> 
+    <td>
         {% if CONTEST_ID %}
         <a href="{% url 'problem' CONTEST_ID ALIAS %}"> {{ ALIAS }} - {{ PROBLEM_NAME }} </a>
         {% else  %}
-        <a href="{% url 'problemset_problem' PROBLEM_ID %}"> {{ PROBLEM_ID }} - {{ PROBLEM_NAME }} </a> 
+        <a href="{% url 'problemset_problem' PROBLEM_ID %}"> {{ PROBLEM_ID }} - {{ PROBLEM_NAME }} </a>
         {% endif %}
     </td>
     <td> {{ LANGUAGE }} </td>

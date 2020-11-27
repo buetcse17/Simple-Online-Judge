@@ -5,7 +5,7 @@ from .models import get_all_problem_summury_dict
 from OJ.utils import add_user_information
 from user.models import is_loggedin
 from problem.models import get_problem_dict, exist_problem
-from submission.models import get_new_submission_id, add_submission , get_submissions_user_dict , get_submissions_all_dict
+from submission.models import get_new_submission_id, add_submission, get_submissions_user_dict, get_submissions_all_dict, get_submission_dict
 
 # Create your views here.
 
@@ -68,9 +68,11 @@ def mysubmissions(request):
     context = {}
 
     if is_loggedin(request):
-        context['SUBMISSIONS'] = get_submissions_user_dict(request.session['handle'])
+        context['SUBMISSIONS'] = get_submissions_user_dict(
+            request.session['handle'])
         context = add_user_information(request, context)
     return render(request, 'problemset/mysubmissions.html', context)
+
 
 def status(request):
     context = {}
@@ -80,3 +82,12 @@ def status(request):
     if is_loggedin(request):
         context = add_user_information(request, context)
     return render(request, 'problemset/status.html', context)
+
+
+def submission(request, submission_id):
+    context = {}
+    context = get_submission_dict(submission_id)
+
+    if is_loggedin(request):
+        context = add_user_information(request, context)
+    return render(request, 'problemset/submission_view.html', context)
