@@ -16,7 +16,7 @@ Contests
     <tbody>
         {% for contest in CONTESTS %}
         <tr>
-            <td> {{contest.TITLE}}  <br>
+            <td> {{contest.TITLE}} <br>
                 <a href="{% url 'contest' contest.CONTEST_ID %}">Enter>></a>
             </td>
             <td>
@@ -26,7 +26,15 @@ Contests
             </td>
             <td> {{contest.START_TIME}} </td>
             <td> {{contest.DURATION}} </td>
-            <td> {{contest.TOTAL_PARTICIPANT}} </td>
+            <td>
+                {%  if contest.REGISTERED == 1 %}
+                <a href="{% url 'contest_unregister' contest.CONTEST_ID %}"> Cancel Register </a>
+                {% else %}
+                <a href="{% url 'contest_register' contest.CONTEST_ID %}">Register </a>
+                {% endif %}
+                <span class="glyphicon glyphicon-user"></span>
+                x{{contest.TOTAL_PARTICIPANT}}
+            </td>
         </tr>
         {% empty %}
         {% endfor %}

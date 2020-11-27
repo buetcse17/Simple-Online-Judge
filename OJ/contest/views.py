@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 
 from user.models import is_loggedin
 from OJ.utils import add_user_information
-from .models import get_contests_dict, get_contest_dict, get_problem_id 
-from submission.models import get_new_submission_id , add_submission ,get_submissions_dict , get_mysubmissions_dict , get_submission_dict
+from .models import get_contests_dict, get_contest_dict, get_problem_id, add_participant  , remove_participant
+from submission.models import get_new_submission_id, add_submission, get_submissions_dict, get_mysubmissions_dict, get_submission_dict
 from problem.models import get_problem_dict
 # Create your views here.
 
@@ -11,8 +11,7 @@ from problem.models import get_problem_dict
 def contests(request):
     context = {}
 
-    context['CONTESTS'] = get_contests_dict()
-    print(context)
+    context['CONTESTS'] = get_contests_dict(request.session.get('user_id'))
 
     if is_loggedin(request):
         context = add_user_information(request, context)
@@ -112,3 +111,17 @@ def problem(request, contest_id, alias):
     if is_loggedin(request):
         context = add_user_information(request, context)
     return render(request, 'contest/problem.html', context)
+
+
+def register(request, contest_id):
+    if not is_loggedin(request):
+        return redirect('signin')
+    add_participant(contest_id, request.session['user_id'])
+    return redirect('contests')
+
+
+def unregister(request, contest_id):
+    if not is_loggedin(request):
+        return redirect('signin')
+    remove_participant(contest_id, request.session['user_id'])
+    return redirect('contests')
