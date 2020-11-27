@@ -23,6 +23,7 @@ urlpatterns = [
     path('' , include('index.urls')),
     path('' , include('signup.urls')),
     path('' , include('signin.urls')),
+    path('' , include('admin.urls')),
     path('user/' , include('user.urls')),
     path('ratings/' , include('ratings.urls')),
     path('follow/', include('follow.urls')),
