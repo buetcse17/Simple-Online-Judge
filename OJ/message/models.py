@@ -23,19 +23,6 @@ def add_message(sender_id, receiver_id, text,  attachment_location):
     """
         add message to database 
     """
-    time = timezone.now()
-    """ print('year ' ,time.year)
-    print('year ' ,time.month)
-    print('year ' ,time.day)
-    print('year ' ,time.hour)
-    print('year ' ,time.minute)
-    print('year ' ,time.second)
-
-    print("now time: " , time)
-    print("sender_id: " , sender_id)
-    print("receiver_id: " , receiver_id)
-    print("text: " , text)
-    print("attachment_location: " , attachment_location) """
 
     if len(text) == 0:
         text = ' '

@@ -40,6 +40,8 @@ def conversation(request, handle):
 
                 add_message(sender_id=sender_id, receiver_id=receiver_id,
                             text=text, attachment_location=attachment_location)
+                
+                return redirect('conversation' , handle)
 
             context['messages'] = get_messages_with(
                 sender_id=request.session['user_id'], receiver_id=get_user_id(handle))

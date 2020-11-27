@@ -168,3 +168,55 @@ delete from oj.follow where followee_id = 6 and follower_id =  5
 insert into oj.follow(followee_id , follower_id) values( 6 , 5 ) 
  update oj.users set country_id = 77 where handle = abc 
  update oj.users set institution_id = 3142 where handle = abc 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 5 , <p>fasdfasdfa</p> ,                 to_date( '2020-11-27-15-0-5'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 5 , <p>fasdfasdfa</p> ,                 to_date( '2020-11-27-15-0-14'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 5 , <p>fasdfasdfa</p> ,                 to_date( '2020-11-27-15-7-11'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 5 , <p>asdasfda</p> ,                 to_date( '2020-11-27-15-7-16'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 5 , <p>sfasdfa</p> ,                 to_date( '2020-11-27-15-7-29'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 5 , <p>sfasdfa</p> ,                 to_date( '2020-11-27-15-8-28'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 5 , <p>fasdfa</p> ,                 to_date( '2020-11-27-15-9-36'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 5 , <p>asdfasdfa</p> ,                 to_date( '2020-11-27-15-10-29'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 5 , <p>sfasdfa</p> ,                 to_date( '2020-11-27-15-15-6'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 5 , <p>sdasfa</p> ,                 to_date( '2020-11-27-15-15-38'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 5 , <p>mahdi</p> ,                 to_date( '2020-11-27-15-15-53'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 6 , <p>asdfasdf</p> ,                 to_date( '2020-11-27-15-19-7'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 6 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 6 , <p>afsdfa</p> ,                 to_date( '2020-11-27-15-24-58'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 6 and receiver_id = 6 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 6 , <p>fasdfa</p> ,                 to_date( '2020-11-27-15-29-19'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 6 and receiver_id = 6 

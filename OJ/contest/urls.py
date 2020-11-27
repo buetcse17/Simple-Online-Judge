@@ -13,4 +13,6 @@ urlpatterns = [
     path('<int:contest_id>/submission/<int:submission_id>',
          views.submission, name='submission'),
     path('<int:contest_id>/problem/<slug:alias>', views.problem, name='problem'),
+    path('<int:contest_id>/register>', views.register, name='contest_register'),
+    path('<int:contest_id>/unregister>', views.unregister, name='contest_unregister'),
 ]

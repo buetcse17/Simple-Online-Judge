@@ -18,7 +18,8 @@ def get_writers(contest_id):
     return result
 
 
-def get_contests_dict():
+
+def get_contests_dict(user_id = None):
     sql = """SELECT CONTEST_ID , TITLE , START_TIME , DURATION , COUNT(USER_ID) AS TOTAL_PARTICIPANT
     FROM OJ.CONTEST LEFT JOIN OJ.PARTICIPANT USING (CONTEST_ID)
     GROUP BY CONTEST_ID , TITLE , START_TIME , DURATION 
@@ -29,6 +30,7 @@ def get_contests_dict():
         result = dictfetchall(cursor)
         for contest in result:
             contest['WRITERS'] = get_writers(contest['CONTEST_ID'])
+            contest['REGISTERED'] = is_participant(contest['CONTEST_ID'] , user_id)
 
     return result
 
@@ -59,7 +61,6 @@ def get_contest_dict(contest_id):
     return result
 
 
-
 def get_problem_id(contest_id, alias):
     sql = """ SELECT PROBLEM_ID 
     FROM OJ.PROBLEM_CONTEST
@@ -75,3 +76,29 @@ def get_problem_id(contest_id, alias):
     return result
 
 
+def add_participant(contest_id, user_id):
+    sql = """INSERT INTO OJ.PARTICIPANT(CONTEST_ID , USER_ID)
+    VALUES( %s , %s );"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [contest_id, user_id])
+    return
+
+
+def remove_participant(contest_id, user_id):
+    sql = """DELETE FROM OJ.PARTICIPANT
+    WHERE CONTEST_ID = %s AND USER_ID = %s ;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [contest_id, user_id])
+    return
+
+def is_participant(contest_id ,  user_id):
+    """
+    1 if participant
+    """
+    sql = """SELECT COUNT(*)
+    FROM OJ.PARTICIPANT
+    WHERE CONTEST_ID = %s AND USER_ID = %s ;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [contest_id, user_id])
+        result = cursor.fetchone()[0]
+    return result
