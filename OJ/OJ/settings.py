@@ -32,7 +32,6 @@ ALLOWED_HOSTS =  ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -50,7 +49,7 @@ INSTALLED_APPS = [
     'contest' ,
     'submission' ,
     'problemset' ,
-
+    'admin' ,
 ]
 
 MIDDLEWARE = [
@@ -155,7 +154,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dhaka'
 
 USE_I18N = True
 
