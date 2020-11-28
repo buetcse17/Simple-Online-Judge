@@ -35,6 +35,8 @@ def is_loggedin(request):
     """
         return true if user is logged in
     """
+    if 'user_id' in request.session:
+        request.session['handle'] = get_handle(request.session['user_id'])
     return 'handle' in request.session
 
 
@@ -133,6 +135,17 @@ def get_user_id(handle):
     cursor.execute(sql, [handle])
     result = cursor.fetchone()[0]
     cursor.close()
+    return result
+
+
+def get_handle(user_id):
+    sql = """ select handle 
+    from oj.users
+    where user_id = %s ;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [user_id])
+        result = cursor.fetchone()[0]
+
     return result
 
 
@@ -305,6 +318,7 @@ def update_user_institution(handle, institution_id):
         log_sql(connection.queries[-1]['sql'])
 
     return
+
 
 def get_friends(user_id):
     """

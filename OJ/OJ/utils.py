@@ -3,6 +3,7 @@ from datetime import datetime
 from message.models import get_total_new_messages
 import random
 
+
 def log_sql(sql):
     f = open('log.sql', 'a', encoding='utf-8')
     f.write('\n' + sql)
@@ -28,9 +29,10 @@ def dictfetchall(cursor):
 
 
 def get_random_number(length):
-    return random.randrange(9*10**(length-1) , (10**length))
+    return random.randrange(9*10**(length-1), (10**length))
+
 
 def get_current_time_sql():
     #time = timezone.now()
     time = datetime.now()
-    return  f"to_date( '{time.year}-{time.month}-{time.day}-{time.hour}-{time.minute}-{time.second}'  , 'YYYY-MM-DD-HH24-MI-SS')"
+    return f"to_date( '{time.year}-{time.month}-{time.day}-{time.hour}-{time.minute}-{time.second}'  , 'YYYY-MM-DD-HH24-MI-SS')"

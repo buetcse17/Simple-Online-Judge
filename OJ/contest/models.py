@@ -2,6 +2,8 @@ from django.db import models
 from django.db import connection
 
 from OJ.utils import dictfetchall, get_random_number, get_current_time_sql
+from admin.models import is_admin
+from user.models import get_handle
 # Create your models here.
 
 
@@ -18,8 +20,7 @@ def get_writers(contest_id):
     return result
 
 
-
-def get_contests_dict(user_id = None):
+def get_contests_dict(user_id=None):
     sql = """SELECT CONTEST_ID , TITLE , START_TIME , DURATION , COUNT(USER_ID) AS TOTAL_PARTICIPANT
     FROM OJ.CONTEST LEFT JOIN OJ.PARTICIPANT USING (CONTEST_ID)
     GROUP BY CONTEST_ID , TITLE , START_TIME , DURATION 
@@ -30,8 +31,10 @@ def get_contests_dict(user_id = None):
         result = dictfetchall(cursor)
         for contest in result:
             contest['WRITERS'] = get_writers(contest['CONTEST_ID'])
-            contest['REGISTERED'] = is_participant(contest['CONTEST_ID'] , user_id)
-
+            contest['REGISTERED'] = is_participant(
+                contest['CONTEST_ID'], user_id)
+            contest['IS_MANAGER'] = is_admin(get_handle(
+                user_id)) or is_manager(contest['CONTEST_ID'], user_id) == 1
     return result
 
 
@@ -91,12 +94,26 @@ def remove_participant(contest_id, user_id):
         cursor.execute(sql, [contest_id, user_id])
     return
 
-def is_participant(contest_id ,  user_id):
+
+def is_participant(contest_id,  user_id):
     """
     1 if participant
     """
     sql = """SELECT COUNT(*)
     FROM OJ.PARTICIPANT
+    WHERE CONTEST_ID = %s AND USER_ID = %s ;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [contest_id, user_id])
+        result = cursor.fetchone()[0]
+    return result
+
+
+def is_manager(contest_id,  user_id):
+    """
+    1 if manager
+    """
+    sql = """SELECT COUNT(*)
+    FROM OJ.MANAGER
     WHERE CONTEST_ID = %s AND USER_ID = %s ;"""
     with connection.cursor() as cursor:
         cursor.execute(sql, [contest_id, user_id])
