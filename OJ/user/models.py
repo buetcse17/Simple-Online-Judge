@@ -51,10 +51,10 @@ def authenticate(handle, password_hash):
     cursor.execute(sql, [handle, password_hash])
 
     #print(sql.format(handle  , password_hash))
-    print(connection.queries)
+    #print(connection.queries)
 
     result = cursor.fetchone()[0]
-    print(handle, password_hash, result)
+    #print(handle, password_hash, result)
     return result == 1
 
 
@@ -80,7 +80,7 @@ def email_exists(email):
     sql = "select count(*) from oj.users where email = %s "
     cursor.execute(sql, [email])
     result = cursor.fetchone()[0]
-    print(email, result)
+    #print(email, result)
     return result == 1
 
 
@@ -88,7 +88,7 @@ def add_user(handle,  name, email, password_hash):
     """
         insert user into oj.users
     """
-    print(handle,  name, email, password_hash)
+    #print(handle,  name, email, password_hash)
     cursor = connection.cursor()
     result = False
     try:

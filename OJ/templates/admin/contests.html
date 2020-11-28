@@ -3,6 +3,9 @@
 Contests
 {% endblock %}
 {% block content %}
+
+<a href="{% url 'admin_add_contest' %}"><button> Add new Contest </button></a>
+
 <table class="table table-hover table-bordered">
     <thead>
         <tr>
@@ -27,10 +30,12 @@ Contests
             <td> {{contest.START_TIME}} </td>
             <td> {{contest.DURATION}} </td>
             <td>
+                {% if IS_MANAGER == 0 %}
                 {%  if contest.REGISTERED == 1 %}
                 <a href="{% url 'contest_unregister' contest.CONTEST_ID %}"> Cancel Register </a>
                 {% else %}
                 <a href="{% url 'contest_register' contest.CONTEST_ID %}">Register </a>
+                {% endif %}
                 {% endif %}
                 <span class="glyphicon glyphicon-user"></span>
                 x{{contest.TOTAL_PARTICIPANT}}
