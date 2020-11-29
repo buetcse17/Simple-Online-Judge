@@ -20,7 +20,7 @@ Contests
         {% for contest in CONTESTS %}
         <tr>
             <td> {{contest.TITLE}} <br>
-                <a href="{% url 'contest' contest.CONTEST_ID %}">Enter>></a>
+                <a href="{% url 'admin_contest' contest.CONTEST_ID %}">Enter>></a>
             </td>
             <td>
                 {% for writer in contest.WRITERS %}

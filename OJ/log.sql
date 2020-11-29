@@ -256,3 +256,8 @@ update oj.message set seen = 1 where sender_id = 6 and receiver_id = 6
 insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 6 , <p>fasdfasdfa</p> ,                 to_date( '2020-11-27-21-51-32'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
 update oj.message set seen = 1 where sender_id = 6 and receiver_id = 6 
 update oj.message set seen = 1 where sender_id = 5 and receiver_id = 6 
+Update oj.users            SET profile_picture_location = pro pic_1N7motr.png                 where handle = admin 
+insert into oj.follow(followee_id , follower_id) values( 30156 , 6 ) 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 6 , 30156 , <p>hey what's secret about ur rating ,huh</p> ,                 to_date( '2020-11-29-21-36-49'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 30156 and receiver_id = 6 
+update oj.message set seen = 1 where sender_id = 30156 and receiver_id = 6 

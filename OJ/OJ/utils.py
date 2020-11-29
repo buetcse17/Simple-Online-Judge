@@ -32,7 +32,11 @@ def get_random_number(length):
     return random.randrange(9*10**(length-1), (10**length))
 
 
-def get_current_time_sql():
-    #time = timezone.now()
-    time = datetime.now()
+def get_time_sql(time):
     return f"to_date( '{time.year}-{time.month}-{time.day}-{time.hour}-{time.minute}-{time.second}'  , 'YYYY-MM-DD-HH24-MI-SS')"
+
+
+def get_current_time_sql():
+    # time = timezone.now() #always utc
+    time = datetime.now()  # depennds on settings.py
+    return get_time_sql(time)

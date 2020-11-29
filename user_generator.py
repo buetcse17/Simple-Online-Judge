@@ -8,6 +8,7 @@ from faker import Faker
 import hashlib
 import random
 
+
 def get_hash(password):
     """
         hashlib.sha256(password).hexdigest()
@@ -23,7 +24,19 @@ def get_country():
     return random.randrange(2,197)
 def get_rating():
     return random.randrange(100 , 2500)
+
+def rearrange_str(s):
+    x =list(s) 
+    random.shuffle(x)
+    return ''.join(x)
+
+def rearrange_mail(mail):
+    x = mail.split('@')
+    return rearrange_str(x[0] ) + '@' + x[1]
+
 def main():
+
+    fil = open('gen.sql',mode='w')
 
     fake = Faker()
     n=int(input('total user:'))
@@ -42,15 +55,15 @@ def main():
         COUNTRY_ID ,
         INSTITUTION_ID )
         values(oj.user_id_seq.nextval ,
-              {to_sql(profile['username']) } ,
+              {to_sql(rearrange_str(profile['username'])) } ,
               {to_sql(profile['name']) } ,
-              {to_sql(profile['mail']) } ,
+              {to_sql(rearrange_mail(profile['mail'])) } ,
               {get_rating()} ,
               {to_sql(get_hash('123'))} ,
               {get_country()},
               {get_institution()}
               );"""
-        print(sql)
+        print(sql , file= fil)
 
 
 if __name__ == '__main__':
