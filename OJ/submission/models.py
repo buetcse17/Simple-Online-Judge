@@ -19,7 +19,8 @@ def get_submissions_dict(contest_id):
                     HANDLE        ,
                     CONTEST_ID  ,
                     PROBLEM_NAME ,
-                    ALIAS 
+                    ALIAS ,
+                    oj.VERDICT_COLOR(VERDICT) as VERDICT_COLOR
     FROM OJ.SUBMISSION LEFT JOIN OJ.USERS USING (USER_ID)
             LEFT JOIN OJ.PROBLEM USING (PROBLEM_ID)
             LEFT JOIN OJ.PROBLEM_CONTEST USING(PROBLEM_ID , CONTEST_ID)
@@ -47,7 +48,8 @@ def get_mysubmissions_dict(contest_id, user_id):
                     HANDLE        ,
                     CONTEST_ID  ,
                     PROBLEM_NAME ,
-                    ALIAS 
+                    ALIAS ,
+                    oj.VERDICT_COLOR(VERDICT) as VERDICT_COLOR
     FROM OJ.SUBMISSION LEFT JOIN OJ.USERS USING (USER_ID)
             LEFT JOIN OJ.PROBLEM USING (PROBLEM_ID)
             LEFT JOIN OJ.PROBLEM_CONTEST USING(PROBLEM_ID , CONTEST_ID)
@@ -152,7 +154,8 @@ def get_submissions_all_dict():
                     HANDLE        ,
                     CONTEST_ID  ,
                     PROBLEM_NAME ,
-                    ALIAS 
+                    ALIAS ,
+                    oj.VERDICT_COLOR(VERDICT) as VERDICT_COLOR
     FROM OJ.SUBMISSION LEFT JOIN OJ.USERS USING (USER_ID)
             LEFT JOIN OJ.PROBLEM USING (PROBLEM_ID)
             LEFT JOIN OJ.PROBLEM_CONTEST USING(PROBLEM_ID , CONTEST_ID)
