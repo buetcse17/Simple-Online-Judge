@@ -3,4 +3,67 @@
 Add sample to problem
 {% endblock %}
 {% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Input </th>
+                <th>Output</th>
+                <th>Test Case ID </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <textarea name="INPUT" required></textarea>
+                </td>
+                <td>
+                    <textarea name="OUTPUT" required></textarea>
+                </td>
+                <td>
+                    <input type="number" name="SAMPLE_TESTCASE_ID" required> <br>
+                    <button type="submit">Add</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+{% for sample_testcase in SAMPLE_TESTCASES %}
+<table class="table table-bordered">
+    <caption> Sample Test Case #{{ sample_testcase.SAMPLE_TESTCASE_ID }} </caption>
+    <thead>
+        <tr>
+            <th>Input </th>
+            <th>Output</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div style="font-family:'Lucida Console', Monaco, monospace;">
+                    {{sample_testcase.INPUT|safe}}
+                </div>
+            </td>
+
+            <td>
+                <div style="font-family:'Lucida Console', Monaco, monospace;">
+                    {{sample_testcase.OUTPUT|safe}}
+                </div>
+            </td>
+
+            <td>
+                <a href="#"
+                    onclick="return confirm('Are you sure you want to remove sample test case {{sample_testcase.SAMPLE_TESTCASE_ID}} ?');">
+                    <button type="button" class="btn btn-danger">Delete</button></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+{% endfor %}
+
 {% endblock %}

@@ -69,10 +69,11 @@ def get_problem_dict(problem_id):
         cursor.execute(sql, [problem_id])
         result = dictfetchall(cursor)[0]
     
+    result['SAMPLE_TESTCASES'] = get_sample_testcases_dict(problem_id)
 
-    to_remove_key = [key for key , value in result.items() if value is None ]
-    for key in to_remove_key:
-        del result[key]
+    # to_remove_key = [key for key , value in result.items() if value is None ]
+    # for key in to_remove_key:
+    #     del result[key]
     
     return result
 
@@ -90,8 +91,7 @@ def update_problem( post_data ):
         DIFFICULTY =  %(DIFFICULTY)s 
     WHERE PROBLEM_ID = %(PROBLEM_ID)s ;"""
 
-    print(type(post_data))
-    print(post_data)
+    
 
     with connection.cursor() as cursor:
         cursor.execute(sql, post_data)
@@ -171,9 +171,7 @@ def update_testcase(post_data):
             problem_id = %(PROBLEM_ID)s, 
         where testcase_id = %(TESTCASE_ID)s ; """
 
-    print(type(post_data))
-    print(post_data)
-
+    
     with connection.cursor() as cursor:
         cursor.execute(sql, post_data)
 
@@ -181,29 +179,32 @@ def update_testcase(post_data):
 
 
 
-def get_sample_testcases(problem_id):
+def get_sample_testcases_dict(problem_id):
     """
-        testcase_id , input_file_location , output_file_location , problem_id
+        *
     """
-    sql = """
-        select testcase_id , input_file_location , output_file_location
-        from oj.sample_tastcase
-        where problem_id = %s
-        order by testcase_id; """
+    sql = """SELECT *
+        FROM OJ.SAMPLE_TESTCASE
+        WHERE PROBLEM_ID = %s 
+        ORDER BY SAMPLE_TESTCASE_ID;"""
     with connection.cursor() as cursor:
         cursor.execute(sql, [problem_id])
-        result = cursor.fetchall()
+        result = dictfetchall(cursor)
 
     return result
 
-def add_sample_testcase(problem_id, input_file_location, output_file_location):
+def add_sample_testcase(post_data):
 
-    sql = """
-        insert into oj.sample_testcase( testcase_id, input_file_location, output_file_location, problem_id)
-        values(oj.testcase_id_seq.nextval, %s, %s,%s); """
+    sql = """insert into oj.sample_testcase
+    values(
+        %(SAMPLE_TESTCASE_ID)s ,
+        %(INPUT)s ,
+        %(OUTPUT)s ,
+        %(PROBLEM_ID)s 
+    );"""
     
     with connection.cursor() as cursor:
-        cursor.execute(sql, [input_file_location,output_file_location,problem_id])
+        cursor.execute(sql, post_data)
 
     return
 
@@ -246,21 +247,3 @@ def get_sample_testcase_dict(testcase_id):
         del result[key]
 
     return result
-
-def update_sample_testcase(post_data):
-    sql = """
-        update oj.sample_testcase
-        set input_file_location = %(INPUT_FILE_LOCATION)s,
-            output_file_location = %(OUTPUT_FILE_LOCATION)s ,
-            problem_id = %(PROBLEM_ID)s, 
-        where testcase_id = %(TESTCASE_ID)s ; """
-
-    print(type(post_data))
-    print(post_data)
-
-    with connection.cursor() as cursor:
-        cursor.execute(sql, post_data)
-
-    return
-
-    

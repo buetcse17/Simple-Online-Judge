@@ -1,0 +1,27 @@
+{% for sample_testcase in SAMPLE_TESTCASES %}
+<table class="table table-bordered">
+    <caption> Sample Test Case #{{ sample_testcase.SAMPLE_TESTCASE_ID }} </caption>
+    <thead>
+        <tr>
+            <th>Input </th>
+            <th>Output</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div style="font-family:'Lucida Console', Monaco, monospace;">
+                    {{sample_testcase.INPUT|safe}}
+                </div>
+            </td>
+
+            <td>
+                <div style="font-family:'Lucida Console', Monaco, monospace;">
+                    {{sample_testcase.OUTPUT|safe}}
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+{% endfor %}
