@@ -12,6 +12,7 @@ Edit {{CONTEST_ID}} . {{ TITLE }} - OJ
     <label> Start Time :</label> <input type="datetime-local" name="START_TIME"
         value="{{ START_TIME|date:"Y-m-d\TH:i" }}"> <br>
     <label> Duration : </label> <input type="number" name="DURATION" value="{{ DURATION }}"> minutes <br>
+    <label> Manager :</label> <input type="text" name="MANAGER_HANDLE" value="{{ MANAGER_HANDLE }}" required> <br>
     <button type="submit"> Save </button><br>
 </form>
 <a href="{% url 'admin_remove_contest' CONTEST_ID %}"

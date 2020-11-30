@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 
-from user.models import is_loggedin, logout
+from user.models import is_loggedin, logout , handle_exists , get_user_id
 from OJ.utils import add_user_information
 from contest.models import get_contests_dict, get_contest_dict
 from admin.models import is_admin, add_contest_db, remove_contest_db , update_contest_db
@@ -55,6 +55,7 @@ def contest(request, contest_id):
             post_data['START_TIME'] = start_time
 
             #print(post_data)
+            
             if post_data['DURATION'] == '':
                 post_data['DURATION'] = None
             else:
