@@ -8,9 +8,11 @@ Edit - {{ PROBLEM_ID }} . {{PROBLEM_NAME}} - OJ
     {% csrf_token %}
     <button type="submit"> Save </button>
     <div class="header" style="text-align: center;">
-        <h3> <b> {{ PROBLEM_ID }} .<input type="text" name="PROBLEM_NAME" value="{{ PROBLEM_NAME }}" required > </b> </h3> <br>
-        time limit per test : <input type="number" name="TIMELIMIT" value="{{TIMELIMIT }}" required > miliseconds <br>
-        memory limit per test : <input type="number" name="MEMORYLIMIT" value="{{ MEMORYLIMIT }}" required > kilobytes <br>
+        <h3> <b> {{ PROBLEM_ID }} .<input type="text" name="PROBLEM_NAME" value="{{ PROBLEM_NAME }}" required> </b>
+        </h3> <br>
+        time limit per test : <input type="number" name="TIMELIMIT" value="{{TIMELIMIT }}" required> miliseconds <br>
+        memory limit per test : <input type="number" name="MEMORYLIMIT" value="{{ MEMORYLIMIT }}" required> kilobytes
+        <br>
         tutorial link : <input type="url" name="TUTORIAL_LINK" value="{{ TUTORIAL_LINK }}"> <br>
         difficulty : <input type="number" name="DIFFICULTY" value="{{DIFFICULTY }}"> <br>
     </div>
@@ -32,6 +34,7 @@ Edit - {{ PROBLEM_ID }} . {{PROBLEM_NAME}} - OJ
         </div>
         <div>
             <h5><b>Examples</b></h5>
+            <button> <a href="{% url 'problem_add_sample' PROBLEM_ID %}">Add More Sample </a> </button>
         </div>
         <div>
             <h5><b>Note</b></h5>
