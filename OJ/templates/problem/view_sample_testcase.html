@@ -1,6 +1,6 @@
 {% for sample_testcase in SAMPLE_TESTCASES %}
 <table class="table table-bordered">
-    <caption> Sample Test Case #{{ sample_testcase.SAMPLE_TESTCASE_ID }} </caption>
+    <caption><b>Sample Test Case {{ sample_testcase.SAMPLE_TESTCASE_ID }}:</b></caption>
     <thead>
         <tr>
             <th>Input </th>
@@ -11,13 +11,13 @@
         <tr>
             <td>
                 <div style="font-family:'Lucida Console', Monaco, monospace;">
-                    {{sample_testcase.INPUT|safe}}
+                    <pre>{{sample_testcase.INPUT|safe}}</pre>
                 </div>
             </td>
 
             <td>
                 <div style="font-family:'Lucida Console', Monaco, monospace;">
-                    {{sample_testcase.OUTPUT|safe}}
+                    <pre>{{sample_testcase.OUTPUT|safe}}</pre>
                 </div>
             </td>
         </tr>

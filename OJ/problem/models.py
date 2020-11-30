@@ -35,6 +35,15 @@ def add_problem(user_id):
 
     return
 
+def remove_problem(problem_id):
+    sql = """delete from oj.problem
+    where problem_id = %s ;"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [problem_id])
+
+    return
+
 
 def get_owner_user_id(problem_id):
     sql = """select owner_user_id 
@@ -68,17 +77,17 @@ def get_problem_dict(problem_id):
     with connection.cursor() as cursor:
         cursor.execute(sql, [problem_id])
         result = dictfetchall(cursor)[0]
-    
+
     result['SAMPLE_TESTCASES'] = get_sample_testcases_dict(problem_id)
 
     # to_remove_key = [key for key , value in result.items() if value is None ]
     # for key in to_remove_key:
     #     del result[key]
-    
+
     return result
 
 
-def update_problem( post_data ):
+def update_problem(post_data):
     sql = """ UPDATE OJ.PROBLEM 
     SET PROBLEM_NAME  = %(PROBLEM_NAME)s ,
         DESCRIPTION   = %(DESCRIPTION)s ,
@@ -90,8 +99,6 @@ def update_problem( post_data ):
         TUTORIAL_LINK     = %(TUTORIAL_LINK)s ,
         DIFFICULTY =  %(DIFFICULTY)s 
     WHERE PROBLEM_ID = %(PROBLEM_ID)s ;"""
-
-    
 
     with connection.cursor() as cursor:
         cursor.execute(sql, post_data)
@@ -112,16 +119,19 @@ def get_testcases(problem_id):
 
     return result
 
+
 def add_testcase(problem_id, input_file_location, output_file_location):
 
     sql = """
         insert into oj.testcase( testcase_id, input_file_location, output_file_location, problem_id)
         values(oj.testcase_id_seq.nextval, %s, %s,%s); """
-    
+
     with connection.cursor() as cursor:
-        cursor.execute(sql, [input_file_location,output_file_location,problem_id])
+        cursor.execute(sql, [input_file_location,
+                             output_file_location, problem_id])
 
     return
+
 
 def get_testcase_problem_id(testcase_id):
     sql = """
@@ -135,20 +145,22 @@ def get_testcase_problem_id(testcase_id):
 
     return result
 
+
 def exist_testcase(testcase_id):
-    sql ="""
+    sql = """
         select count(*)
         from oj.testcase
         where testcase_id = %s ; """
-    
+
     with connection.cursor() as cursor:
         cursor.execute(sql, [testcase_id])
         result = cursor.fetchone()[0]
 
     return result == 1
 
+
 def get_testcase_dict(testcase_id):
-    sql ="""
+    sql = """
         select *
         from oj.testcase
         where testcase_id = %s ; """
@@ -157,26 +169,11 @@ def get_testcase_dict(testcase_id):
         cursor.execute(sql, [testcase_id])
         result = cursor.fetchone()[0]
 
-    to_remove_key = [key for key , value in result.items() if value is None ]
+    to_remove_key = [key for key, value in result.items() if value is None]
     for key in to_remove_key:
         del result[key]
 
     return result
-
-def update_testcase(post_data):
-    sql = """
-        update oj.testcase
-        set input_file_location = %(INPUT_FILE_LOCATION)s,
-            output_file_location = %(OUTPUT_FILE_LOCATION)s ,
-            problem_id = %(PROBLEM_ID)s, 
-        where testcase_id = %(TESTCASE_ID)s ; """
-
-    
-    with connection.cursor() as cursor:
-        cursor.execute(sql, post_data)
-
-    return
-
 
 
 def get_sample_testcases_dict(problem_id):
@@ -193,6 +190,7 @@ def get_sample_testcases_dict(problem_id):
 
     return result
 
+
 def add_sample_testcase(post_data):
 
     sql = """insert into oj.sample_testcase
@@ -202,11 +200,12 @@ def add_sample_testcase(post_data):
         %(OUTPUT)s ,
         %(PROBLEM_ID)s 
     );"""
-    
+
     with connection.cursor() as cursor:
         cursor.execute(sql, post_data)
 
     return
+
 
 def get_sample_testcase_problem_id(testcase_id):
     sql = """
@@ -220,30 +219,12 @@ def get_sample_testcase_problem_id(testcase_id):
 
     return result
 
-def exist_sample_testcase(testcase_id):
-    sql ="""
-        select count(*)
-        from oj.sample_testcase
-        where testcase_id = %s ; """
-    
-    with connection.cursor() as cursor:
-        cursor.execute(sql, [testcase_id])
-        result = cursor.fetchone()[0]
 
-    return result == 1
-
-def get_sample_testcase_dict(testcase_id):
-    sql ="""
-        select *
-        from oj.sample_testcase
-        where testcase_id = %s ; """
+def remove_sample_testcase(problem_id, sample_testcase_id):
+    sql = """delete from oj.sample_testcase
+    where problem_id = %s and sample_testcase_id = %s ;"""
 
     with connection.cursor() as cursor:
-        cursor.execute(sql, [testcase_id])
-        result = cursor.fetchone()[0]
+        cursor.execute(sql, [problem_id, sample_testcase_id])
 
-    to_remove_key = [key for key , value in result.items() if value is None ]
-    for key in to_remove_key:
-        del result[key]
-
-    return result
+    return

@@ -3,10 +3,11 @@
 Edit - {{ PROBLEM_ID }} . {{PROBLEM_NAME}} - OJ
 {% endblock %}
 {% block content %}
-<button> <a href="{% url 'problem_view' PROBLEM_ID %}"> View </a> </button>
+<a href="{% url 'problems' %}"><button class="btn btn-secondary"> Back </button> </a>
+<button class="btn btn-link"> <a href="{% url 'problem_view' PROBLEM_ID %}"> View </a> </button>
 <form method="POST">
     {% csrf_token %}
-    <button type="submit"> Save </button>
+    <button type="submit" class="btn btn-success"> Save </button>
     <div class="header" style="text-align: center;">
         <h3> <b> {{ PROBLEM_ID }} .<input type="text" name="PROBLEM_NAME" value="{{ PROBLEM_NAME }}" required> </b>
         </h3> <br>
@@ -35,7 +36,8 @@ Edit - {{ PROBLEM_ID }} . {{PROBLEM_NAME}} - OJ
         <div>
             <h5><b>Examples</b></h5>
             {% include 'problem/view_sample_testcase.html' with SAMPLE_TESTCASES=SAMPLE_TESTCASES only %}
-            <button> <a href="{% url 'problem_add_sample' PROBLEM_ID %}">Add More Sample </a> </button>
+            <button class="btn btn-link"> <a href="{% url 'problem_add_sample' PROBLEM_ID %}">Edit Sample Testcase </a>
+            </button>
         </div>
         <div>
             <h5><b>Note</b></h5>

@@ -20,6 +20,7 @@ Problems
             <th scope="col" style="width: auto;">Name</th> 
             <th scope="col" style="width: 2%;"> # </th>
             <th scope="col" style="width: 2%;" > # </th>
+            <th scope="col" style="width: 2%;" > # </th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +31,11 @@ Problems
                 <td> {{problem_name}} </td>
                 <td> <a href="{% url 'problem_edit' problem_id %}"> Edit </a> </td>
                 <td> <a href="{% url 'problem_view' problem_id %}"> View </a> </td>
+                <td> 
+                    <a href="{% url 'problem_remove' problem_id %}"
+                    onclick="return confirm('Are you sure you want to remove problem {{problem_id}} . {{problem_name}}?');">
+                    <button type="button" class="btn btn-danger">Delete</button></a>
+                </td>
             </tr>
         {% endfor %}
     </tbody>
