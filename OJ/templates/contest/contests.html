@@ -25,7 +25,11 @@ Contests
                 {% endfor %}
             </td>
             <td> {{contest.START_TIME}} </td>
-            <td> {{contest.DURATION}} </td>
+            <td>
+                {% if contest.DURATION %}
+                {{ contest.DURATION_HOUR|stringformat:"02d" }}:{{contest.DURATION_MINUTE|stringformat:"02d"}}
+                {% endif %}
+            </td>
             <td>
                 {% if IS_MANAGER == 0 %}
                 {%  if contest.REGISTERED == 1 %}

@@ -3,6 +3,9 @@
 Edit {{CONTEST_ID}} . {{ TITLE }} - OJ
 {% endblock %}
 {% block content %}
+
+<a href="{% url 'admin_contests' %}"> <button class="btn btn-secondary" > Back </button> </a>
+
 <form method="POST">
     {% csrf_token %}
     <label> contest ID : </label>
@@ -17,8 +20,17 @@ Edit {{CONTEST_ID}} . {{ TITLE }} - OJ
     <b> {{ manager.handle }} </b>
     <button type="submit"> Remove </button><br>
     {% endfor %}
-    <label> Manager :</label> <input type="text" name="MANAGER_HANDLE" value="{{ MANAGER_HANDLE }}" required> <br>
-    <button type="submit"> Add </button><br>
+
+    <label>New Manager :</label> <input type="text" name="MANAGER_HANDLE"> <br>
+
+    <label> Managers: </label>
+
+    {% for writer in WRITERS %}
+    {% include 'colored_handle.html' with handle=writer.HANDLE color=writer.COLOR only %}
+    <a href="{% url 'admin_remove_manager' CONTEST_ID writer.USER_ID %}"><span
+            class="glyphicon glyphicon-remove"></span> </a>,
+    {% endfor %}
+    <br>
     <button type="submit"> Save </button><br>
 </form>
 <a href="{% url 'admin_remove_contest' CONTEST_ID %}"

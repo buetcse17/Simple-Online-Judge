@@ -8,7 +8,7 @@ from user.models import get_handle
 
 
 def get_writers(contest_id):
-    sql = """ SELECT HANDLE , COLOR
+    sql = """ SELECT HANDLE , COLOR , USER_ID
     FROM OJ.MANAGER LEFT JOIN OJ.USERS USING (USER_ID) 
         LEFT JOIN OJ.RATING_DISTRIBUTION ON ( RATING BETWEEN MINIMUM_RATING AND MAXIMUM_RATING )
     WHERE CONTEST_ID = %s ;"""
@@ -35,6 +35,9 @@ def get_contests_dict(user_id=None):
                 contest['CONTEST_ID'], user_id)
             contest['IS_MANAGER'] = is_admin(get_handle(
                 user_id)) or is_manager(contest['CONTEST_ID'], user_id) == 1
+            if contest['DURATION'] is not None:
+                contest['DURATION_HOUR'] = contest['DURATION']//60
+                contest['DURATION_MINUTE'] = contest['DURATION']%60
     return result
 
 
@@ -58,8 +61,10 @@ def get_contest_dict(contest_id):
     with connection.cursor() as cursor:
         cursor.execute(sql, [contest_id])
         result = dictfetchall(cursor)[0]
+
     if result is not None:
         result['PROBLEMS'] = get_problems_summary(contest_id)
+        result['WRITERS'] = get_writers(result['CONTEST_ID'])
 
     return result
 
