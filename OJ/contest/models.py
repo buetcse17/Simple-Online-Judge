@@ -37,7 +37,7 @@ def get_contests_dict(user_id=None):
                 user_id)) or is_manager(contest['CONTEST_ID'], user_id) == 1
             if contest['DURATION'] is not None:
                 contest['DURATION_HOUR'] = contest['DURATION']//60
-                contest['DURATION_MINUTE'] = contest['DURATION']%60
+                contest['DURATION_MINUTE'] = contest['DURATION'] % 60
     return result
 
 

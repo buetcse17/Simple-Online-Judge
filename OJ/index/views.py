@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from user.models import is_loggedin
+from user.models import is_loggedin, get_followers_dict
 from OJ.utils import add_user_information
 
 # Create your views here.
@@ -15,6 +15,8 @@ def index(request):
 def friends(request):
     if is_loggedin(request):
         context = {}
+
+        context['FOLLOWERS'] = get_followers_dict(request.session['user_id'])
 
         context = add_user_information(request=request, context=context)
         return render(request, 'friends.html', context)

@@ -102,3 +102,15 @@ end;
 begin
     oj.Judge(9553792635);
 end;
+
+
+create or replace function oj.get_rating_color(rating in number) return varchar2 is
+    color_ varchar2(20) ;
+begin
+    select COLOR
+    into color_
+    from oj.RATING_DISTRIBUTION
+    where rating between MINIMUM_RATING and MAXIMUM_RATING;
+    return color_;
+end;
+/

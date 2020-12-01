@@ -3,7 +3,7 @@ from django.db import connection
 import hashlib
 
 
-from OJ.utils import log_sql
+from OJ.utils import log_sql, dictfetchall
 # Create your models here.
 
 
@@ -51,7 +51,7 @@ def authenticate(handle, password_hash):
     cursor.execute(sql, [handle, password_hash])
 
     #print(sql.format(handle  , password_hash))
-    #print(connection.queries)
+    # print(connection.queries)
 
     result = cursor.fetchone()[0]
     #print(handle, password_hash, result)
@@ -320,8 +320,17 @@ def update_user_institution(handle, institution_id):
     return
 
 
-def get_friends(user_id):
+def get_followers_dict(user_id):
     """
     handle , color 
     """
-    pass
+    sql = """SELECT HANDLE , oj.get_rating_color(oj.users.rating) as color
+    FROM OJ.FOLLOW
+    LEFT JOIN OJ.USERS ON (OJ.FOLLOW.FOLLOWEE_ID = OJ.USERS.USER_ID)
+    WHERE OJ.FOLLOW.FOLLOWER_ID = %s ;"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [user_id])
+        result = dictfetchall(cursor)
+
+    return result

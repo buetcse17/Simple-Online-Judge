@@ -12,6 +12,14 @@ My Friends - OJ
         </tr>
     </thead>
     <tbody>
+        {% for follower in FOLLOWERS %}
+        <tr>
+            <td> {{ forloop.counter }}</td>
+            <td>
+                {% include 'colored_handle.html' with handle=follower.HANDLE color=follower.COLOR only %}
+            </td>
+        </tr>
+        {% endfor %}
     </tbody>
 </table>
 
