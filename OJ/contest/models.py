@@ -124,3 +124,21 @@ def is_manager(contest_id,  user_id):
         cursor.execute(sql, [contest_id, user_id])
         result = cursor.fetchone()[0]
     return result
+
+def add_clarification_db(question ,answer ,publish_time ,contest_id):
+    """
+    add new clarification
+    """
+    sql = """INSERT INTO OJ.CLARIFICATION(CLARIFICATION_ID,QUESTION,ANSWER,PUBLISH_TIME,CONTEST_ID)
+    VALUES (OJ.CLARIFICATION_ID_SEQ ,%s,%s,%s,%s);"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql , [question,answer,publish_time,contest_id])
+    return
+
+def remove_clarification_db(clarification_id):
+    sql ="""delete from oj.clarification
+    where clarification_id = %s ;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql,[clarification_id])
+    return
+
