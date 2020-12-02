@@ -125,14 +125,24 @@ def is_manager(contest_id,  user_id):
         result = cursor.fetchone()[0]
     return result
 
-def add_clarification_db(question ,answer ,publish_time ,contest_id):
+def add_clarification_question(question ,publish_time ,contest_id):
     """
     add new clarification
     """
-    sql = """INSERT INTO OJ.CLARIFICATION(CLARIFICATION_ID,QUESTION,ANSWER,PUBLISH_TIME,CONTEST_ID)
-    VALUES (OJ.CLARIFICATION_ID_SEQ ,%s,%s,%s,%s);"""
+    sql = """INSERT INTO OJ.CLARIFICATION(CLARIFICATION_ID,QUESTION,PUBLISH_TIME,CONTEST_ID)
+    VALUES (OJ.CLARIFICATION_ID_SEQ ,%s,%s,%s);"""
     with connection.cursor() as cursor:
-        cursor.execute(sql , [question,answer,publish_time,contest_id])
+        cursor.execute(sql , [question,publish_time,contest_id])
+    return
+
+def add_clarification_answer(clarification_id,answer):
+    """
+    """
+    sql ="""update oj.clarification
+    set answer = %s
+    where clarification_id = %s;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql,[answer,clarification_id])
     return
 
 def remove_clarification_db(clarification_id):
@@ -142,3 +152,26 @@ def remove_clarification_db(clarification_id):
         cursor.execute(sql,[clarification_id])
     return
 
+def get_clarification_question(clarification_id):
+    sql = """select question
+    from oj.clarification
+    where clarification_id = %s ;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql,[clarification_id])
+    return
+
+def get_clarification_answer(clarification_id):
+    sql = """select answer
+    from oj.clarification
+    where clarification_id = %s ;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql,[clarification_id])
+    return
+
+def get_contest_clarifications(contest_id):
+    sql = """select clarification_id
+    from oj.clarification
+    where contest_id = %s;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql,[contest_id])
+    return
