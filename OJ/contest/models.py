@@ -159,7 +159,7 @@ def get_clarification_question(clarification_id):
     with connection.cursor() as cursor:
         cursor.execute(sql,[clarification_id])
         result = cursor.fetchall()
-    return
+    return result
 
 def get_clarification_answer(clarification_id):
     sql = """select answer
@@ -168,7 +168,7 @@ def get_clarification_answer(clarification_id):
     with connection.cursor() as cursor:
         cursor.execute(sql,[clarification_id])
         result = cursor.fetchall()
-    return
+    return result
 
 def get_contest_clarifications(contest_id):
     sql = """select clarification_id
@@ -177,4 +177,4 @@ def get_contest_clarifications(contest_id):
     with connection.cursor() as cursor:
         cursor.execute(sql,[contest_id])
         result = cursor.fetchall()
-    return
+    return result
