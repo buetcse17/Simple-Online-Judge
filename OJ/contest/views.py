@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 
 from user.models import is_loggedin
 from OJ.utils import add_user_information
-from .models import get_contests_dict, get_contest_dict, get_problem_id, add_participant  , remove_participant
+from .models import (get_contests_dict, get_contest_dict, get_problem_id, add_participant  , remove_participant , get_contest_clarifications,
+                    get_clarification_answer,get_clarification_question, add_clarification_question, add_clarification_question, is_manager, is_participant)
 from submission.models import get_new_submission_id, add_submission, get_submissions_dict, get_mysubmissions_dict, get_submission_dict
 from problem.models import get_problem_dict
 # Create your views here.
@@ -125,3 +126,22 @@ def unregister(request, contest_id):
         return redirect('signin')
     remove_participant(contest_id, request.session['user_id'])
     return redirect('contests')
+
+def clarification(request,contest_id):
+    context = {}
+
+    context = get_contest_dict(contest_id)
+    clarifications = get_contest_clarifications(contest_id)
+
+    if is_loggedin(request):
+        if is_manager(contest_id,request.session['user_id']) == True:
+            context = add_user_information(request, context)    
+            context = clarifications
+        elif is_participant(contest_id,request.session['user_id']) == True:
+            context = add_user_information(request, context)    
+            context = clarifications
+
+    return render(request, 'contest/dashboard.html', context)
+    
+
+
