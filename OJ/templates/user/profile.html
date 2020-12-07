@@ -127,6 +127,13 @@
             </li>
 
             {% endif %}
+
+            {% if request.session.handle == 'admin' %}
+            <li>
+               <a href="{% url 'admin_contests' %}"> Admin Area </a>
+            </li>
+            {% endif %}
+
          </ul>
       </div>
    </div>

@@ -55,9 +55,10 @@ def get_contests_dict(user_id=None):
 
 
 def get_problems_summary(contest_id):
-    sql = """ SELECT ALIAS , PROBLEM_ID , PROBLEM_NAME  , TIMELIMIT , MEMORYLIMIT
+    sql = """ SELECT ALIAS , PROBLEM_ID , PROBLEM_NAME  , TIMELIMIT , MEMORYLIMIT 
     FROM OJ.PROBLEM_CONTEST LEFT JOIN OJ.PROBLEM USING (PROBLEM_ID)
-    WHERE CONTEST_ID = %s ;"""
+    WHERE CONTEST_ID = %s 
+    ORDER BY ALIAS ASC;"""
 
     with connection.cursor() as cursor:
         cursor.execute(sql, [contest_id])
@@ -173,6 +174,7 @@ def update_clarification(contest_id, clarification_id, answer):
 
     return
 
+
 def add_problem_contest(contest_id, problem_id):
     sql = """insert into oj.problem_contest(contest_id,problem_id,alias)
     values(%s,%s,'None');
@@ -180,6 +182,7 @@ def add_problem_contest(contest_id, problem_id):
     with connection.cursor() as cursor:
         cursor.execute(sql, [contest_id, problem_id])
     return
+
 
 def remove_problem_contest(contest_id, problem_id):
     sql = """delete on oj.problem_contest
@@ -189,3 +192,21 @@ def remove_problem_contest(contest_id, problem_id):
     with connection.cursor() as cursor:
         cursor.execute(sql, [contest_id, problem_id])
     return
+
+
+def get_standings_icpc_dict(contest_id):
+    sql = """SELECT HANDLE , OJ.GET_RATING_COLOR(RATING) AS COLOR  ,
+    SUM( NVL(ROUND((SUBMISSION_TIME - START_TIME ) * 24 * 60) , 0) ) AS TOTAL_TIME 
+    FROM OJ.PARTICIPANT LEFT JOIN OJ.CONTEST USING (CONTEST_ID) 
+    LEFT JOIN OJ.USERS USING ( USER_ID)
+     LEFT JOIN OJ.SUBMISSION USING ( CONTEST_ID , USER_ID ) 
+     LEFT JOIN OJ.PROBLEM_CONTEST USING (CONTEST_ID , PROBLEM_ID )
+    WHERE CONTEST_ID = %s 
+    GROUP BY HANDLE , RATING ;"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [contest_id])
+        result = dictfetchall(cursor)
+
+
+    return result

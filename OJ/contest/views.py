@@ -3,9 +3,10 @@ from django.shortcuts import render, redirect
 from user.models import is_loggedin
 from OJ.utils import add_user_information
 from .models import (get_contests_dict, get_contest_dict, get_problem_id, add_participant, remove_participant, remove_clarification_db,
-                     add_clarification_question,  is_manager, is_participant, update_clarification, add_problem_contest, remove_problem_contest)
+                     add_clarification_question,  is_manager, is_participant, update_clarification, add_problem_contest, remove_problem_contest,
+                     get_standings_icpc_dict , get_problems_summary)
 from submission.models import get_new_submission_id, add_submission, get_submissions_dict, get_mysubmissions_dict, get_submission_dict
-from problem.models import get_problem_dict ,get_problems_of_owner_id
+from problem.models import get_problem_dict, get_problems_of_owner_id
 # Create your views here.
 
 
@@ -156,7 +157,7 @@ def update_question(request, contest_id, clarification_id):
         return redirect('contest', contest_id)
 
 
-def add_problem(request, contest_id , problem_id):
+def add_problem(request, contest_id, problem_id):
     if is_loggedin(request) and is_manager(contest_id, request.session['user_id']) and request.method == 'POST':
         problem_id = request.POST['PROBLEM_ID']
         add_problem_contest(contest_id, problem_id)
@@ -164,12 +165,14 @@ def add_problem(request, contest_id , problem_id):
     else:
         return redirect('contest', contest_id)
 
-def remove_problem(request ,contest_id ,problem_id):
+
+def remove_problem(request, contest_id, problem_id):
     if is_loggedin(request) and is_manager(contest_id, request.session['user_id']):
         remove_problem_contest(contest_id, problem_id)
         return redirect('contest', contest_id)
     else:
         return redirect('contest', contest_id)
+
 
 def show_problems_of_owner(request, contest_id):
     if is_loggedin(request) and is_manager(contest_id, request.session['user_id']):
@@ -180,3 +183,17 @@ def show_problems_of_owner(request, contest_id):
         return redirect('contest', context)
     else:
         return redirect('contest', contest_id)
+
+
+def standings(request, contest_id):
+    context = {}
+
+    context = get_contest_dict(contest_id)
+    
+    context['PROBLEMS'] = get_problems_summary(contest_id)
+    context['STANDINGS'] = get_standings_icpc_dict(contest_id)
+
+    if is_loggedin(request):
+        context = add_user_information(request, context)
+
+    return render(request, 'contest/standings.html', context)

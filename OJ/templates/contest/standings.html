@@ -1,0 +1,29 @@
+{% extends 'contest/layout.html' %}
+{% block title %}
+Standings - OJ
+{% endblock %}
+{% block content %}
+{{block.super}}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th> User </th>
+            <th> # </th>
+            {% for problem in PROBLEMS %}
+            <th> {{ problem.ALIAS }} </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in STANDINGS %}
+        <tr>
+            <td>
+                {% include 'colored_handle.html' with color=row.COLOR handle=row.HANDLE only %}
+            </td>
+        </tr>
+        {{row}}
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
