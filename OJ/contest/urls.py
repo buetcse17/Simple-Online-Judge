@@ -14,5 +14,11 @@ urlpatterns = [
          views.submission, name='submission'),
     path('<int:contest_id>/problem/<slug:alias>', views.problem, name='problem'),
     path('<int:contest_id>/register>', views.register, name='contest_register'),
-    path('<int:contest_id>/unregister>', views.unregister, name='contest_unregister'),
+    path('<int:contest_id>/unregister>',
+         views.unregister, name='contest_unregister'),
+    path('<int:contest_id>/ask>', views.ask, name='contest_ask'),
+    path('<int:contest_id>/remove_question/<int:clarification_id>',
+         views.remove_question, name='contest_remove_question'),
+    path('<int:contest_id>/update_question/<int:clarification_id>',
+         views.update_question, name='contest_update_question'),
 ]

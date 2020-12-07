@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 
 from user.models import is_loggedin
 from OJ.utils import add_user_information
-from .models import (get_contests_dict, get_contest_dict, get_problem_id, add_participant  , remove_participant , get_contest_clarifications,
-                    get_clarification_answer,get_clarification_question, add_clarification_question, add_clarification_question, is_manager, is_participant)
+from .models import (get_contests_dict, get_contest_dict, get_problem_id, add_participant, remove_participant, remove_clarification_db,
+                     add_clarification_question,  is_manager, is_participant, update_clarification)
 from submission.models import get_new_submission_id, add_submission, get_submissions_dict, get_mysubmissions_dict, get_submission_dict
 from problem.models import get_problem_dict
 # Create your views here.
@@ -22,7 +22,7 @@ def contests(request):
 def contest(request, contest_id):
     context = {}
 
-    context = get_contest_dict(contest_id)
+    context = get_contest_dict(contest_id, request.session.get('user_id'))
 
     if is_loggedin(request):
         context = add_user_information(request, context)
@@ -127,21 +127,30 @@ def unregister(request, contest_id):
     remove_participant(contest_id, request.session['user_id'])
     return redirect('contests')
 
-def clarification(request,contest_id):
-    context = {}
 
-    context = get_contest_dict(contest_id)
-    clarifications = get_contest_clarifications(contest_id)
-
-    if is_loggedin(request):
-        if is_manager(contest_id,request.session['user_id']) == True:
-            context = add_user_information(request, context)    
-            context = clarifications
-        elif is_participant(contest_id,request.session['user_id']) == True:
-            context = add_user_information(request, context)    
-            context = clarifications
-
-    return render(request, 'contest/dashboard.html', context)
-    
+def ask(request, contest_id):
+    if is_loggedin(request) and request.method == 'POST':
+        print(request.POST)
+        question = request.POST['QUESTION']
+        if question is not None and question != '':
+            add_clarification_question(question, contest_id)
+        return redirect('contest', contest_id)
+    else:
+        return redirect('contest', contest_id)
 
 
+def remove_question(request, contest_id, clarification_id):
+    if is_loggedin(request) and is_manager(contest_id, request.session['user_id']):
+        remove_clarification_db(clarification_id, contest_id)
+        return redirect('contest', contest_id)
+    else:
+        return redirect('contest', contest_id)
+
+
+def update_question(request, contest_id, clarification_id):
+    if is_loggedin(request) and is_manager(contest_id, request.session['user_id']) and request.method == 'POST':
+        answer = request.POST['ANSWER']
+        update_clarification(contest_id, clarification_id,  answer)
+        return redirect('contest', contest_id)
+    else:
+        return redirect('contest', contest_id)

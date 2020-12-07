@@ -7,6 +7,17 @@ from user.models import get_handle
 # Create your models here.
 
 
+def get_contest_clarifications_dict(contest_id):
+    sql = """select *
+    from oj.clarification
+    where contest_id = %s
+    order by PUBLISH_TIME DESC;"""
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [contest_id])
+        result = dictfetchall(cursor)
+    return result
+
+
 def get_writers(contest_id):
     sql = """ SELECT HANDLE , COLOR , USER_ID
     FROM OJ.MANAGER LEFT JOIN OJ.USERS USING (USER_ID) 
@@ -31,10 +42,11 @@ def get_contests_dict(user_id=None):
         result = dictfetchall(cursor)
         for contest in result:
             contest['WRITERS'] = get_writers(contest['CONTEST_ID'])
-            contest['REGISTERED'] = is_participant(
-                contest['CONTEST_ID'], user_id)
-            contest['IS_MANAGER'] = is_admin(get_handle(
-                user_id)) or is_manager(contest['CONTEST_ID'], user_id) == 1
+            if user_id is not None:
+                contest['REGISTERED'] = is_participant(
+                    contest['CONTEST_ID'], user_id)
+                contest['IS_MANAGER'] = is_admin(get_handle(
+                    user_id)) or is_manager(contest['CONTEST_ID'], user_id) == 1
             if contest['DURATION'] is not None:
                 contest['DURATION_HOUR'] = contest['DURATION']//60
                 contest['DURATION_MINUTE'] = contest['DURATION'] % 60
@@ -53,7 +65,7 @@ def get_problems_summary(contest_id):
     return result
 
 
-def get_contest_dict(contest_id):
+def get_contest_dict(contest_id, user_id=None):
     sql = """ SELECT * 
     FROM OJ.CONTEST
     WHERE CONTEST_ID = %s ;"""
@@ -64,7 +76,11 @@ def get_contest_dict(contest_id):
 
     if result is not None:
         result['PROBLEMS'] = get_problems_summary(contest_id)
-        result['WRITERS'] = get_writers(result['CONTEST_ID'])
+        result['WRITERS'] = get_writers(contest_id)
+        result['CLARIFICATIONS'] = get_contest_clarifications_dict(contest_id)
+
+        result['IS_MANAGER'] = user_id is not None and is_manager(
+            contest_id, user_id) == 1
 
     return result
 
@@ -125,56 +141,33 @@ def is_manager(contest_id,  user_id):
         result = cursor.fetchone()[0]
     return result
 
-def add_clarification_question(question ,publish_time ,contest_id):
+
+def add_clarification_question(question, contest_id):
     """
     add new clarification
     """
-    sql = """INSERT INTO OJ.CLARIFICATION(CLARIFICATION_ID,QUESTION,PUBLISH_TIME,CONTEST_ID)
-    VALUES (OJ.CLARIFICATION_ID_SEQ ,%s,%s,%s);"""
+    sql = f"""INSERT INTO OJ.CLARIFICATION(CLARIFICATION_ID,QUESTION ,PUBLISH_TIME,CONTEST_ID)
+    VALUES (OJ.CLARIFICATION_ID_SEQ.NEXTVAL ,%s , { get_current_time_sql() } ,%s);"""
     with connection.cursor() as cursor:
-        cursor.execute(sql , [question,publish_time,contest_id])
+        cursor.execute(sql, [question, contest_id])
     return
 
-def add_clarification_answer(clarification_id,answer):
-    """
-    """
-    sql ="""update oj.clarification
-    set answer = %s
-    where clarification_id = %s;"""
+
+def remove_clarification_db(clarification_id, contest_id):
+    sql = """delete from oj.clarification
+    where clarification_id = %s 
+    and contest_id = %s ;"""
     with connection.cursor() as cursor:
-        cursor.execute(sql,[answer,clarification_id])
+        cursor.execute(sql, [clarification_id, contest_id])
     return
 
-def remove_clarification_db(clarification_id):
-    sql ="""delete from oj.clarification
-    where clarification_id = %s ;"""
+
+def update_clarification(contest_id, clarification_id, answer):
+    sql = """update oj.clarification
+    set answer = %s 
+    where clarification_id = %s 
+    and contest_id = %s ;"""
     with connection.cursor() as cursor:
-        cursor.execute(sql,[clarification_id])
+        cursor.execute(sql, [answer, clarification_id, contest_id])
+
     return
-
-def get_clarification_question(clarification_id):
-    sql = """select question
-    from oj.clarification
-    where clarification_id = %s ;"""
-    with connection.cursor() as cursor:
-        cursor.execute(sql,[clarification_id])
-        result = cursor.fetchall()
-    return result
-
-def get_clarification_answer(clarification_id):
-    sql = """select answer
-    from oj.clarification
-    where clarification_id = %s ;"""
-    with connection.cursor() as cursor:
-        cursor.execute(sql,[clarification_id])
-        result = cursor.fetchall()
-    return result
-
-def get_contest_clarifications(contest_id):
-    sql = """select clarification_id
-    from oj.clarification
-    where contest_id = %s;"""
-    with connection.cursor() as cursor:
-        cursor.execute(sql,[contest_id])
-        result = cursor.fetchall()
-    return result
