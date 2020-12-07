@@ -4,6 +4,7 @@ from django.db import connection
 from OJ.utils import dictfetchall, get_random_number, get_current_time_sql
 from admin.models import is_admin
 from user.models import get_handle
+from problem.models import get_owner_user_id
 # Create your models here.
 
 
@@ -170,4 +171,21 @@ def update_clarification(contest_id, clarification_id, answer):
     with connection.cursor() as cursor:
         cursor.execute(sql, [answer, clarification_id, contest_id])
 
+    return
+
+def add_problem_contest(contest_id, problem_id):
+    sql = """insert into oj.problem_contest(contest_id,problem_id,alias)
+    values(%s,%s,'None');
+    """
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [contest_id, problem_id])
+    return
+
+def remove_problem_contest(contest_id, problem_id):
+    sql = """delete on oj.problem_contest
+    where contest_id = %s
+    and problem_id = %s;
+    """
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [contest_id, problem_id])
     return
