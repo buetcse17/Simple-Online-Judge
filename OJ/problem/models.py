@@ -228,3 +228,13 @@ def remove_sample_testcase(problem_id, sample_testcase_id):
         cursor.execute(sql, [problem_id, sample_testcase_id])
 
     return
+
+def get_problems_of_owner_id(user_id):
+    sql = """select problem_id
+    from oj.problem
+    where owner_user_id = %s;
+    """
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [user_id])
+        result = cursor.fetchall()
+    return result
