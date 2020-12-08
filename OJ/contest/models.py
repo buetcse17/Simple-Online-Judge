@@ -223,20 +223,52 @@ def remove_problem_contest(contest_id, problem_id):
     return
 
 
+
+
 def get_standings_icpc_dict(contest_id):
-    sql = """SELECT HANDLE , OJ.GET_RATING_COLOR(RATING) AS COLOR  ,
-    SUM( NVL(ROUND((SUBMISSION_TIME - START_TIME ) * 24 * 60) , 0) ) AS TOTAL_TIME 
-    FROM OJ.PARTICIPANT LEFT JOIN OJ.CONTEST USING (CONTEST_ID) 
+    sql = """SELECT HANDLE , OJ.GET_RATING_COLOR(RATING) AS COLOR , USER_ID
+    FROM OJ.PARTICIPANT 
     LEFT JOIN OJ.USERS USING ( USER_ID)
-     LEFT JOIN OJ.SUBMISSION USING ( CONTEST_ID , USER_ID ) 
-     LEFT JOIN OJ.PROBLEM_CONTEST USING (CONTEST_ID , PROBLEM_ID )
-    WHERE CONTEST_ID = %s 
-    GROUP BY HANDLE , RATING ;"""
+    WHERE CONTEST_ID = %s """
 
     with connection.cursor() as cursor:
         cursor.execute(sql, [contest_id])
         result = dictfetchall(cursor)
 
+    def get_col(contest_id , user_id):
+        sql = """select pc.alias  alias , 
+        count(s.submission_id) total_attempt ,
+        ceil(sum( nvl((s.submission_time - c.start_time) , 0) * 24 * 60 ) ) total_time ,
+        sum( decode(s.verdict , 'Accepted' , 1 , 0) ) total_accepted
+        from oj.PROBLEM_CONTEST pc 
+        left join oj.contest c on(pc.contest_id = c.contest_id)
+        left join oj.submission s on (s.contest_id = pc.contest_id and s.PROBLEM_ID = pc.PROBLEM_ID and s.user_id = %s )
+        where pc.contest_id = %s
+        group by pc.alias
+        order by pc.alias;"""
+        with connection.cursor() as cursor:
+            cursor.execute(sql, [user_id , contest_id ])
+            result = cursor.fetchall()
+        
+        return result
+
+
+    for row in result:
+        row['COL'] = get_col(contest_id , row['USER_ID'])
+        row['TOTAL_TIME'] = 0
+        row['TOTAL_ACCEPTED'] = 0
+        for col in row['COL']:
+            if col[-1] > 0 :
+                row['TOTAL_TIME'] += col[-2]
+                row['TOTAL_ACCEPTED'] += 1
+    
+    def sort_cmp(row1 , row2):
+        if row1['TOTAL_ACCEPTED'] > row2['TOTAL_ACCEPTED'] or ( row1['TOTAL_ACCEPTED'] == row2['TOTAL_ACCEPTED'] and row1['TOTAL_TIME'] < row2['TOTAL_TIME'] ):
+            return -1
+        else:
+            return 1
+    from functools import cmp_to_key
+    result.sort(key = cmp_to_key(sort_cmp) )
     return result
 
 

@@ -7,21 +7,41 @@ Standings - OJ
 <table class="table table-bordered">
     <thead>
         <tr>
+            <th>*</th>
             <th> User </th>
-            <th> # </th>
+            <th style="width: 10em;"> # </th>
             {% for problem in PROBLEMS %}
-            <th> {{ problem.ALIAS }} </th>
+            <th style="width: 10em;"> {{ problem.ALIAS }} </th>
             {% endfor %}
         </tr>
     </thead>
     <tbody>
         {% for row in STANDINGS %}
         <tr>
+            <td>{{ forloop.counter }}</td>
             <td>
                 {% include 'colored_handle.html' with color=row.COLOR handle=row.HANDLE only %}
             </td>
+            <td>
+                {{ row.TOTAL_ACCEPTED }} ( {{ row.TOTAL_TIME }} )
+            </td>
+            {% for alias,total_attempt , total_time , total_accepted in row.COL %}
+            <td>
+                {% if total_accepted > 0  %}
+                <span class="glyphicon glyphicon-ok" ></span>
+                {% elif total_attempt > 0 %}
+                <span class="glyphicon glyphicon-remove" ></span>
+                {% endif %}
+
+                {% if total_attempt > 0 %}
+                    {{total_attempt}}
+                {% if total_accepted > 0  %}
+                ( {{total_time}} )
+                {% endif %}
+                {% endif %}
+            </td>
+            {% endfor %}
         </tr>
-        {{row}}
         {% endfor %}
     </tbody>
 </table>
