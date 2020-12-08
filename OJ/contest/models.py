@@ -36,7 +36,6 @@ def get_writers(contest_id):
 
 def is_contest_running(start_time, duration):
     minutes = (get_current_time() - start_time).total_seconds()/60
-    print('minute: ', minutes, 'duration', duration)
     return minutes >= 0 and minutes <= duration
 
 
@@ -173,7 +172,7 @@ def is_manager(contest_id,  user_id):
     with connection.cursor() as cursor:
         cursor.execute(sql, [contest_id, user_id])
         result = cursor.fetchone()[0]
-    return result==1
+    return result == 1
 
 
 def add_clarification_question(question, contest_id):
@@ -223,8 +222,6 @@ def remove_problem_contest(contest_id, problem_id):
     return
 
 
-
-
 def get_standings_icpc_dict(contest_id):
     sql = """SELECT HANDLE , OJ.GET_RATING_COLOR(RATING) AS COLOR , USER_ID
     FROM OJ.PARTICIPANT 
@@ -235,7 +232,7 @@ def get_standings_icpc_dict(contest_id):
         cursor.execute(sql, [contest_id])
         result = dictfetchall(cursor)
 
-    def get_col(contest_id , user_id):
+    def get_col(contest_id, user_id):
         sql = """select pc.alias  alias , 
         count(s.submission_id) total_attempt ,
         ceil(sum( nvl((s.submission_time - c.start_time) , 0) * 24 * 60 ) ) total_time ,
@@ -247,32 +244,31 @@ def get_standings_icpc_dict(contest_id):
         group by pc.alias
         order by pc.alias;"""
         with connection.cursor() as cursor:
-            cursor.execute(sql, [user_id , contest_id ])
+            cursor.execute(sql, [user_id, contest_id])
             result = cursor.fetchall()
-        
+
         return result
 
-
     for row in result:
-        row['COL'] = get_col(contest_id , row['USER_ID'])
+        row['COL'] = get_col(contest_id, row['USER_ID'])
         row['TOTAL_TIME'] = 0
         row['TOTAL_ACCEPTED'] = 0
         for col in row['COL']:
-            if col[-1] > 0 :
+            if col[-1] > 0:
                 row['TOTAL_TIME'] += col[-2]
                 row['TOTAL_ACCEPTED'] += 1
-    
-    def sort_cmp(row1 , row2):
-        if row1['TOTAL_ACCEPTED'] > row2['TOTAL_ACCEPTED'] or ( row1['TOTAL_ACCEPTED'] == row2['TOTAL_ACCEPTED'] and row1['TOTAL_TIME'] < row2['TOTAL_TIME'] ):
+
+    def sort_cmp(row1, row2):
+        if row1['TOTAL_ACCEPTED'] > row2['TOTAL_ACCEPTED'] or (row1['TOTAL_ACCEPTED'] == row2['TOTAL_ACCEPTED'] and row1['TOTAL_TIME'] < row2['TOTAL_TIME']):
             return -1
         else:
             return 1
     from functools import cmp_to_key
-    result.sort(key = cmp_to_key(sort_cmp) )
+    result.sort(key=cmp_to_key(sort_cmp))
     return result
 
 
-def is_registered(contest_id , user_id ):
+def is_registered(contest_id, user_id):
     """
     true/false
     """

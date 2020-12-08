@@ -1,6 +1,7 @@
 from django.db import models
 from django.db import connection
 
+import threading
 from OJ.utils import dictfetchall, get_random_number, get_current_time_sql
 # Create your models here.
 
@@ -76,7 +77,6 @@ def get_submission_dict(submission_id):
     return result
 
 
-
 def exist_submission(submission_id):
     sql = """ SELECT COUNT(*) 
     FROM OJ.SUBMISSION
@@ -97,6 +97,18 @@ def get_new_submission_id():
         submission_id = get_random_number(10)
 
     return submission_id
+
+
+def fake_judge(submission_id):
+    sql = """begin
+    oj.JUDGE( %s );
+end;
+/"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [submission_id])
+
+    return
 
 
 def add_submission(post_data):
@@ -137,6 +149,9 @@ def add_submission(post_data):
     with connection.cursor() as cursor:
         cursor.execute(sql, post_data)
 
+    th = threading.Thread(target=fake_judge, args=(post_data['SUBMISSION_ID'] ,))
+    th.start()
+
     return
 
 
@@ -167,6 +182,7 @@ def get_submissions_all_dict():
 
     return result
 
+
 def get_submissions_user_dict(handle):
     sql = """SELECT 
                     SUBMISSION_ID   ,
@@ -189,7 +205,7 @@ def get_submissions_user_dict(handle):
     ORDER BY SUBMISSION_TIME DESC ;"""
 
     with connection.cursor() as cursor:
-        cursor.execute(sql,[handle])
+        cursor.execute(sql, [handle])
         result = dictfetchall(cursor)
 
     return result
