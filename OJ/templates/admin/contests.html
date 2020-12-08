@@ -21,6 +21,7 @@ Contests
         <tr>
             <td> {{contest.TITLE}} <br>
                 <a href="{% url 'admin_contest' contest.CONTEST_ID %}">Enter>></a>
+                {{ contest.STATE  }}
             </td>
             <td>
                 {% for writer in contest.WRITERS %}

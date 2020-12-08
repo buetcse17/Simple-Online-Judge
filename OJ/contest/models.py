@@ -1,10 +1,12 @@
 from django.db import models
 from django.db import connection
 
-from OJ.utils import dictfetchall, get_random_number, get_current_time_sql
+from OJ.utils import dictfetchall, get_random_number, get_current_time_sql, get_current_time
 from admin.models import is_admin
 from user.models import get_handle
 from problem.models import get_owner_user_id, get_problems
+
+from datetime import timedelta
 # Create your models here.
 
 
@@ -32,25 +34,46 @@ def get_writers(contest_id):
     return result
 
 
+def is_contest_running(start_time, duration):
+    minutes = (get_current_time() - start_time).total_seconds()/60
+    print('minute: ', minutes, 'duration', duration)
+    return minutes >= 0 and minutes <= duration
+
+
+def is_contest_upcoming(start_time):
+    return (get_current_time() < start_time)
+
+
 def get_contests_dict(user_id=None):
     sql = """SELECT CONTEST_ID , TITLE , START_TIME , DURATION , COUNT(USER_ID) AS TOTAL_PARTICIPANT
     FROM OJ.CONTEST LEFT JOIN OJ.PARTICIPANT USING (CONTEST_ID)
     GROUP BY CONTEST_ID , TITLE , START_TIME , DURATION 
-    ORDER BY START_TIME DESC;"""
+    ORDER BY START_TIME + DURATION / 1440 DESC;"""
 
     with connection.cursor() as cursor:
         cursor.execute(sql)
         result = dictfetchall(cursor)
         for contest in result:
             contest['WRITERS'] = get_writers(contest['CONTEST_ID'])
+
+            if contest['START_TIME'] is None or contest['DURATION'] is None or is_contest_upcoming(contest['START_TIME']):
+                contest['STATE'] = 'UPCOMING'
+            elif is_contest_running(contest['START_TIME'], contest['DURATION']):
+                contest['STATE'] = 'RUNNING'
+            else:
+                contest['STATE'] = 'ENDED'
+
             if user_id is not None:
                 contest['REGISTERED'] = is_participant(
                     contest['CONTEST_ID'], user_id)
                 contest['IS_MANAGER'] = is_admin(get_handle(
                     user_id)) or is_manager(contest['CONTEST_ID'], user_id) == 1
+
             if contest['DURATION'] is not None:
                 contest['DURATION_HOUR'] = contest['DURATION']//60
                 contest['DURATION_MINUTE'] = contest['DURATION'] % 60
+                contest['DURATION'] = timedelta(minutes=contest['DURATION'])
+
     return result
 
 
@@ -80,6 +103,13 @@ def get_contest_dict(contest_id, user_id=None):
         result['PROBLEMS'] = get_problems_summary(contest_id)
         result['WRITERS'] = get_writers(contest_id)
         result['CLARIFICATIONS'] = get_contest_clarifications_dict(contest_id)
+
+        if result['START_TIME'] is None or result['DURATION'] is None or is_contest_upcoming(result['START_TIME']):
+            result['STATE'] = 'UPCOMING'
+        elif is_contest_running(result['START_TIME'], result['DURATION']):
+            result['STATE'] = 'RUNNING'
+        else:
+            result['STATE'] = 'ENDED'
 
         result['IS_MANAGER'] = user_id is not None and is_manager(
             contest_id, user_id) == 1

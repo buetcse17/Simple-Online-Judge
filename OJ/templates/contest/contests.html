@@ -18,16 +18,18 @@ Contests
         <tr>
             <td> {{contest.TITLE}} <br>
                 <a href="{% url 'contest' contest.CONTEST_ID %}">Enter>></a>
+                {{ contest.STATE  }}
             </td>
             <td>
                 {% for writer in contest.WRITERS %}
                 {% include 'colored_handle.html' with handle=writer.HANDLE color=writer.COLOR only %} <br>
                 {% endfor %}
             </td>
-            <td> {{contest.START_TIME}} </td>
+            <td> {{contest.START_TIME|default:''}} </td>
             <td>
                 {% if contest.DURATION %}
-                {{ contest.DURATION_HOUR|stringformat:"02d" }}:{{contest.DURATION_MINUTE|stringformat:"02d"}}
+                {# {{ contest.DURATION_HOUR|stringformat:"02d" }}:{{contest.DURATION_MINUTE|stringformat:"02d"}} <br> #}
+                {{contest.DURATION}}
                 {% endif %}
             </td>
             <td>

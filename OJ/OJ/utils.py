@@ -36,7 +36,11 @@ def get_time_sql(time):
     return f"to_date( '{time.year}-{time.month}-{time.day}-{time.hour}-{time.minute}-{time.second}'  , 'YYYY-MM-DD-HH24-MI-SS')"
 
 
-def get_current_time_sql():
+def get_current_time():
     # time = timezone.now() #always utc
-    time = datetime.now()  # depennds on settings.py
-    return get_time_sql(time)
+    # time = datetime.now()  # depennds on settings.py
+    return datetime.now()
+
+
+def get_current_time_sql():
+    return get_time_sql(get_current_time())
