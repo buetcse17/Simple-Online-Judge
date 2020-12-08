@@ -22,4 +22,8 @@ urlpatterns = [
          views.remove_question, name='contest_remove_question'),
     path('<int:contest_id>/update_question/<int:clarification_id>',
          views.update_question, name='contest_update_question'),
+    path('<int:contest_id>/add_problem',
+         views.add_problem, name='contest_add_problem'),
+    path('<int:contest_id>/remove_problem/<int:problem_id>',
+         views.remove_problem, name='contest_remove_problem'),
 ]

@@ -4,7 +4,7 @@ from django.db import connection
 from OJ.utils import dictfetchall, get_random_number, get_current_time_sql
 from admin.models import is_admin
 from user.models import get_handle
-from problem.models import get_owner_user_id
+from problem.models import get_owner_user_id, get_problems
 # Create your models here.
 
 
@@ -83,6 +83,8 @@ def get_contest_dict(contest_id, user_id=None):
 
         result['IS_MANAGER'] = user_id is not None and is_manager(
             contest_id, user_id) == 1
+        if result['IS_MANAGER']:
+            result['OWNER_PROBLEMS'] = get_problems(user_id)
 
     return result
 
@@ -175,20 +177,17 @@ def update_clarification(contest_id, clarification_id, answer):
     return
 
 
-def add_problem_contest(contest_id, problem_id):
+def add_problem_contest(contest_id, problem_id, alias):
     sql = """insert into oj.problem_contest(contest_id,problem_id,alias)
-    values(%s,%s,'None');
-    """
+    values( %s , %s , %s );"""
     with connection.cursor() as cursor:
-        cursor.execute(sql, [contest_id, problem_id])
+        cursor.execute(sql, [contest_id, problem_id, alias])
     return
 
 
 def remove_problem_contest(contest_id, problem_id):
-    sql = """delete on oj.problem_contest
-    where contest_id = %s
-    and problem_id = %s;
-    """
+    sql = """delete from oj.PROBLEM_CONTEST
+    where contest_id = %s   and problem_id = %s ;"""
     with connection.cursor() as cursor:
         cursor.execute(sql, [contest_id, problem_id])
     return
@@ -207,6 +206,5 @@ def get_standings_icpc_dict(contest_id):
     with connection.cursor() as cursor:
         cursor.execute(sql, [contest_id])
         result = dictfetchall(cursor)
-
 
     return result
