@@ -72,6 +72,8 @@ Dashboard - {{ TITLE }} -OJ
 
 {% endif %}
 
+{% if STATE == 'RUNNING' %}
+
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#question" aria-expanded="false"
     aria-controls="collapseExample">
     Click to ask Question
@@ -84,7 +86,7 @@ Dashboard - {{ TITLE }} -OJ
     <button type="submit">Ask</button>
 </form>
 
-
+{% endif %}
 
 <h3> Clarifications </h3>
 <table class="table table">

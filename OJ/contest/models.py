@@ -67,7 +67,7 @@ def get_contests_dict(user_id=None):
                 contest['REGISTERED'] = is_participant(
                     contest['CONTEST_ID'], user_id)
                 contest['IS_MANAGER'] = is_admin(get_handle(
-                    user_id)) or is_manager(contest['CONTEST_ID'], user_id) == 1
+                    user_id)) or is_manager(contest['CONTEST_ID'], user_id)
 
             if contest['DURATION'] is not None:
                 contest['DURATION_HOUR'] = contest['DURATION']//60
@@ -112,7 +112,7 @@ def get_contest_dict(contest_id, user_id=None):
             result['STATE'] = 'ENDED'
 
         result['IS_MANAGER'] = user_id is not None and is_manager(
-            contest_id, user_id) == 1
+            contest_id, user_id)
         if result['IS_MANAGER']:
             result['OWNER_PROBLEMS'] = get_problems(user_id)
 
@@ -152,7 +152,7 @@ def remove_participant(contest_id, user_id):
 
 def is_participant(contest_id,  user_id):
     """
-    1 if participant
+    true if participant
     """
     sql = """SELECT COUNT(*)
     FROM OJ.PARTICIPANT
@@ -160,12 +160,12 @@ def is_participant(contest_id,  user_id):
     with connection.cursor() as cursor:
         cursor.execute(sql, [contest_id, user_id])
         result = cursor.fetchone()[0]
-    return result
+    return result == 1
 
 
 def is_manager(contest_id,  user_id):
     """
-    1 if manager
+    true/false if manager
     """
     sql = """SELECT COUNT(*)
     FROM OJ.MANAGER
@@ -173,7 +173,7 @@ def is_manager(contest_id,  user_id):
     with connection.cursor() as cursor:
         cursor.execute(sql, [contest_id, user_id])
         result = cursor.fetchone()[0]
-    return result
+    return result==1
 
 
 def add_clarification_question(question, contest_id):
@@ -238,3 +238,18 @@ def get_standings_icpc_dict(contest_id):
         result = dictfetchall(cursor)
 
     return result
+
+
+def is_registered(contest_id , user_id ):
+    """
+    true/false
+    """
+    sql = """select count(*)
+    from oj.PARTICIPANT 
+    where contest_id = %s  and user_id = %s ;"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [contest_id])
+        result = cursor.fetchone()[0]
+
+    return result == 1

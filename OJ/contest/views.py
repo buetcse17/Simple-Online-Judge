@@ -27,12 +27,17 @@ def contest(request, contest_id):
 
     if is_loggedin(request):
         context = add_user_information(request, context)
+    if context['STATE'] == 'UPCOMING':
+        return redirect('contests')
     return render(request, 'contest/dashboard.html', context)
 
 
 def submit(request, contest_id, alias=None):
     if is_loggedin(request):
-        if request.method == 'POST':
+
+        context = {}
+        context = get_contest_dict(contest_id)
+        if context['STATE'] == 'RUNNING' and request.method == 'POST':
 
             post_data = request.POST.copy()
             del post_data['csrfmiddlewaretoken']
@@ -51,16 +56,12 @@ def submit(request, contest_id, alias=None):
             post_data['USER_ID'] = request.session['user_id']
             post_data['CONTEST_ID'] = contest_id
 
-            add_submission(post_data)
+            if is_participant(contest_id, post_data['USER_ID']):
+                add_submission(post_data)
+                return redirect('mysubmissions', contest_id)
 
-            return redirect('mysubmissions', contest_id)
-
-        else:
-            context = {}
-            context = get_contest_dict(contest_id)
-
-            context = add_user_information(request, context)
-            return render(request, 'contest/submit.html', context)
+        context = add_user_information(request, context)
+        return render(request, 'contest/submit.html', context)
     else:
         return redirect('signin')
 
@@ -94,6 +95,9 @@ def submission(request, contest_id, submission_id):
     context = get_submission_dict(submission_id)
     context.update(get_contest_dict(contest_id))
 
+    if context['STATE'] == 'RUNNING' and context['USER_ID'] != request.session.get('user_id'):
+        return redirect('status', contest_id)
+
     if is_loggedin(request):
         context = add_user_information(request, context)
     return render(request, 'contest/submission_view.html', context)
@@ -103,7 +107,8 @@ def problem(request, contest_id, alias):
     problem_id = get_problem_id(contest_id, alias)
     if problem_id is None:
         return redirect('contest', contest_id)
-
+    if get_contest_dict(contest_id)['STATE'] == 'UPCOMING':
+        return redirect('contests')
     context = {}
     context = get_problem_dict(problem_id)
 
@@ -118,6 +123,8 @@ def problem(request, contest_id, alias):
 def register(request, contest_id):
     if not is_loggedin(request):
         return redirect('signin')
+    if get_contest_dict(contest_id)['STATE'] == 'ENDED':
+        return redirect('contests')
     add_participant(contest_id, request.session['user_id'])
     return redirect('contests')
 
@@ -125,13 +132,14 @@ def register(request, contest_id):
 def unregister(request, contest_id):
     if not is_loggedin(request):
         return redirect('signin')
+    if get_contest_dict(contest_id)['STATE'] == 'ENDED':
+        return redirect('contests')
     remove_participant(contest_id, request.session['user_id'])
     return redirect('contests')
 
 
 def ask(request, contest_id):
-    if is_loggedin(request) and request.method == 'POST':
-        print(request.POST)
+    if is_loggedin(request) and request.method == 'POST' and get_contest_dict(contest_id)['STATE'] == 'RUNNING':
         question = request.POST['QUESTION']
         if question is not None and question != '':
             add_clarification_question(question, contest_id)
@@ -174,16 +182,6 @@ def remove_problem(request, contest_id, problem_id):
     else:
         return redirect('contest', contest_id)
 
-
-def show_problems_of_owner(request, contest_id):
-    if is_loggedin(request) and is_manager(contest_id, request.session['user_id']):
-        context = {}
-        context['contest_id'] = contest_id
-        owner_id = request.session['user_id']
-        context = get_problems_of_owner_id(owner_id)
-        return redirect('contest', context)
-    else:
-        return redirect('contest', contest_id)
 
 
 def standings(request, contest_id):

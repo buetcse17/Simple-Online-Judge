@@ -33,7 +33,7 @@ Contests
                 {% endif %}
             </td>
             <td>
-                {% if IS_MANAGER == false %}
+                {% if not contest.IS_MANAGER and STATE != 'ENDED' %}
                 {%  if contest.REGISTERED == 1 %}
                 <a href="{% url 'contest_unregister' contest.CONTEST_ID %}"> Cancel Register </a>
                 {% else %}

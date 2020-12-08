@@ -7,6 +7,9 @@ from OJ.utils import get_time_sql
 
 
 def is_admin(handle):
+    """
+    true/false
+    """
     return handle == 'admin'
 
 
