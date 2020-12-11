@@ -28,6 +28,4 @@ step 4: install python , run command from below
 pip install django
 
 pip install cx_oracle
-
-pip install django-tinymce
 ```
