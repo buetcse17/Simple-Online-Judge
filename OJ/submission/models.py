@@ -197,7 +197,8 @@ def get_submissions_user_dict(handle):
                     HANDLE        ,
                     CONTEST_ID  ,
                     PROBLEM_NAME ,
-                    ALIAS 
+                    ALIAS ,
+                    oj.VERDICT_COLOR(VERDICT) as VERDICT_COLOR
     FROM OJ.SUBMISSION LEFT JOIN OJ.USERS USING (USER_ID)
             LEFT JOIN OJ.PROBLEM USING (PROBLEM_ID)
             LEFT JOIN OJ.PROBLEM_CONTEST USING(PROBLEM_ID , CONTEST_ID)
