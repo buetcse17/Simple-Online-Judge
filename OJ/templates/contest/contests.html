@@ -17,7 +17,7 @@ Contests
         {% for contest in CONTESTS %}
         <tr>
             <td> {{contest.TITLE}} <br>
-                {% if contest.STATE != 'UPCOMING' %}
+                {% if contest.STATE != 'UPCOMING' or contest.IS_MANAGER %}
                 <a href="{% url 'contest' contest.CONTEST_ID %}">Enter>></a>
                 {% endif %}
                 {{ contest.STATE  }}

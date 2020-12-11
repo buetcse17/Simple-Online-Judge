@@ -263,3 +263,6 @@ update oj.message set seen = 1 where sender_id = 30156 and receiver_id = 6
 update oj.message set seen = 1 where sender_id = 30156 and receiver_id = 6 
 insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , mahdi.hasnat , Mahdi Hasnat Siyam , mahdibuetdas3@gmail.com , a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3)
 insert into oj.follow(followee_id , follower_id) values( 66981 , 6 ) 
+insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , admin , admin , admin , admin@oj.com)
+insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , abc , Mahdi Hasnat Siyam , mahdibuet3@gmail.com , a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3)
+Update oj.users            SET profile_picture_location = pro pic_IMToXCR.png                 where handle = abc 

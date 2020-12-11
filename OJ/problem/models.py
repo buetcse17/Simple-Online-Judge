@@ -90,14 +90,14 @@ def get_problem_dict(problem_id):
 def update_problem(post_data):
     sql = """ UPDATE OJ.PROBLEM 
     SET PROBLEM_NAME  = %(PROBLEM_NAME)s ,
-        DESCRIPTION   = %(DESCRIPTION)s ,
-        INPUT_SPECIFICATION  = %(INPUT_SPECIFICATION)s ,
-        OUTPUT_SPECIFICATION = %(OUTPUT_SPECIFICATION)s ,
-        NOTE                 = %(NOTE)s ,
         TIMELIMIT           = %(TIMELIMIT)s ,
         MEMORYLIMIT         = %(MEMORYLIMIT)s ,
         TUTORIAL_LINK     = %(TUTORIAL_LINK)s ,
-        DIFFICULTY =  %(DIFFICULTY)s 
+        DIFFICULTY =  %(DIFFICULTY)s ,
+        DESCRIPTION   = %(DESCRIPTION)s ,
+        INPUT_SPECIFICATION  = %(INPUT_SPECIFICATION)s ,
+        OUTPUT_SPECIFICATION = %(OUTPUT_SPECIFICATION)s ,
+        NOTE                 = %(NOTE)s 
     WHERE PROBLEM_ID = %(PROBLEM_ID)s ;"""
 
     with connection.cursor() as cursor:

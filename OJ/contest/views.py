@@ -27,7 +27,7 @@ def contest(request, contest_id):
 
     if is_loggedin(request):
         context = add_user_information(request, context)
-    if context['STATE'] == 'UPCOMING':
+    if context['STATE'] == 'UPCOMING' and context['IS_MANAGER'] == False:
         return redirect('contests')
     return render(request, 'contest/dashboard.html', context)
 
@@ -95,7 +95,7 @@ def submission(request, contest_id, submission_id):
     context = get_submission_dict(submission_id)
     context.update(get_contest_dict(contest_id))
 
-    if context['STATE'] == 'RUNNING' and context['USER_ID'] != request.session.get('user_id'):
+    if context['STATE'] == 'RUNNING' and context['USER_ID'] != request.session.get('user_id') and context['IS_MANAGER'] == False:
         return redirect('status', contest_id)
 
     if is_loggedin(request):
