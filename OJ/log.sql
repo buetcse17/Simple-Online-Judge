@@ -266,3 +266,13 @@ insert into oj.follow(followee_id , follower_id) values( 66981 , 6 )
 insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , admin , admin , admin , admin@oj.com)
 insert into oj.USERS(USER_ID, HANDLE, USER_NAME, EMAIL, PASSWORD_HASH )             values ( user_id_seq.nextval , abc , Mahdi Hasnat Siyam , mahdibuet3@gmail.com , a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3)
 Update oj.users            SET profile_picture_location = pro pic_IMToXCR.png                 where handle = abc 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 836 , 836 , <p>fasfa</p> ,                 to_date( '2020-12-12-10-40-45'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 836 and receiver_id = 836 
+insert into oj.message(message_id , sender_id , receiver_id , text , time )              values( oj.message_id_seq.nextval , 836 , 139 , <p>dsafa</p> ,                 to_date( '2020-12-12-10-40-56'  , 'YYYY-MM-DD-HH24-MI-SS') ) 
+update oj.message set seen = 1 where sender_id = 139 and receiver_id = 836 
+insert into oj.message(message_id , sender_id , receiver_id , text , time , attachment_location)             values( oj.message_id_seq.nextval , 836 , 139 , <p>solve this</p> ,                  to_date( '2020-12-12-10-41-8'  , 'YYYY-MM-DD-HH24-MI-SS')  ,                      CSE208-Jan-2020_ Branch and Bound_2.pdf ) 
+update oj.message set seen = 1 where sender_id = 139 and receiver_id = 836 
+update oj.message set seen = 1 where sender_id = 836 and receiver_id = 139 
+insert into oj.message(message_id , sender_id , receiver_id , text , time , attachment_location)             values( oj.message_id_seq.nextval , 139 , 836 , <p>asfjkas</p> ,                  to_date( '2020-12-12-11-46-24'  , 'YYYY-MM-DD-HH24-MI-SS')  ,                      1705003.zip ) 
+update oj.message set seen = 1 where sender_id = 836 and receiver_id = 139 
+update oj.message set seen = 1 where sender_id = 139 and receiver_id = 836 

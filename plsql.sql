@@ -95,7 +95,7 @@ declare
     SUBMISSION_ID_ number;
 begin
     SUBMISSION_ID_ := :new.SUBMISSION_ID;
-    oj.JUDGE(SUBMISSION_ID_);
+    --oj.JUDGE(SUBMISSION_ID_);
 end;
 /
 
